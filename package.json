@@ -1,0 +1,23 @@
+{
+  "name": "emlak",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/unsal38/emlak.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/unsal38/emlak/issues"
+  },
+  "homepage": "https://github.com/unsal38/emlak#readme",
+  "description": "",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
