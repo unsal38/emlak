@@ -9218,9 +9218,9 @@ textarea.form-control-lg {
         padding: 10px 15px;
         display: inline-block;
         text-decoration: none !important;
-        color: rgba(255, 255, 255, 0.5); }
+        color: rgb(201 139 39); } 
         .site-nav .site-navigation .site-menu > li > a:hover {
-          color: #fff; }
+          color: #d8a227; }
       .site-nav .site-navigation .site-menu > li.cta-button a {
         padding: 6px 20px;
         border: 2px solid rgba(0, 0, 0, 0.1);
@@ -9231,7 +9231,7 @@ textarea.form-control-lg {
           background: #00204a;
           border-color: #00204a; }
       .site-nav .site-navigation .site-menu > li.active > a {
-        color: #fff; }
+        color: black; }
     .site-nav .site-navigation .site-menu .has-children {
       position: relative; }
       .site-nav .site-navigation .site-menu .has-children > a {
@@ -9653,7 +9653,7 @@ textarea {
   transform: translate(-50%, -50%); }
 
 .menu-bg-wrap {
-  background-color: #005555;
+  background-color: #fde159;
   padding: 20px 30px;
   position: relative;
   float: left;
@@ -9701,8 +9701,8 @@ textarea {
     max-width: 600px;
     margin: 0 auto; }
   .hero .form-search .form-control {
-    padding-top: 18px;
-    padding-bottom: 18px;
+/*     padding-top: 18px;
+    padding-bottom: 18px; */
     padding-left: 20px;
     padding-right: 20px;
     border: none;
@@ -9714,7 +9714,7 @@ textarea {
   .hero .form-search .form-control {
     margin-right: 10px; }
   .hero .form-search .btn {
-    background-color: #005555;
+    background-color: #c8ab21;
     padding-left: 30px;
     padding-right: 30px;
     color: #fff; }
@@ -9795,7 +9795,7 @@ textarea {
   -o-transition: .3s all ease;
   transition: .3s all ease; }
   .btn.btn-primary {
-    background: #005555;
+    background: #c8ab21;
     color: #fff; }
   .btn:hover {
     top: -2px;
