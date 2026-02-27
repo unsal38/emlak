@@ -1,0 +1,206 @@
+<%- include("layouts/header") %>
+  <body>
+<%- include("layouts/nav1") %>
+    <div
+      class="hero page-inner overlay"
+      style="background-image: url('images/hero_bg_1.jpg')"
+    >
+      <div class="container">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-lg-9 text-center mt-5">
+            <h1 class="heading" data-aos="fade-up">Garyrimülkler</h1>
+
+            <nav
+              aria-label="breadcrumb"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <ol class="breadcrumb text-center justify-content-center">
+                <li class="breadcrumb-item"><a href="index">Ana Sayfa</a></li>
+                <li
+                  class="breadcrumb-item active text-white-50"
+                  aria-current="page"
+                >
+                  Garyrimülkler
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="container">
+        <div class="row mb-5 align-items-center">
+          <div class="col-lg-6 text-center mx-auto">
+            <h2 class="font-weight-bold text-primary heading">
+             Öne Çıkan Garyrimülkler
+            </h2>
+          </div>
+        </div>
+<%- include("layouts/popiler-gaymenkul") %>
+      </div>
+    </div>
+
+    <div class="section section-properties">
+      <div class="container">
+        <div class="row">
+
+
+          <nav class="navbar bg-body-tertiary">
+            <div class="container-fluid" style="
+                border: 2px solid black;
+                border-radius: 20px;
+                margin-bottom: 10px;
+                border-color: #255656;
+              ">
+              <a class="navbar-brand ">Filtre</a>
+              <form class="d-flex" role="search">
+                <div class="row">
+
+                  <div class="col">
+                    <select class="form-select" aria-label="Default select example">
+                      <option selected>Oda Sayısı</option>
+                      <option value="1">3-1</option>
+                      <option value="2">2-1</option>
+                      <option value="3">1-1</option>
+                    </select>
+                  </div>
+                  <div class="col">
+                    <select class="form-select" aria-label="Default select example">
+                      <option selected>Banyo Sayısı</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                    </select>
+                  </div>
+
+                  <div class="col">
+                    <select class="form-select" aria-label="Default select example">
+                      <option selected>Metre Kare</option>
+                      <option value="1">100m2 küçük</option>
+                      <option value="2">100m2 büyük</option>
+                    </select>
+                  </div>
+                  <div class="col">
+                    <select class="form-select" aria-label="Default select example">
+                      <option selected>Sırala</option>
+                      <option value="1">Azalan</option>
+                      <option value="2">Artan</option>
+                    </select>
+                  </div>
+
+                </div>
+              </form>
+            </div>
+          </nav>
+
+
+
+          <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+            <div class="property-item mb-30">
+              <a href="property-single" class="img">
+                <img src="images/img_1.jpg" alt="Image" class="img-fluid" />
+              </a>
+
+              <div class="property-content">
+                <div class="price mb-2"><span>$</span><span>1,30,000</span></div>
+                <div>
+                  <span class="d-block mb-2 text-black-50"
+                    >çanakkale mahallesi</span
+                  >
+                  <span class="city d-block mb-3">Girne / Kıbrıs</span>
+
+                  <div class="specs d-flex mb-4">
+                    <span class="d-block d-flex align-items-center me-3">
+                      <span class="icon-home me-2"></span>
+                      <span class="caption">3 + 2 </span>
+                    </span>
+                    <span class="d-block d-flex align-items-center me-3">
+                      <span class="icon-bed me-2"></span>
+                      <span class="caption">2 </span>
+                    </span>
+                    <span class="d-block d-flex align-items-center me-3">
+                      <span class="icon-bath me-2"></span>
+                      <span class="caption">2 </span>
+                    </span>           
+
+                    <span class="d-block d-flex align-items-center ">
+                      <span class="icon-area-chart me-2"></span>
+                      <span class="caption">20m2</span>
+                    </span>
+                  </div>
+
+                  <a
+                    href="property-single.html"
+                    class="btn btn-primary py-2 px-3"
+                    >İncele</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+           <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+            <div class="property-item mb-30">
+              <a href="property-single" class="img">
+                <img src="images/img_2.jpg" alt="Image" class="img-fluid" />
+              </a>
+
+              <div class="property-content">
+                <div class="price mb-2"><span>$</span><span>1,30,000</span></div>
+                <div>
+                  <span class="d-block mb-2 text-black-50"
+                    >çanakkale mahallesi</span
+                  >
+                  <span class="city d-block mb-3">Girne / Kıbrıs</span>
+
+                  <div class="specs d-flex mb-4">
+                    <span class="d-block d-flex align-items-center me-3">
+                      <span class="icon-home me-2"></span>
+                      <span class="caption">3 + 2 </span>
+                    </span>
+                    <span class="d-block d-flex align-items-center me-3">
+                      <span class="icon-bed me-2"></span>
+                      <span class="caption">2 </span>
+                    </span>
+                    <span class="d-block d-flex align-items-center me-3">
+                      <span class="icon-bath me-2"></span>
+                      <span class="caption">2 </span>
+                    </span>           
+
+                    <span class="d-block d-flex align-items-center ">
+                      <span class="icon-area-chart me-2"></span>
+                      <span class="caption">20m2</span>
+                    </span>
+                  </div>
+
+                  <a
+                    href="property-single.html"
+                    class="btn btn-primary py-2 px-3"
+                    >İncele</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+        </div>
+
+        <div class="row align-items-center py-5">
+          <div class="col-lg-3">Sayfa (1 of 10)</div>
+          <div class="col-lg-6 text-center">
+            <div class="custom-pagination">
+              <a href="#">1</a>
+              <a href="#" class="active">2</a>
+              <a href="#">3</a>
+              <a href="#">4</a>
+              <a href="#">5</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<%- include("layouts/footer") %>
