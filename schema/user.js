@@ -10,7 +10,8 @@ const userSchema = new mongoose.Schema({
     authorization: {
         type: String,
         default: "user"
-    }
+    },
+    authentication: String
 })
 
 

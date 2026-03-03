@@ -1,6 +1,7 @@
 import mongoose from "mongoose"
 import Mulk from '../schema/mulk.js';
 import User from '../schema/user.js'
+import jwt from "./token_gerenate.js"
 
 export const add_mulk = function add_mulk(data) {
   const createMulk = async (mulkData) => {
@@ -56,19 +57,42 @@ export const add_user = async function add_user(data) {
     try {
       const user = new User(userData);
       await user.save();
-      console.log('User created:', user);
+      const _id = user._id
+      const authentication = await jwt.new_reflesh_token(data)
+      await User.findByIdAndUpdate(_id, { "authentication": authentication })
     } catch (err) {
       console.error('Error creating user:', err.message);
     }
   }
   if (email_check === null) {
     createUser(data)
-  }else{
+  } else {
     return false
   }
 
 
 }
+
+export function find_user(value) {
+  const myPromise = new Promise(async (resolve) => {
+    try {
+      return await User.findOne({ email: value }).then((v) => {
+        if (v === null) {
+          resolve(null)
+          console.log(`mülk ${value} not find`)
+        }
+        if (v !== null) {
+          resolve(v)
+        }
+      })
+    } catch (err) {
+      console.error('Error find user:', err.message);
+    }
+  })
+  return myPromise
+}
+
+
 
 export const delete_user = function delete_user(_id) {
   const delete_user = async (_id) => {
@@ -108,5 +132,6 @@ export default {
   update_mulk,
   add_user,
   delete_user,
-  update_user
+  update_user,
+  find_user
 }

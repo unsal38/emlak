@@ -1,55 +1,40 @@
-    <div class="site-mobile-menu site-navbar-target">
-      <div class="site-mobile-menu-header">
-        <div class="site-mobile-menu-close">
-          <span class="icofont-close js-menu-toggle"></span>
-        </div>
-      </div>
-      <div class="site-mobile-menu-body"></div>
+<div class="site-mobile-menu site-navbar-target">
+  <div class="site-mobile-menu-header">
+    <div class="site-mobile-menu-close">
+      <span class="icofont-close js-menu-toggle"></span>
     </div>
+  </div>
+  <div class="site-mobile-menu-body"></div>
+</div>
 
-    <nav class="site-nav">
-      <div class="container">
-        <div class="menu-bg-wrap">
-          <div class="site-navigation">
-            <a style="width: 165px;" href="index" class="logo m-0 float-start"><img class="w-100" src="/images/name.png" alt="kutera"></a>
+<nav class="site-nav">
+  <div class="container">
+    <div class="menu-bg-wrap">
+      <div class="site-navigation">
+        <a style="width: 165px;" href="/" class="logo m-0 float-start"><img class="w-100" src="/images/name.png"
+            alt="kutera"></a>
 
-            <ul
-              class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end"
-            >
-              <li class="active"><a href="index">Ana Menü</a></li>
-<!--               <li class="has-children">
-                <a href="properties.html">Properties</a>
-                <ul class="dropdown">
-                  <li><a href="#">Buy Property</a></li>
-                  <li><a href="#">Sell Property</a></li>
-                  <li class="has-children">
-                    <a href="#">Dropdown</a>
-                    <ul class="dropdown">
-                      <li><a href="#">Sub Menu One</a></li>
-                      <li><a href="#">Sub Menu Two</a></li>
-                      <li><a href="#">Sub Menu Three</a></li>
-                    </ul>
-                  </li>
-                </ul>
-              </li> -->
-             <!--  <li><a href="services.html">Services</a></li> -->
-              <li><a href="about">Hakkımızda</a></li>
-              <li><a href="contact">İletişim</a></li>
-              <li><a href="login" data-bs-toggle="modal" data-bs-target="#login">Giriş</a></li>
-              <li><a href="register"data-bs-toggle="modal" data-bs-target="#register">Kayıt</a></li>
-            </ul>
-            <a
-              href="#"
-              class="burger light me-auto float-end mt-1 site-menu-toggle js-menu-toggle d-inline-block d-lg-none"
-              data-toggle="collapse"
-              data-target="#main-navbar"
-            >
-              <span></span>
-            </a>
-          </div>
-        </div>
+        <ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end">
+          <li class="active"><a href="/">Ana Menü</a></li>
+          <li><a href="about">Hakkımızda</a></li>
+          <li><a href="contact">İletişim</a></li>
+          <% if(user_aut === null) { %>
+            <li><a href="login" data-bs-toggle="modal" data-bs-target="#login">Giriş</a></li>
+            <li><a href="register" data-bs-toggle="modal" data-bs-target="#register">Kayıt</a></li>
+          <% }else{ %>
+          <li><p class="text-uppercase">Hoşgeldiniz <%- user_autjwt.name _%>&nbsp;<%- user_autjwt.surname _%></p></li>
+          <% } %>
+            
+
+        </ul>
+        <a href="#" class="burger light me-auto float-end mt-1 site-menu-toggle js-menu-toggle d-inline-block d-lg-none"
+          data-toggle="collapse" data-target="#main-navbar">
+          <span></span>
+        </a>
       </div>
-    </nav>
+    </div>
+  </div>
+</nav>
 
 <!--Login Modal -->
 <div class="modal fade" id="login" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -60,28 +45,25 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        
+
         <form>
           <div class="row mb-3">
-            <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+            <label for="email_login" class="col-sm-2 col-form-label">Email</label>
             <div class="col-sm-10">
-              <input type="email" class="form-control" id="inputEmail3">
+              <input type="email" class="form-control" id="email_login">
             </div>
           </div>
           <div class="row mb-3">
-          <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+            <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
             <div class="col-sm-10">
               <input type="password" class="form-control" id="inputPassword3">
-              <div id="inputPassword3" class="form-text">
-                Parolanız 8-20 karakter uzunluğunda olmalı, harf ve rakam içermeli ve boşluk, özel karakter veya emoji içermemelidir.
-              </div>
             </div>
           </div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Giriş</button>
+        <button name="login-button" type="button" class="btn btn-primary">Giriş</button>
       </div>
     </div>
   </div>
@@ -113,18 +95,25 @@
           <div class="col-md-6">
             <label for="password1" class="form-label">Password</label>
             <input type="password" class="form-control" id="password1">
+
           </div>
           <div class="col-md-6">
             <label for="password2" class="form-label">Tekrar Password</label>
             <input type="password" class="form-control" id="password2">
           </div>
           <div class="col-12">
+            <div id="inputPassword3" class="form-text">
+              Parolanız 8-20 karakter uzunluğunda olmalı, harf ve rakam içermeli ve boşluk, özel karakter veya emoji
+              içermemelidir.
+            </div>
+          </div>
+          <div class="col-12">
             <label for="tel_number" class="form-label">Telefon Numarası</label>
             <input type="number" class="form-control" id="tel_number" placeholder="05XX XXX XX XX">
           </div>
-        
+
         </form>
- 
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
