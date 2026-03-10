@@ -22,54 +22,57 @@ const check_user = function (req, res, next) {
         }
     }
 }
-const check_url = async function (req, res, next) {
-    try {
-        const url_data = req.originalUrl
-        const url_split = url_data.split("/")
-        const url_data1 = ["blog-single", "blog", "about", "contact", "properties", "property-single", ""]
-        const special_character = ["(", "'", ")", "<", ">", "#", "%", "{", "}", "&"]
-
-       // console.log(url_split.length)
-
-        next()
-
-        // if (url_data === "/") {
-        //     next()
-        // } else if (url_split.length > 2) {
-
-        //     const check_data = url_data.find(data => data === url_split[1])
-        //     const check_data1 = special_character.find(data => data === url_split[2])
-
-
-
-        //     if (check_data === undefined || check_data.length < 1 || check_data1 !== undefined) {
-        //         ejs.renderFile('views/404.ejs', (err, html) => {
-        //             if (err) {
-        //                 res.status(500).send(err);
-        //             }
-        //             res.send(html);
-        //         });
-        //     } else next()
-        // } else if (url_split.length <= 2) {
-        //     const url_data = ["blog-single", "blog", "about", "contact", "properties", "property-single", ""]
-        //     const check_data = url_data.find(data => data === url_split[1])
-        //     if (check_data === undefined || check_data.length < 1) {
-        //         ejs.renderFile('views/404.ejs', (err, html) => {
-        //             if (err) {
-        //                 res.status(500).send(err);
-        //             }
-        //             res.send(html);
-        //         });
-        //     } else next()
-
-        // } else {
-        //     next()
-        // }
-    } catch (err) {
-        if (err) console.log(err, "check.js")
-    }
+const check_post = function (req, res, next) {
+    
 }
+// const check_url = async function (req, res, next) {
+//     try {
+//         const url_data = req.url
+//         const url_split = url_data.split("/")
+//         const url_data1 = ["blog-single", "blog", "about", "contact", "properties", "property-single", " "]
+//         const data_check1 = url_data1.find(data => data === url_split[1])
+//         console.log(data_check1,url_split[1], "lenght")
+        
+
+
+//         next()
+
+//         // if (url_data === "/") {
+//         //     next()
+//         // } else if (url_split.length > 2) {
+
+//         //     const check_data = url_data.find(data => data === url_split[1])
+//         //     const check_data1 = special_character.find(data => data === url_split[2])
+
+
+
+//         //     if (check_data === undefined || check_data.length < 1 || check_data1 !== undefined) {
+//         //         ejs.renderFile('views/404.ejs', (err, html) => {
+//         //             if (err) {
+//         //                 res.status(500).send(err);
+//         //             }
+//         //             res.send(html);
+//         //         });
+//         //     } else next()
+//         // } else if (url_split.length <= 2) {
+//         //     const url_data = ["blog-single", "blog", "about", "contact", "properties", "property-single", ""]
+//         //     const check_data = url_data.find(data => data === url_split[1])
+//         //     if (check_data === undefined || check_data.length < 1) {
+//         //         ejs.renderFile('views/404.ejs', (err, html) => {
+//         //             if (err) {
+//         //                 res.status(500).send(err);
+//         //             }
+//         //             res.send(html);
+//         //         });
+//         //     } else next()
+
+//         // } else {
+//         //     next()
+//         // }
+//     } catch (err) {
+//         if (err) console.log(err, "check.js")
+//     }
+// }
 export default {
-    check_user,
-    check_url
+    check_user
 }

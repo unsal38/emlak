@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema({
     reflesh_token: String,
     authorization: {
         type: String,
-        default: "user"
+        default: "user" // advisor
     },
     authentication: String
 })

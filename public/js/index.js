@@ -153,3 +153,21 @@ $(() => {
     // const myPromise = axios_data("mulk_delete", data)
     // myPromise.then((res) => console.log(res.data, "index js 150"))
 }) //// delete  mulk
+
+$(() => {
+    const data = [
+        "ahmet",    //name: String,
+        "delidolu",    //surname: String,
+        "ahmet@gmail.com",  //email: String,
+        "123",  //password: String,
+        123123,    //tel_number: Number,
+    ]
+    // const myPromise = axios_data("advisor_create", data)
+    // myPromise.then((res) => console.log(res.data, "index js 172"))
+}) //// create new advisor
+
+$(() => {
+    const data = { _id: "69ae7a307a9be043ae834e76" }
+    // const myPromise = axios_data("advisor_delete", data)
+    // myPromise.then((res) => console.log(res.data, "index js 172"))
+}) //// delete  advisor

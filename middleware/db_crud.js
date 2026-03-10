@@ -125,6 +125,27 @@ export const update_user = function update_user(_id, data) {
 }
 
 
+export const add_advisor = async function add_user(data) {
+  const email_check = await User.findOne({ email: data.email })
+  const createAdvisor = async (userData) => {
+    try {
+      const user = new User(userData);
+      await user.save();
+      const _id = user._id
+      const authentication = await jwt.new_reflesh_token(data)
+      await User.findByIdAndUpdate(_id, { "authentication": authentication })
+    } catch (err) {
+      console.error('Error creating user:', err.message);
+    }
+  }
+  if (email_check === null) {
+    createAdvisor(data)
+  } else {
+    return false
+  }
+
+
+}
 
 
 
@@ -135,5 +156,6 @@ export default {
   add_user,
   delete_user,
   update_user,
-  find_user
+  find_user,
+  add_advisor
 }
