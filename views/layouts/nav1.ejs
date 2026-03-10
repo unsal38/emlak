@@ -18,7 +18,7 @@
           <li class="active"><a href="/">Ana Menü</a></li>
           <li><a href="about">Hakkımızda</a></li>
           <li><a href="contact">İletişim</a></li>
-          <% if(user_aut === null) { %>
+          <% if(!user_aut || user_aut === null) { %>
             <li><a href="login" data-bs-toggle="modal" data-bs-target="#login">Giriş</a></li>
             <li><a href="register" data-bs-toggle="modal" data-bs-target="#register">Kayıt</a></li>
           <% }else{ %>

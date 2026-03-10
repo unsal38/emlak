@@ -93,7 +93,7 @@ $(() => {
                 local_storage("set", "aut", v.data[0])
                 local_storage("set", "autjwt", v.data[1])
                 local_storage("set", "name", v.data[2])
-                local_storage("set", "surname", v.data[3]) 
+                local_storage("set", "surname", v.data[3])
                 Cookies.set("aut", v.data[0])
                 Cookies.set("autjwt", v.data[1])
                 location.reload();
@@ -106,23 +106,50 @@ $(() => {
     });
 }) /// LOGİN
 
-$(()=> {
+$(() => {
     const check_jwt = local_storage("reed", "autjwt")
-    check_jwt.then((v)=>{
+    check_jwt.then((v) => {
         const url = "refleshToken"
         const data = {
-            jwt : v
+            jwt: v
         }
         const promise = axios_data(url, data)
-        promise.then(i=> {
-            if(i.data === "JWT undefined") {
+        promise.then(i => {
+            if (i.data === "JWT undefined") {
                 local_storage("all_remove")
                 Cookies.remove("autjwt")
                 Cookies.remove("aut")
-            }else {
-                local_storage("set","autjwt", i.data)
+            } else {
+                local_storage("set", "autjwt", i.data)
                 Cookies.set("autjwt", i.data)
             }
         })
     })
 }) // check autjwt
+
+
+
+
+
+$(() => {
+    const data = [
+        "1,2002",  //  price: data[0], //: String,
+        "büyükçekmeceek istanbul",  // adress: data[1],  //: String,
+        3,  // room: data[2],    //: Number,
+        2, // bedroom: data[3], //: Number,
+        1,   // bath: data[4],  //: Number,
+        123,    // area_net: data[5], //:Number,
+        54,    // area_brut: data[6], //:Number,
+        "satış",    // province: data[7], //:String,
+        "girne",    // country: data[8], //: String,
+        "4.jpg"    // image: data[9], //:String
+    ]
+    // const myPromise = axios_data("mulk_create", data)
+    // myPromise.then((res) => console.log(res.data, "index js 144"))
+}) //// create new mulk
+
+$(() => {
+    const data = { _id: "69ae7a307a9be043ae834e76" }
+    // const myPromise = axios_data("mulk_delete", data)
+    // myPromise.then((res) => console.log(res.data, "index js 150"))
+}) //// delete  mulk

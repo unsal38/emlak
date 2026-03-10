@@ -1,16 +1,16 @@
 <%- include("layouts/header") %>
   <body>
 <%- include("layouts/nav1") %>
-
+<% mulk_data_array.forEach(v_mulk => { %>
     <div
       class="hero page-inner overlay"
-      style="background-image: url('images/hero_bg_3.jpg')"
+      style="background-image: url('/images/hero_bg_3.jpg')"
     >
       <div class="container">
         <div class="row justify-content-center align-items-center">
           <div class="col-lg-9 text-center mt-5">
-            <h1 class="heading" data-aos="fade-up">
-              5232 California AVE. 21BC
+            <h1 style="text-transform: capitalize;" class="heading" data-aos="fade-up">
+              <%= v_mulk.adress %>
             </h1>
 
             <nav
@@ -19,15 +19,17 @@
               data-aos-delay="200"
             >
               <ol class="breadcrumb text-center justify-content-center">
-                <li class="breadcrumb-item"><a href="index">Ana Sayfa</a></li>
+                <li class="breadcrumb-item"><a href="/">Ana Sayfa</a></li>
                 <li class="breadcrumb-item">
                   <a href="properties">Garyrimülkler</a>
                 </li>
+
                 <li
-                  class="breadcrumb-item active text-white-50"
+                  style="text-transform: capitalize;"
+                  class="uppercase breadcrumb-item active text-white-50"
                   aria-current="page"
                 >
-                  5232 California AVE. 21BC
+                  <%= v_mulk.adress %>
                 </li>
               </ol>
             </nav>
@@ -35,42 +37,40 @@
         </div>
       </div>
     </div>
-
+    
+      
+    
     <div class="section">
       <div class="container">
         <div class="row justify-content-between">
           <div class="col-lg-7">
             <div class="img-property-slide-wrap">
               <div class="img-property-slide">
-                <img src="images/img_1.jpg" alt="Image" class="img-fluid" />
-                <img src="images/img_2.jpg" alt="Image" class="img-fluid" />
-                <img src="images/img_3.jpg" alt="Image" class="img-fluid" />
+                <img src="/images/mulk-images/5x5/1.jpg" alt="Image" class="img-fluid" />
+                <img src="/images/mulk-images/5x5/2.jpg" alt="Image" class="img-fluid" />
+                <img src="/images/mulk-images/5x5/3.jpg" alt="Image" class="img-fluid" />
               </div>
             </div>
           </div>
           <div class="col-lg-4">
-            <h2 class="heading text-primary">5232 California Ave. 21BC</h2>
-            <p class="meta">California, United States</p>
+            <h2 style="text-transform: capitalize;" class="heading text-primary"><%= v_mulk.adress %></h2>
+            <p style="text-transform: capitalize;" class="meta"><%= v_mulk.adress %></p>
             <p class="text-black-50">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione
-              laborum quo quos omnis sed magnam id, ducimus saepe, debitis error
-              earum, iste dicta odio est sint dolorem magni animi tenetur.
+              <%= v_mulk.metin1 %>
             </p>
             <p class="text-black-50">
-              Perferendis eligendi reprehenderit, assumenda molestias nisi eius
-              iste reiciendis porro tenetur in, repudiandae amet libero.
-              Doloremque, reprehenderit cupiditate error laudantium qui, esse
-              quam debitis, eum cumque perferendis, illum harum expedita.
+              <%= v_mulk.metin2 %>
             </p>
-
+            <% }); %>
             <div class="d-block agent-box p-5">
               <div class="img mb-4">
                 <img
-                  src="images/person_2-min.jpg"
+                  src="/images/person_2-min.jpg"
                   alt="Image"
                   class="img-fluid"
                 />
               </div>
+              
               <div class="text">
                 <h3 class="mb-0">Alicia Huston</h3>
                 <div class="meta mb-3">Real Estate</div>

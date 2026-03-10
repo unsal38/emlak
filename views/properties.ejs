@@ -16,7 +16,7 @@
               data-aos-delay="200"
             >
               <ol class="breadcrumb text-center justify-content-center">
-                <li class="breadcrumb-item"><a href="index">Ana Sayfa</a></li>
+                <li class="breadcrumb-item"><a href="/">Ana Sayfa</a></li>
                 <li
                   class="breadcrumb-item active text-white-50"
                   aria-current="page"
@@ -46,8 +46,6 @@
     <div class="section section-properties">
       <div class="container">
         <div class="row">
-
-
           <nav class="navbar bg-body-tertiary">
             <div class="container-fluid" style="
                 border: 2px solid black;
@@ -96,44 +94,68 @@
             </div>
           </nav>
 
-
-
-          <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+          
+          <% if(mulk_data){ %>
+            <% mulk_data.forEach(v_m => { %>
+          <div data-mulk-id="<%= v_m._id %>" class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
             <div class="property-item mb-30">
               <a href="property-single" class="img">
-                <img src="images/img_1.jpg" alt="Image" class="img-fluid" />
+                <div id="carouselExampleIndicators1" class="carousel slide">
+
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <img src="images/mulk-images/5x5/1.jpg" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                      <img src="images/mulk-images/5x5/2.jpg" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item">
+                      <img src="images/mulk-images/5x5/3.jpg" class="d-block w-100" alt="...">
+                    </div>
+                  </div>
+                  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators1"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                  </button>
+                  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators1"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                  </button>
+                </div>
               </a>
 
               <div class="property-content">
-                <div class="price mb-2"><span>$</span><span>1,30,000</span></div>
+                <div class="price mb-2">$<%= v_m.price %></div>
                 <div>
                   <span class="d-block mb-2 text-black-50"
-                    >çanakkale mahallesi</span
+                    ><%= v_m.adress %></span
                   >
-                  <span class="city d-block mb-3">Girne / Kıbrıs</span>
+                  <span class="city d-block mb-3"><%= v_m.country %> / Kıbrıs</span>
 
                   <div class="specs d-flex mb-4">
                     <span class="d-block d-flex align-items-center me-3">
                       <span class="icon-home me-2"></span>
-                      <span class="caption">3 + 2 </span>
+                      <span class="caption"><%= v_m.room %> </span>
                     </span>
                     <span class="d-block d-flex align-items-center me-3">
                       <span class="icon-bed me-2"></span>
-                      <span class="caption">2 </span>
+                      <span class="caption"><%= v_m.bedroom %> </span>
                     </span>
                     <span class="d-block d-flex align-items-center me-3">
                       <span class="icon-bath me-2"></span>
-                      <span class="caption">2 </span>
+                      <span class="caption"><%= v_m.bath %></span>
                     </span>           
 
                     <span class="d-block d-flex align-items-center ">
                       <span class="icon-area-chart me-2"></span>
-                      <span class="caption">20m2</span>
+                      <span class="caption"><%= v_m.area_net %>m2</span>
                     </span>
                   </div>
 
                   <a
-                    href="property-single.html"
+                    href="property-single"
                     class="btn btn-primary py-2 px-3"
                     >İncele</a
                   >
@@ -141,54 +163,11 @@
               </div>
             </div>
           </div>
-           <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-            <div class="property-item mb-30">
-              <a href="property-single" class="img">
-                <img src="images/img_2.jpg" alt="Image" class="img-fluid" />
-              </a>
-
-              <div class="property-content">
-                <div class="price mb-2"><span>$</span><span>1,30,000</span></div>
-                <div>
-                  <span class="d-block mb-2 text-black-50"
-                    >çanakkale mahallesi</span
-                  >
-                  <span class="city d-block mb-3">Girne / Kıbrıs</span>
-
-                  <div class="specs d-flex mb-4">
-                    <span class="d-block d-flex align-items-center me-3">
-                      <span class="icon-home me-2"></span>
-                      <span class="caption">3 + 2 </span>
-                    </span>
-                    <span class="d-block d-flex align-items-center me-3">
-                      <span class="icon-bed me-2"></span>
-                      <span class="caption">2 </span>
-                    </span>
-                    <span class="d-block d-flex align-items-center me-3">
-                      <span class="icon-bath me-2"></span>
-                      <span class="caption">2 </span>
-                    </span>           
-
-                    <span class="d-block d-flex align-items-center ">
-                      <span class="icon-area-chart me-2"></span>
-                      <span class="caption">20m2</span>
-                    </span>
-                  </div>
-
-                  <a
-                    href="property-single.html"
-                    class="btn btn-primary py-2 px-3"
-                    >İncele</a
-                  >
-                </div>
-              </div>
-            </div>
-          </div>
-
+            <% }); %>
+          <% } %>
 
 
         </div>
-
         <div class="row align-items-center py-5">
           <div class="col-lg-3">Sayfa (1 of 10)</div>
           <div class="col-lg-6 text-center">

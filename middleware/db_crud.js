@@ -49,6 +49,8 @@ export const update_mulk = function update_mulk(_id, data) {
 
 }
 
+
+
 /////////////////////////////////////////
 
 export const add_user = async function add_user(data) {

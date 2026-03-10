@@ -10,7 +10,9 @@ const mulkSchema = new mongoose.Schema({
     area_brut:Number,
     province:String,
     country: String,
-    image:String
+    image:String,
+    metin1: String,
+    metin2: String,
 })
 
 
