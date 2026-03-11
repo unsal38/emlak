@@ -1,7 +1,7 @@
-import db_crud from "../middleware/db_crud.js"
-import token_gerenate from "../middleware/token_gerenate.js"
-import bcrypt from "bcryptjs";
-export function login_register(req, res) {
+const db_crud = require ("../middleware/db_crud.js")
+const token_gerenate = require( "../middleware/token_gerenate.js")
+const bcrypt = require( "bcryptjs");
+ function login_register(req, res) {
 
     try {
         const data = req.body
@@ -21,7 +21,7 @@ export function login_register(req, res) {
     } catch (error) { console.log(error, "post request") }
 
 }
-export function login(req, res) {
+ function login(req, res) {
     try {
         let data = req.body
         const myPromise = db_crud.find_user(data[0])
@@ -47,7 +47,7 @@ export function login(req, res) {
         })
     } catch (error) { console.log(error, "login request") }
 }
-export default {
+module.exports = {
     login_register,
     login
 }

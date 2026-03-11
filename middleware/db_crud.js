@@ -1,9 +1,9 @@
-import mongoose from "mongoose"
-import Mulk from '../schema/mulk.js';
-import User from '../schema/user.js'
-import jwt from "./token_gerenate.js"
+const mongoose  = require("mongoose")
+const Mulk      = require('../schema/mulk.js') ;
+const User      = require('../schema/user.js') 
+const jwt       = require("./token_gerenate.js") 
 
-export const add_mulk = function add_mulk(data) {
+ const add_mulk = function add_mulk(data) {
   const createMulk = async (mulkData) => {
     try {
       const mulk = new Mulk(mulkData);
@@ -17,7 +17,7 @@ export const add_mulk = function add_mulk(data) {
   createMulk(data);
 }
 
-export const delete_mulk = function delete_mulk(_id) {
+ const delete_mulk = function delete_mulk(_id) {
 
 
   const delete_mulk = async (_id) => {
@@ -33,7 +33,7 @@ export const delete_mulk = function delete_mulk(_id) {
 
 }
 
-export const update_mulk = function update_mulk(_id, data) {
+ const update_mulk = function update_mulk(_id, data) {
 
 
   const update_mulk = async (_id, data) => {
@@ -53,7 +53,7 @@ export const update_mulk = function update_mulk(_id, data) {
 
 /////////////////////////////////////////
 
-export const add_user = async function add_user(data) {
+ const add_user = async function add_user(data) {
   const email_check = await User.findOne({ email: data.email })
   const createUser = async (userData) => {
     try {
@@ -75,7 +75,7 @@ export const add_user = async function add_user(data) {
 
 }
 
-export function find_user(value) {
+ function find_user(value) {
   const myPromise = new Promise(async (resolve) => {
     try {
       return await User.findOne({ email: value }).then((v) => {
@@ -96,7 +96,7 @@ export function find_user(value) {
 
 
 
-export const delete_user = function delete_user(_id) {
+ const delete_user = function delete_user(_id) {
   const delete_user = async (_id) => {
     try {
       await User.findByIdAndDelete({ _id });
@@ -110,7 +110,7 @@ export const delete_user = function delete_user(_id) {
 
 }
 
-export const update_user = function update_user(_id, data) {
+ const update_user = function update_user(_id, data) {
   const update_user = async (_id, data) => {
     try {
       await User.findByIdAndUpdate({ _id, data });
@@ -125,7 +125,7 @@ export const update_user = function update_user(_id, data) {
 }
 
 
-export const add_advisor = async function add_user(data) {
+ const add_advisor = async function add_user(data) {
   const email_check = await User.findOne({ email: data.email })
   const createAdvisor = async (userData) => {
     try {
@@ -149,7 +149,7 @@ export const add_advisor = async function add_user(data) {
 
 
 
-export default {
+module.exports =  {
   add_mulk,
   delete_mulk,
   update_mulk,

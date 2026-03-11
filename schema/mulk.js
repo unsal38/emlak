@@ -1,4 +1,4 @@
-import mongoose, { Mongoose } from "mongoose";
+const mongoose = require("mongoose") ;
 
 const mulkSchema = new mongoose.Schema({
     price: String,
@@ -16,5 +16,4 @@ const mulkSchema = new mongoose.Schema({
 })
 
 
-const Mulk = mongoose.model("Mulk", mulkSchema)
-export default Mulk
+module.exports = mongoose.model("Mulk", mulkSchema)

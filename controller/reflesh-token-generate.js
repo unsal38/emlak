@@ -1,5 +1,5 @@
-import jwt_ from "../middleware/token_gerenate.js"
-import 'dotenv/config'
+const jwt_ = require( "../middleware/token_gerenate.js")
+require('dotenv').config()
 const ref_token = async function ref_token(req,res) {
 try {
     var jwt = req.body.jwt
@@ -13,4 +13,4 @@ try {
     }
 }
 
-export default {ref_token }
+module.exports =  {ref_token }

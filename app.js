@@ -1,31 +1,30 @@
-import express from 'express' //require('express')
+const express = require("express")
 const app = express();
-import ejs from 'ejs';
-import 'dotenv/config'
-import mongoose from 'mongoose';
-//import path from 'node:path';
-import { default as axios } from "axios";
-import bodyParser from 'body-parser';
-import cookieParser from "cookie-parser";
-import nodemailer from "nodemailer";
+const ejs = require("ejs")
+require('dotenv').config()
+const { mongoose } = require("mongoose")
+const axios = require("axios")
+const bodyParser = require("body-parser")
+const cookieParser = require("cookie-parser")
+const nodemailer = require("nodemailer")
 
-// İMPORT FİLE
-import Mulk from './schema/mulk.js';
-import User from './schema/user.js';
-import {
+
+const {
     add_mulk, delete_mulk, update_mulk,
     add_user, delete_user, update_user
-} from './middleware/db_crud.js';
-import token_gerenate from './middleware/token_gerenate.js';
-import check_user from "./middleware/check.js"
-import login_register from './controller/post_request.js';
-import reflesh_token_generate from "./controller/reflesh-token-generate.js";
-import mulk_crud from './controller/mulk_crud.js';
-import nodemailer_sent from './middleware/nodemailer.js';
-import advisor_crud from "./controller/advisor_crud.js"
+} = require("./middleware/db_crud.js")
+const token_gerenate = require("./middleware/token_gerenate.js")
+const check_user = require("./middleware/check.js")
+const login_register = require('./controller/post_request.js');
+const reflesh_token_generate = require("./controller/reflesh-token-generate.js");
+const mulk_crud = require('./controller/mulk_crud.js');
+const nodemailer_sent = require('./middleware/nodemailer.js');
+const advisor_crud = require("./controller/advisor_crud.js")
 //////////////////////////////// SCHEMA
-import user from "./schema/user.js";
-import mulk from "./schema/mulk.js";
+const User_Schema = require("./schema/user.js");
+const Mulk = require("./schema/mulk.js");
+
+
 
 
 //AYARLAR
@@ -52,8 +51,8 @@ app.post("/login", login_register.login);
 app.post("/refleshToken", reflesh_token_generate.ref_token);
 app.post("/mulk_create", mulk_crud.mulk_create);
 app.post("/mulk_delete", mulk_crud.mulk_delete);
-app.post("/advisor_create",advisor_crud.advisor_create);
-app.post("/advisor_delete",advisor_crud.advisor_delete);
+app.post("/advisor_create", advisor_crud.advisor_create);
+app.post("/advisor_delete", advisor_crud.advisor_delete);
 
 
 
@@ -102,7 +101,7 @@ app.get("/property-single/:id", check_user.check_user, async (req, res) => {
     }
     const mulk_id = req.params.id
     try {
-        const mulk_data = await mulk.findById(mulk_id)
+        const mulk_data = await Mulk.findById(mulk_id)
         var mulk_data_array = new Array(mulk_data)
     } catch (err) {
         if (err) {
@@ -129,7 +128,7 @@ app.get("/properties", check_user.check_user, async (req, res) => {
         var user_autjwt = user_data[0].data
     }
     // DATABASE SORGU MULK
-    const mulk_data = await mulk.find()
+    const mulk_data = await Mulk.find()
     res.render("properties", {
         user_aut: user_aut,
         user_autjwt: user_autjwt,
@@ -150,7 +149,12 @@ app.get("/", check_user.check_user, async (req, res) => {
         var user_autjwt = user_data[0].data
     }
     // DATABASE SORGU MULK
-    const mulk_data = await mulk.find()
+    try {
+        var mulk_data = await Mulk.find()
+    } catch (err) {
+        console.log(err.message)
+    }
+
     res.render("index", {
         user_aut: user_aut,
         user_autjwt: user_autjwt,

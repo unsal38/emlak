@@ -1,6 +1,6 @@
-import ejs from "ejs"
-import token_jwt from "./token_gerenate.js"
-import cookieParser from "cookie-parser"
+const ejs = require("ejs") 
+const token_jwt = require("./token_gerenate.js") 
+const cookieParser = require("cookie-parser") 
 const check_user = function (req, res, next) {
     try {
         const cookie_data = req.cookies
@@ -73,6 +73,6 @@ const check_post = function (req, res, next) {
 //         if (err) console.log(err, "check.js")
 //     }
 // }
-export default {
+module.exports = {
     check_user
 }
