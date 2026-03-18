@@ -1,9 +1,10 @@
-const mongoose  = require("mongoose")
-const Mulk      = require('../schema/mulk.js') ;
-const User      = require('../schema/user.js') 
-const jwt       = require("./token_gerenate.js") 
+const mongoose = require("mongoose")
+const Mulk = require('../schema/mulk.js');
+const User = require('../schema/user.js');
+const jwt = require("./token_gerenate.js");
+const Blog = require('../schema/blog-single.js');
 
- const add_mulk = function add_mulk(data) {
+const add_mulk = function add_mulk(data) {
   const createMulk = async (mulkData) => {
     try {
       const mulk = new Mulk(mulkData);
@@ -17,7 +18,7 @@ const jwt       = require("./token_gerenate.js")
   createMulk(data);
 }
 
- const delete_mulk = function delete_mulk(_id) {
+const delete_mulk = function delete_mulk(_id) {
 
 
   const delete_mulk = async (_id) => {
@@ -33,7 +34,7 @@ const jwt       = require("./token_gerenate.js")
 
 }
 
- const update_mulk = function update_mulk(_id, data) {
+const update_mulk = function update_mulk(_id, data) {
 
 
   const update_mulk = async (_id, data) => {
@@ -53,7 +54,7 @@ const jwt       = require("./token_gerenate.js")
 
 /////////////////////////////////////////
 
- const add_user = async function add_user(data) {
+const add_user = async function add_user(data) {
   const email_check = await User.findOne({ email: data.email })
   const createUser = async (userData) => {
     try {
@@ -75,7 +76,7 @@ const jwt       = require("./token_gerenate.js")
 
 }
 
- function find_user(value) {
+function find_user(value) {
   const myPromise = new Promise(async (resolve) => {
     try {
       return await User.findOne({ email: value }).then((v) => {
@@ -94,9 +95,7 @@ const jwt       = require("./token_gerenate.js")
   return myPromise
 }
 
-
-
- const delete_user = function delete_user(_id) {
+const delete_user = function delete_user(_id) {
   const delete_user = async (_id) => {
     try {
       await User.findByIdAndDelete({ _id });
@@ -110,7 +109,7 @@ const jwt       = require("./token_gerenate.js")
 
 }
 
- const update_user = function update_user(_id, data) {
+const update_user = function update_user(_id, data) {
   const update_user = async (_id, data) => {
     try {
       await User.findByIdAndUpdate({ _id, data });
@@ -125,7 +124,7 @@ const jwt       = require("./token_gerenate.js")
 }
 
 
- const add_advisor = async function add_user(data) {
+const add_advisor = async function add_user(data) {
   const email_check = await User.findOne({ email: data.email })
   const createAdvisor = async (userData) => {
     try {
@@ -148,8 +147,41 @@ const jwt       = require("./token_gerenate.js")
 }
 
 
+/////////////////////////////////////////
 
-module.exports =  {
+const add_blog_single = function add_blog_single(data) {
+  
+  const createBlog = async (blogData) => {
+    try {
+      const blog = new Blog(blogData);
+      await blog.save();
+      console.log('User created:', blog);
+    } catch (err) {
+      console.error('Error creating blog:', err);
+    }
+  };
+
+  createBlog(data);
+}
+const delete_blog_single = function delete_mulk(_id) {
+
+  const delete_blog_single = async (_id) => {
+    try {
+      await Mulk.findByIdAndDelete({ _id });
+      console.log(`mülk ${_id} deleted`);
+    } catch (err) {
+      console.error('Error deleting mulk:', err.message);
+    }
+  };
+
+  delete_blog_single(_id);
+
+}
+
+
+module.exports = {
+  add_blog_single,
+  delete_blog_single,
   add_mulk,
   delete_mulk,
   update_mulk,

@@ -5,55 +5,73 @@
 
         <% if(mulk_data){ %>
 
-          <% mulk_data.forEach(v_m => { %>
-        <div class="property-item">
-          <a href="property-single/<%= v_m._id _%>" class="img">
-            <div id="carouselExampleIndicators" class="carousel slide">
+          <% mulk_data.forEach(v_m=> { %>
+            <% if(v_m.vitrin === true ){ %>
+            <div class="property-item">
+              <h5>Seri nu: <%= v_m.seri_number _%>
+              </h5>
+              <a href="property-single/<%= v_m._id _%>" class="img">
+                      <div id="carouselIndicators<%= v_m._id _%>" class="carousel slide">
 
-              <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <img src="images/mulk-images/5x5/1.jpg" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                  <img src="images/mulk-images/5x5/2.jpg" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item">
-                  <img src="images/mulk-images/5x5/3.jpg" class="d-block w-100" alt="...">
+                        <div class="carousel-inner">
+                          <div class="carousel-item active">
+                            <img src="images/mulk-images/5x5/<%= v_m.image[0] %>" class="d-block w-100"
+                              alt="ilan resmi">
+                          </div>
+                            <% for (let index=1; index < v_m.image.length; index++) { %>
+                              <div class="carousel-item">
+                                <img src="images/mulk-images/5x5/<%= v_m.image[index] _%>" class="d-block w-100" alt="ilan resim">
+                              </div>
+                             <%  } %>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselIndicators<%= v_m._id _%>"
+                          data-bs-slide="prev">
+                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                          <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselIndicators<%= v_m._id _%>"
+                          data-bs-slide="next">
+                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                          <span class="visually-hidden">Next</span>
+                        </button>
+                      </div>
+              </a>
+              <div class="property-content">
+                <div class="price mb-2"><span>$ <%= v_m.price %></span></div>
+                <div>
+                  <span class="d-block mb-2 text-black-50">
+                    <%= v_m.adress %>
+                  </span>
+                  <span class="city d-block mb-3">Kıbrıs, <span style="text-transform: capitalize;">
+                      <%= v_m.country %>
+                    </span></span>
+
+                  <div class="specs d-flex mb-4">
+                    <span class="d-block d-flex align-items-center me-3">
+                      <span class="icon-bed me-2"></span>
+                      <span class="caption">
+                        <%= v_m.bedroom %> yatak
+                      </span>
+                    </span>
+                    <span class="d-block d-flex align-items-center">
+                      <span class="icon-bath me-2"></span>
+                      <span class="caption">
+                        <%= v_m.bath %> banyo
+                      </span>
+                    </span>
+                  </div>
+                  <div class="d-flex">
+                    <a data-mulk-id="<%= v_m._id %>" href="property-single/<%= v_m._id _%>"
+                      class="btn btn-primary py-2 px-3 text-uppercase">incele</a>
+                    <a target="_blank"
+                      href="https://wa.me/905517026813?text=Merhaba,<%= v_m._id _%>,seri numaralı ilan ile ilgili bilgi almak istiyorum."><i
+                        class="bi bi-whatsapp"></i></a>
+                  </div>
+
                 </div>
               </div>
-              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
-                data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-              </button>
-              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
-                data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-              </button>
             </div>
-          </a>
-          <div class="property-content">
-            <div class="price mb-2"><span>$ <%= v_m.price %></span></div>
-            <div>
-              <span class="d-block mb-2 text-black-50"><%= v_m.adress %></span>
-              <span class="city d-block mb-3">Kıbrıs, <span style="text-transform: capitalize;"><%= v_m.country %></span></span>
-
-              <div class="specs d-flex mb-4">
-                <span class="d-block d-flex align-items-center me-3">
-                  <span class="icon-bed me-2"></span>
-                  <span class="caption"><%= v_m.bedroom %> beds</span>
-                </span>
-                <span class="d-block d-flex align-items-center">
-                  <span class="icon-bath me-2"></span>
-                  <span class="caption"><%= v_m.bath %> baths</span>
-                </span>
-              </div>
-
-              <a data-mulk-id="<%= v_m._id %>" href="property-single/<%= v_m._id _%>"   class="btn btn-primary py-2 px-3 text-uppercase">incele</a>
-            </div>
-          </div>
-        </div>
+            <% } %>
           <% }); %>
         <% } %>
 

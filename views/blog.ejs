@@ -32,98 +32,18 @@
     <section class="features-1">
       <div class="container">
         <div class="row">
-          <div class="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
-            <div class="box-feature">
-              <span class="flaticon-house"></span>
-              <h3 class="mb-3">Mülklerimiz</h3>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Voluptates, accusamus.
-              </p>
-              <p><a href="blog-single" class="learn-more">Daha Fazlası</a></p>
-            </div>
-          </div>
+          <% blog_single.forEach(v_b => { %>
           <div class="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="500">
             <div class="box-feature">
-              <span class="flaticon-building"></span>
-              <h3 class="mb-3">Satılık Garyrimülkler</h3>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Voluptates, accusamus.
+              <span class="<%= v_b.image _%>"></span>
+              <h3 class="mb-3"><%= v_b.title _%></h3>
+              <p class="metin_kisalt">
+                <%= v_b.text[0] _%>
               </p>
-              <p><a href="blog-single" class="learn-more">Daha Fazlası</a></p>
+              <p><a href="blog-single/<%= v_b._id _%>" class="learn-more">Daha Fazlası</a></p>
             </div>
           </div>
-          <div class="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="400">
-            <div class="box-feature">
-              <span class="flaticon-house-3"></span>
-              <h3 class="mb-3">Gayrimenkul Temsilcisi</h3>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Voluptates, accusamus.
-              </p>
-              <p><a href="blog-single" class="learn-more">Daha Fazlası</a></p>
-            </div>
-          </div>
-          <div class="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="600">
-            <div class="box-feature">
-              <span class="flaticon-house-1"></span>
-              <h3 class="mb-3">Satılık Ev</h3>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Voluptates, accusamus.
-              </p>
-              <p><a href="blog-single" class="learn-more">Daha Fazlası</a></p>
-            </div>
-          </div>
-
-          <div class="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
-            <div class="box-feature">
-              <span class="flaticon-house"></span>
-              <h3 class="mb-3">Mülklerimiz</h3>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Voluptates, accusamus.
-              </p>
-              <p><a href="blog-single" class="learn-more">Daha Fazlası</a></p>
-            </div>
-          </div>
-          <div class="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="500">
-            <div class="box-feature">
-              <span class="flaticon-building"></span>
-              <h3 class="mb-3">Satılık Garyrimülkler</h3>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Voluptates, accusamus.
-              </p>
-              <p><a href="blog-single" class="learn-more">Daha Fazlası</a></p>
-            </div>
-          </div>
-          <div class="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="400">
-            <div class="box-feature">
-              <span class="flaticon-house-3"></span>
-              <h3 class="mb-3">Gayrimenkul Temsilcisi</h3>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Voluptates, accusamus.
-              </p>
-              <p><a href="blog-single" class="learn-more">Daha Fazlası</a></p>
-            </div>
-          </div>
-          <div class="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="600">
-            <div class="box-feature">
-              <span class="flaticon-house-1"></span>
-              <h3 class="mb-3">Satılık Ev</h3>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Voluptates, accusamus.
-              </p>
-              <p><a href="blog-single" class="learn-more">Daha Fazlası</a></p>
-            </div>
-          </div>
-
-
-
+        <%  }); %>
         </div>
       </div>
     </section>

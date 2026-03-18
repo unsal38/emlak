@@ -1,513 +1,544 @@
 <%- include("layouts/header") %>
+
   <body>
     <%- include("layouts/nav1") %>
-    <div class="hero">
-      <div class="hero-slide">
-        <div
-          class="img overlay"
-          style="background-image: url('images/hero_bg_3.jpg')"
-        ></div>
-        <div
-          class="img overlay"
-          style="background-image: url('images/hero_bg_2.jpg')"
-        ></div>
-        <div
-          class="img overlay"
-          style="background-image: url('images/hero_bg_1.jpg')"
-        ></div>
-      </div>
+      <div class="hero">
+        <div class="hero-slide">
+          <div class="img overlay" style="background-image: url('images/hero_bg_3.jpg')"></div>
+          <div class="img overlay" style="background-image: url('images/hero_bg_2.jpg')"></div>
+          <div class="img overlay" style="background-image: url('images/hero_bg_1.jpg')"></div>
+        </div>
 
-      <div class="container">
-        <div class="row justify-content-center align-items-center">
-          <div class="col-lg-9 text-center">
-            <h1 class="heading" data-aos="fade-up">
-              Easiest way to find your dream home
-            </h1>
-            <form
-              action="#"
-              class="narrow-w form-search d-flex align-items-stretch mb-3"
-              data-aos="fade-up"
-              data-aos-delay="200"
-            >
-              <select class="form-control px-4">
-                <option selected>il seçiniz</option>
-                <option value="1">Girne</option>
-                <option value="2">lefkoşe</option>
-                <option value="3">Gazimoğusa</option>
-                <option value="4">Güzelyurt</option>
-                <option value="5">İskele</option>
-                <option value="6">Lefke</option>
-              </select>
-              <button style="margin-left: 5px;" type="submit" class="btn btn-primary">Arama</button>
-            </form>
+        <div class="container">
+          <div class="row justify-content-center align-items-center">
+            <div class="col-lg-9 text-center">
+              <h1 class="heading" data-aos="fade-up">
+                Easiest way to find your dream home
+              </h1>
+              <form action="#" class="narrow-w form-search d-flex align-items-stretch mb-3" data-aos="fade-up"
+                data-aos-delay="200">
+                <select class="form-control px-4">
+                  <option selected>il seçiniz</option>
+                  <option value="1">Girne</option>
+                  <option value="2">lefkoşe</option>
+                  <option value="3">Gazimoğusa</option>
+                  <option value="4">Güzelyurt</option>
+                  <option value="5">İskele</option>
+                  <option value="6">Lefke</option>
+                </select>
+                <button style="margin-left: 5px;" type="submit" class="btn btn-primary">Arama</button>
+              </form>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="section">
-      <div class="container">
-        <div class="row mb-5 align-items-center">
-          <div class="col-lg-6">
-            <h2 class="font-weight-bold text-primary heading">
-              Popüler Evler
-            </h2>
+      <div class="section">
+        <div class="container">
+          <div class="row mb-5 align-items-center">
+            <div class="col-lg-6">
+              <h2 class="font-weight-bold text-primary heading">
+                Popüler Evler
+              </h2>
+            </div>
+            <div class="col-lg-6 text-lg-end">
+              <p>
+                <a href="properties" target="_blank" class="btn btn-primary text-white py-3 px-4">Hepsini Gör</a>
+              </p>
+            </div>
           </div>
-          <div class="col-lg-6 text-lg-end">
+
+          <%- include("layouts/popiler-gaymenkul") %>
+
+        </div>
+      </div>
+      <!-- DÜZENLENECEK -->
+      <section class="features-1">
+        <div class="container">
+          <div class="row">
+            <% blog_single.forEach(v_blog => { %>
+              <div class="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+                <div class="box-feature">
+                  <span class="<%= v_blog.image _%>"></span>
+                  <h3 class="mb-3"><%= v_blog.title _%></h3>
+                  <p class="metin_kisalt">
+                    <% console.log(v_blog.text) %>
+                    <% for (let index = 0; index < v_blog.text.length; index++) {%>
+                      <%= v_blog.text[index] _%>
+                      
+                    <% } %>
+                     
+                  </p>
+                  <p><a href="blog-single/<%= v_blog._id _%>" class="learn-more">Daha Fazlası</a></p>
+                </div>
+              </div>
+            <% }); %>
+          </div>
+        </div>
+      </section>
+      <!-- DÜZENLENECEK -->
+
+      <div class="section sec-testimonials">
+        <div class="container">
+          <div class="row mb-5 align-items-center">
+            <div class="col-md-6">
+              <h2 class="font-weight-bold heading text-primary mb-4 mb-md-0">
+                Mutlu Müşteriler
+              </h2>
+            </div>
+            <div class="col-md-6 text-md-end">
+              <div id="testimonial-nav">
+                <span class="prev" data-controls="prev">Önceki</span>
+
+                <span class="next" data-controls="next">Sonraki</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-4"></div>
+          </div>
+          <div class="testimonial-slider-wrap">
+            <div class="testimonial-slider">
+              <div class="item">
+                <div class="testimonial">
+                  <img src="images/person_1-min.jpg" alt="Image" class="img-fluid rounded-circle w-25 mb-4" />
+                  <div class="rate">
+                    <span class="icon-star text-warning"></span>
+                    <span class="icon-star text-warning"></span>
+                    <span class="icon-star text-warning"></span>
+                    <span class="icon-star text-warning"></span>
+                    <span class="icon-star text-warning"></span>
+                  </div>
+                  <h3 class="h5 text-primary mb-4">James Smith</h3>
+                  <blockquote>
+                    <p>
+                      &ldquo;Far far away, behind the word mountains, far from the
+                      countries Vokalia and Consonantia, there live the blind
+                      texts. Separated they live in Bookmarksgrove right at the
+                      coast of the Semantics, a large language ocean.&rdquo;
+                    </p>
+                  </blockquote>
+                  <p class="text-black-50">Designer, Co-founder</p>
+                </div>
+              </div>
+
+              <div class="item">
+                <div class="testimonial">
+                  <img src="images/person_2-min.jpg" alt="Image" class="img-fluid rounded-circle w-25 mb-4" />
+                  <div class="rate">
+                    <span class="icon-star text-warning"></span>
+                    <span class="icon-star text-warning"></span>
+                    <span class="icon-star text-warning"></span>
+                    <span class="icon-star text-warning"></span>
+                    <span class="icon-star text-warning"></span>
+                  </div>
+                  <h3 class="h5 text-primary mb-4">Mike Houston</h3>
+                  <blockquote>
+                    <p>
+                      &ldquo;Far far away, behind the word mountains, far from the
+                      countries Vokalia and Consonantia, there live the blind
+                      texts. Separated they live in Bookmarksgrove right at the
+                      coast of the Semantics, a large language ocean.&rdquo;
+                    </p>
+                  </blockquote>
+                  <p class="text-black-50">Designer, Co-founder</p>
+                </div>
+              </div>
+
+              <div class="item">
+                <div class="testimonial">
+                  <img src="images/person_3-min.jpg" alt="Image" class="img-fluid rounded-circle w-25 mb-4" />
+                  <div class="rate">
+                    <span class="icon-star text-warning"></span>
+                    <span class="icon-star text-warning"></span>
+                    <span class="icon-star text-warning"></span>
+                    <span class="icon-star text-warning"></span>
+                    <span class="icon-star text-warning"></span>
+                  </div>
+                  <h3 class="h5 text-primary mb-4">Cameron Webster</h3>
+                  <blockquote>
+                    <p>
+                      &ldquo;Far far away, behind the word mountains, far from the
+                      countries Vokalia and Consonantia, there live the blind
+                      texts. Separated they live in Bookmarksgrove right at the
+                      coast of the Semantics, a large language ocean.&rdquo;
+                    </p>
+                  </blockquote>
+                  <p class="text-black-50">Designer, Co-founder</p>
+                </div>
+              </div>
+
+              <div class="item">
+                <div class="testimonial">
+                  <img src="images/person_4-min.jpg" alt="Image" class="img-fluid rounded-circle w-25 mb-4" />
+                  <div class="rate">
+                    <span class="icon-star text-warning"></span>
+                    <span class="icon-star text-warning"></span>
+                    <span class="icon-star text-warning"></span>
+                    <span class="icon-star text-warning"></span>
+                    <span class="icon-star text-warning"></span>
+                  </div>
+                  <h3 class="h5 text-primary mb-4">Dave Smith</h3>
+                  <blockquote>
+                    <p>
+                      &ldquo;Far far away, behind the word mountains, far from the
+                      countries Vokalia and Consonantia, there live the blind
+                      texts. Separated they live in Bookmarksgrove right at the
+                      coast of the Semantics, a large language ocean.&rdquo;
+                    </p>
+                  </blockquote>
+                  <p class="text-black-50">Designer, Co-founder</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section section-4 bg-light">
+        <div class="container">
+          <div class="row justify-content-center text-center mb-5">
+            <div class="col-lg-5">
+              <h2 class="font-weight-bold heading text-primary mb-4">
+                Sizin için mükemmel olan evi birlikte bulalım.
+              </h2>
+              <p class="text-black-50">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam
+                enim pariatur similique debitis vel nisi qui reprehenderit.
+              </p>
+            </div>
+          </div>
+          <div class="row justify-content-between mb-5">
+            <div class="col-lg-7 mb-5 mb-lg-0 order-lg-2">
+              <div class="img-about dots">
+                <img src="images/hero_bg_3.jpg" alt="Image" class="img-fluid" />
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="d-flex feature-h">
+                <span class="wrap-icon me-3">
+                  <span class="icon-home2"></span>
+                </span>
+
+                <div class="feature-text">
+                  <h3 class="heading">İhtiyacınızı belirtin</h3>
+                  <p class="text-black-50">
+                    Hayalinizdeki ev veya araziyi belirtin
+                  </p>
+                </div>
+              </div>
+
+              <div class="d-flex feature-h">
+                <span class="wrap-icon me-3">
+                  <span class="icon-person"></span>
+                </span>
+                <div class="feature-text">
+                  <h3 class="heading">İletişim Bilgileri</h3>
+                  <p class="text-black-50">
+                    İletişim Bilgilerini doldurun..
+                  </p>
+                </div>
+              </div>
+
+              <div class="d-flex feature-h">
+                <span class="wrap-icon me-3">
+                  <span class="icon-security"></span>
+                </span>
+                <div class="feature-text">
+                  <h3 class="heading">Size Ulaşalım..</h3>
+                  <p class="text-black-50">
+                    İletişim bilgilerinizden size ulaşalım..
+                  </p>
+                  <a class="btn btn-primary" data-bs-toggle="modal" href="#section4ModalToggle" role="button">Hadi
+                    Başlayalım...</a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <div class="row section-counter mt-5">
+            <div class="col-6 col-sm-6 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+              <div class="counter-wrap mb-5 mb-lg-0">
+                <span class="number"><span class="countup text-primary">3298</span></span>
+                <span class="caption text-black-50"># Satılık Garyrimülkler</span>
+              </div>
+            </div>
+            <div class="col-6 col-sm-6 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="400">
+              <div class="counter-wrap mb-5 mb-lg-0">
+                <span class="number"><span class="countup text-primary">2181</span></span>
+                <span class="caption text-black-50"># Kiralık Garyrimülkler</span>
+              </div>
+            </div>
+            <div class="col-6 col-sm-6 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="500">
+              <div class="counter-wrap mb-5 mb-lg-0">
+                <span class="number"><span class="countup text-primary">9316</span></span>
+                <span class="caption text-black-50"># Satılık Araziler</span>
+              </div>
+            </div>
+            <div class="col-6 col-sm-6 col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="600">
+              <div class="counter-wrap mb-5 mb-lg-0">
+                <span class="number"><span class="countup text-primary">7191</span></span>
+                <span class="caption text-black-50"># İş Arazileri</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section section-5">
+        <div class="row justify-content-center footer-cta" data-aos="fade-up">
+          <div class="col-lg-7 mx-auto text-center">
+            <h2 class="mb-4">Büyüyen emlak acenteleri ekibimizin bir parçası olun.</h2>
             <p>
-              <a
-                href="properties"
-                target="_blank"
-                class="btn btn-primary text-white py-3 px-4"
-                >Hepsini Gör</a
-              >
+              
+              <a class="btn btn-primary" data-bs-toggle="modal" href="#section5ModalToggle" role="button">Emlak
+                Danışmanı Pozisyonuna
+                Başvurun</a>
             </p>
           </div>
+          <!-- /.col-lg-7 -->
         </div>
-
-      <%- include("layouts/popiler-gaymenkul") %>  
-
+        <!-- /.row -->
       </div>
-    </div>
-<!-- DÜZENLENECEK -->
-    <section class="features-1">
-      <div class="container">
-        <div class="row">
-          <div class="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
-            <div class="box-feature">
-              <span class="flaticon-house"></span>
-              <h3 class="mb-3">Mülklerimiz</h3>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Voluptates, accusamus.
-              </p>
-              <p><a href="blog-single" class="learn-more">Daha Fazlası</a></p>
-            </div>
-          </div>
-          <div class="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="500">
-            <div class="box-feature">
-              <span class="flaticon-building"></span>
-              <h3 class="mb-3">Satılık Garyrimülkler</h3>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Voluptates, accusamus.
-              </p>
-              <p><a href="blog-single" class="learn-more">Daha Fazlası</a></p>
-            </div>
-          </div>
-          <div class="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="400">
-            <div class="box-feature">
-              <span class="flaticon-house-3"></span>
-              <h3 class="mb-3">Gayrimenkul Temsilcisi</h3>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Voluptates, accusamus.
-              </p>
-              <p><a href="blog-single" class="learn-more">Daha Fazlası</a></p>
-            </div>
-          </div>
-          <div class="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="600">
-            <div class="box-feature">
-              <span class="flaticon-house-1"></span>
-              <h3 class="mb-3">Satılık Ev</h3>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Voluptates, accusamus.
-              </p>
-              <p><a href="blog-single" class="learn-more">Daha Fazlası</a></p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- DÜZENLENECEK -->
 
-    <div class="section sec-testimonials">
-      <div class="container">
-        <div class="row mb-5 align-items-center">
-          <div class="col-md-6">
-            <h2 class="font-weight-bold heading text-primary mb-4 mb-md-0">
-              Danışmanlarımız
-            </h2>
-          </div>
-          <div class="col-md-6 text-md-end">
-            <div id="testimonial-nav">
-              <span class="prev" data-controls="prev">Önceki</span>
-
-              <span class="next" data-controls="next">Sonraki</span>
+      <div class="section section-5 bg-light">
+        <div class="container">
+          <div class="row justify-content-center text-center mb-5">
+            <div class="col-lg-6 mb-5">
+              <h2 class="font-weight-bold heading text-primary mb-4">
+                İş Alanları Danışmanlarımız
+              </h2>
+              <!-- <p class="text-black-50">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam
+                enim pariatur similique debitis vel nisi qui reprehenderit totam?
+                Quod maiores.
+              </p> -->
             </div>
           </div>
-        </div>
+          <div class="row">
+            <h4>Bizimle çalışmak istermisin ...</h4>
+            <!-- <div class="col-sm-6 col-md-6 col-lg-4 mb-5 mb-lg-0">
+              <div class="h-100 person">
+                <img src="images/person_1-min.jpg" alt="Image" class="img-fluid" />
 
-        <div class="row">
-          <div class="col-lg-4"></div>
-        </div>
-        <div class="testimonial-slider-wrap">
-          <div class="testimonial-slider">
-            <div class="item">
-              <div class="testimonial">
-                <img
-                  src="images/person_1-min.jpg"
-                  alt="Image"
-                  class="img-fluid rounded-circle w-25 mb-4"
-                />
-                <div class="rate">
-                  <span class="icon-star text-warning"></span>
-                  <span class="icon-star text-warning"></span>
-                  <span class="icon-star text-warning"></span>
-                  <span class="icon-star text-warning"></span>
-                  <span class="icon-star text-warning"></span>
-                </div>
-                <h3 class="h5 text-primary mb-4">James Smith</h3>
-                <blockquote>
+                <div class="person-contents">
+                  <h2 class="mb-0"><a href="#">James Doe</a></h2>
+                  <span class="meta d-block mb-3">Real Estate Agent</span>
                   <p>
-                    &ldquo;Far far away, behind the word mountains, far from the
-                    countries Vokalia and Consonantia, there live the blind
-                    texts. Separated they live in Bookmarksgrove right at the
-                    coast of the Semantics, a large language ocean.&rdquo;
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Facere officiis inventore cumque tenetur laboriosam, minus
+                    culpa doloremque odio, neque molestias?
                   </p>
-                </blockquote>
-                <p class="text-black-50">Designer, Co-founder</p>
-              </div>
-            </div>
 
-            <div class="item">
-              <div class="testimonial">
-                <img
-                  src="images/person_2-min.jpg"
-                  alt="Image"
-                  class="img-fluid rounded-circle w-25 mb-4"
-                />
-                <div class="rate">
-                  <span class="icon-star text-warning"></span>
-                  <span class="icon-star text-warning"></span>
-                  <span class="icon-star text-warning"></span>
-                  <span class="icon-star text-warning"></span>
-                  <span class="icon-star text-warning"></span>
+                  <ul class="social list-unstyled list-inline dark-hover">
+                    <li class="list-inline-item">
+                      <a href="#"><span class="icon-twitter"></span></a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a href="#"><span class="icon-facebook"></span></a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a href="#"><span class="icon-linkedin"></span></a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a href="#"><span class="icon-instagram"></span></a>
+                    </li>
+                  </ul>
                 </div>
-                <h3 class="h5 text-primary mb-4">Mike Houston</h3>
-                <blockquote>
-                  <p>
-                    &ldquo;Far far away, behind the word mountains, far from the
-                    countries Vokalia and Consonantia, there live the blind
-                    texts. Separated they live in Bookmarksgrove right at the
-                    coast of the Semantics, a large language ocean.&rdquo;
-                  </p>
-                </blockquote>
-                <p class="text-black-50">Designer, Co-founder</p>
               </div>
             </div>
+            <div class="col-sm-6 col-md-6 col-lg-4 mb-5 mb-lg-0">
+              <div class="h-100 person">
+                <img src="images/person_2-min.jpg" alt="Image" class="img-fluid" />
 
-            <div class="item">
-              <div class="testimonial">
-                <img
-                  src="images/person_3-min.jpg"
-                  alt="Image"
-                  class="img-fluid rounded-circle w-25 mb-4"
-                />
-                <div class="rate">
-                  <span class="icon-star text-warning"></span>
-                  <span class="icon-star text-warning"></span>
-                  <span class="icon-star text-warning"></span>
-                  <span class="icon-star text-warning"></span>
-                  <span class="icon-star text-warning"></span>
+                <div class="person-contents">
+                  <h2 class="mb-0"><a href="#">Jean Smith</a></h2>
+                  <span class="meta d-block mb-3">Real Estate Agent</span>
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Facere officiis inventore cumque tenetur laboriosam, minus
+                    culpa doloremque odio, neque molestias?
+                  </p>
+
+                  <ul class="social list-unstyled list-inline dark-hover">
+                    <li class="list-inline-item">
+                      <a href="#"><span class="icon-twitter"></span></a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a href="#"><span class="icon-facebook"></span></a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a href="#"><span class="icon-linkedin"></span></a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a href="#"><span class="icon-instagram"></span></a>
+                    </li>
+                  </ul>
                 </div>
-                <h3 class="h5 text-primary mb-4">Cameron Webster</h3>
-                <blockquote>
-                  <p>
-                    &ldquo;Far far away, behind the word mountains, far from the
-                    countries Vokalia and Consonantia, there live the blind
-                    texts. Separated they live in Bookmarksgrove right at the
-                    coast of the Semantics, a large language ocean.&rdquo;
-                  </p>
-                </blockquote>
-                <p class="text-black-50">Designer, Co-founder</p>
               </div>
             </div>
+            <div class="col-sm-6 col-md-6 col-lg-4 mb-5 mb-lg-0">
+              <div class="h-100 person">
+                <img src="images/person_3-min.jpg" alt="Image" class="img-fluid" />
 
-            <div class="item">
-              <div class="testimonial">
-                <img
-                  src="images/person_4-min.jpg"
-                  alt="Image"
-                  class="img-fluid rounded-circle w-25 mb-4"
-                />
-                <div class="rate">
-                  <span class="icon-star text-warning"></span>
-                  <span class="icon-star text-warning"></span>
-                  <span class="icon-star text-warning"></span>
-                  <span class="icon-star text-warning"></span>
-                  <span class="icon-star text-warning"></span>
+                <div class="person-contents">
+                  <h2 class="mb-0"><a href="#">Alicia Huston</a></h2>
+                  <span class="meta d-block mb-3">Real Estate Agent</span>
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Facere officiis inventore cumque tenetur laboriosam, minus
+                    culpa doloremque odio, neque molestias?
+                  </p>
+
+                  <ul class="social list-unstyled list-inline dark-hover">
+                    <li class="list-inline-item">
+                      <a href="#"><span class="icon-twitter"></span></a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a href="#"><span class="icon-facebook"></span></a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a href="#"><span class="icon-linkedin"></span></a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a href="#"><span class="icon-instagram"></span></a>
+                    </li>
+                  </ul>
                 </div>
-                <h3 class="h5 text-primary mb-4">Dave Smith</h3>
-                <blockquote>
-                  <p>
-                    &ldquo;Far far away, behind the word mountains, far from the
-                    countries Vokalia and Consonantia, there live the blind
-                    texts. Separated they live in Bookmarksgrove right at the
-                    coast of the Semantics, a large language ocean.&rdquo;
-                  </p>
-                </blockquote>
-                <p class="text-black-50">Designer, Co-founder</p>
               </div>
+            </div> -->
+          </div>
+        </div>
+      </div>
+
+      <!-- section-4 MODAL -->
+
+      <div class="modal fade" id="section4ModalToggle" aria-hidden="true" aria-labelledby="section4ModalToggleLabel"
+        tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="section4ModalToggleLabel">İletişim Bilgileri</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="row g-3">
+
+
+                <div class="col-6">
+                  <input name="isim" type="text" class="form-control is-invalid" placeholder="İsim" aria-label="İsim">
+                </div>
+                <div class="col-6">
+                  <input name="soyad" type="text" class="form-control is-invalid" placeholder="Soyad"
+                    aria-label="Soyad">
+                </div>
+                <div class="col-6">
+                  <input name="tel_number" type="number" class="form-control is-invalid" placeholder="Telefon Nu."
+                    aria-label="Telefon Nu.">
+                </div>
+                <div class="col-6">
+                  <input name="mail" type="email" class="form-control is-invalid" placeholder="E-posta"
+                    aria-label="E-posta">
+                </div>
+
+
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-primary" data-bs-target="#section4ModalToggle2" data-bs-toggle="modal"
+                data-bs-dismiss="modal">Sonraki</button>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="section section-4 bg-light">
-      <div class="container">
-        <div class="row justify-content-center text-center mb-5">
-          <div class="col-lg-5">
-            <h2 class="font-weight-bold heading text-primary mb-4">
-              Sizin için mükemmel olan evi birlikte bulalım.
-            </h2>
-            <p class="text-black-50">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam
-              enim pariatur similique debitis vel nisi qui reprehenderit.
-            </p>
-          </div>
-        </div>
-        <div class="row justify-content-between mb-5">
-          <div class="col-lg-7 mb-5 mb-lg-0 order-lg-2">
-            <div class="img-about dots">
-              <img src="images/hero_bg_3.jpg" alt="Image" class="img-fluid" />
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="d-flex feature-h">
-              <span class="wrap-icon me-3">
-                <span class="icon-home2"></span>
-              </span>
-              <!-- DÜZENLENECEK -->
-              <div class="feature-text">
-                <h3 class="heading">2M Properties</h3>
-                <p class="text-black-50">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Nostrum iste.
-                </p>
-              </div>
-            </div>
 
-            <div class="d-flex feature-h">
-              <span class="wrap-icon me-3">
-                <span class="icon-person"></span>
-              </span>
-              <div class="feature-text">
-                <h3 class="heading">Top Rated Agents</h3>
-                <p class="text-black-50">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Nostrum iste.
-                </p>
-              </div>
+      <div class="modal fade" id="section4ModalToggle2" aria-hidden="true" aria-labelledby="section4ModalToggleLabel2"
+        tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalToggleLabel2">Ne Aramıştınız</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            <div class="modal-body">
 
-            <div class="d-flex feature-h">
-              <span class="wrap-icon me-3">
-                <span class="icon-security"></span>
-              </span>
-              <div class="feature-text">
-                <h3 class="heading">Legit Properties</h3>
-                <p class="text-black-50">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Nostrum iste.
-                </p>
+              <div class="row g-3">
+                <div class="col-12">
+                  <select name="ilan/hizmet" class="form-select" aria-label="Default select ">
+                    <option value="null">İlan / Hizmet seçiniz</option>
+                    <option value="ilan">İlan</option>
+                    <option value="hizmet">Hizmet</option>
+                    <option value="all">Hepsi</option>
+                  </select>
+                </div>
+                <div class="col-6">
+                  <select name="ilan" class="form-select" aria-label="Default select ">
+                    <option value="null">ilan seçiniz</option>
+                    <option value="arsa">arsa</option>
+                    <option value="tarla">tarla</option>
+                    <option value="konut">konut</option>
+                  </select>
+                </div>
+                <div class="col-6">
+                  <select name="hizmet" class="form-select" aria-label="Default select ">
+                    <option value="null">hizmet seçiniz</option>
+                    <option value="sigorta">sigorta</option>
+                    <option value="kiralama">kiralama</option>
+                    <option value="temizlik">temizlik</option>
+                    <option value="tadilat ve komple bakım">tadilat ve komple bakım</option>
+                  </select>
+                </div>
+                <div class="col-12">
+                  <textarea name="diger" placeholder="diğer istekler" class="form-control"
+                    aria-label="With textarea"></textarea>
+                </div>
               </div>
+
             </div>
-                          <!-- DÜZENLENECEK -->
-          </div>
-        </div>
-        <div class="row section-counter mt-5">
-          <div
-            class="col-6 col-sm-6 col-md-6 col-lg-3"
-            data-aos="fade-up"
-            data-aos-delay="300"
-          >
-            <div class="counter-wrap mb-5 mb-lg-0">
-              <span class="number"
-                ><span class="countup text-primary">3298</span></span
-              >
-              <span class="caption text-black-50"># Satılık Garyrimülkler</span>
-            </div>
-          </div>
-          <div
-            class="col-6 col-sm-6 col-md-6 col-lg-3"
-            data-aos="fade-up"
-            data-aos-delay="400"
-          >
-            <div class="counter-wrap mb-5 mb-lg-0">
-              <span class="number"
-                ><span class="countup text-primary">2181</span></span
-              >
-              <span class="caption text-black-50"># Kiralık Garyrimülkler</span>
-            </div>
-          </div>
-          <div
-            class="col-6 col-sm-6 col-md-6 col-lg-3"
-            data-aos="fade-up"
-            data-aos-delay="500"
-          >
-            <div class="counter-wrap mb-5 mb-lg-0">
-              <span class="number"
-                ><span class="countup text-primary">9316</span></span
-              >
-              <span class="caption text-black-50"># Satılık Araziler</span>
-            </div>
-          </div>
-          <div
-            class="col-6 col-sm-6 col-md-6 col-lg-3"
-            data-aos="fade-up"
-            data-aos-delay="600"
-          >
-            <div class="counter-wrap mb-5 mb-lg-0">
-              <span class="number"
-                ><span class="countup text-primary">7191</span></span
-              >
-              <span class="caption text-black-50"># İş Arazileri</span>
+            <div class="modal-footer">
+              <button class="btn btn-primary" data-bs-target="#section4ModalToggle" data-bs-toggle="modal"
+                data-bs-dismiss="modal">Geri</button>
+              <button name="submit" class="btn btn-primary" data-bs-dismiss="modal">Bilgileri gönder</button>
             </div>
           </div>
         </div>
       </div>
-    </div>
-
-    <div class="section">
-      <div class="row justify-content-center footer-cta" data-aos="fade-up">
-        <div class="col-lg-7 mx-auto text-center">
-          <h2 class="mb-4">Büyüyen emlak acenteleri ekibimizin bir parçası olun.</h2>
-          <p>
-            <a
-              href="#"
-              target="_blank"
-              class="btn btn-primary text-white py-3 px-4"
-              >Emlak Danışmanı Pozisyonuna Başvurun</a
-            >
-          </p>
-        </div>
-        <!-- /.col-lg-7 -->
-      </div>
-      <!-- /.row -->
-    </div>
-
-    <div class="section section-5 bg-light">
-      <div class="container">
-        <div class="row justify-content-center text-center mb-5">
-          <div class="col-lg-6 mb-5">
-            <h2 class="font-weight-bold heading text-primary mb-4">
-              İş Alanları Danışmanlarımız
-            </h2>
-            <p class="text-black-50">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam
-              enim pariatur similique debitis vel nisi qui reprehenderit totam?
-              Quod maiores.
-            </p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-6 col-md-6 col-lg-4 mb-5 mb-lg-0">
-            <div class="h-100 person">
-              <img
-                src="images/person_1-min.jpg"
-                alt="Image"
-                class="img-fluid"
-              />
-
-              <div class="person-contents">
-                <h2 class="mb-0"><a href="#">James Doe</a></h2>
-                <span class="meta d-block mb-3">Real Estate Agent</span>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Facere officiis inventore cumque tenetur laboriosam, minus
-                  culpa doloremque odio, neque molestias?
-                </p>
-
-                <ul class="social list-unstyled list-inline dark-hover">
-                  <li class="list-inline-item">
-                    <a href="#"><span class="icon-twitter"></span></a>
-                  </li>
-                  <li class="list-inline-item">
-                    <a href="#"><span class="icon-facebook"></span></a>
-                  </li>
-                  <li class="list-inline-item">
-                    <a href="#"><span class="icon-linkedin"></span></a>
-                  </li>
-                  <li class="list-inline-item">
-                    <a href="#"><span class="icon-instagram"></span></a>
-                  </li>
-                </ul>
+      <!-- section-4 MODAL -->
+      <!-- section-5 MODAL -->
+      <div class="modal fade" id="section5ModalToggle" aria-hidden="true" aria-labelledby="section5ModalToggleLabel"
+        tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="section5ModalToggleLabel">İletişim Bilgileri</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="row g-3">
+                <div class="col-6">
+                  <input name="isim" type="text" class="form-control is-invalid" placeholder="İsim" aria-label="İsim">
+                </div>
+                <div class="col-6">
+                  <input name="soyad" type="text" class="form-control is-invalid" placeholder="Soyad"
+                    aria-label="Soyad">
+                </div>
+                <div class="col-6">
+                  <input name="tel_number" type="number" class="form-control is-invalid" placeholder="Telefon Nu."
+                    aria-label="Telefon Nu.">
+                </div>
+                <div class="col-6">
+                  <input name="mail" type="email" class="form-control is-invalid" placeholder="E-posta"
+                    aria-label="E-posta">
+                </div>
               </div>
             </div>
-          </div>
-          <div class="col-sm-6 col-md-6 col-lg-4 mb-5 mb-lg-0">
-            <div class="h-100 person">
-              <img
-                src="images/person_2-min.jpg"
-                alt="Image"
-                class="img-fluid"
-              />
-
-              <div class="person-contents">
-                <h2 class="mb-0"><a href="#">Jean Smith</a></h2>
-                <span class="meta d-block mb-3">Real Estate Agent</span>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Facere officiis inventore cumque tenetur laboriosam, minus
-                  culpa doloremque odio, neque molestias?
-                </p>
-
-                <ul class="social list-unstyled list-inline dark-hover">
-                  <li class="list-inline-item">
-                    <a href="#"><span class="icon-twitter"></span></a>
-                  </li>
-                  <li class="list-inline-item">
-                    <a href="#"><span class="icon-facebook"></span></a>
-                  </li>
-                  <li class="list-inline-item">
-                    <a href="#"><span class="icon-linkedin"></span></a>
-                  </li>
-                  <li class="list-inline-item">
-                    <a href="#"><span class="icon-instagram"></span></a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-md-6 col-lg-4 mb-5 mb-lg-0">
-            <div class="h-100 person">
-              <img
-                src="images/person_3-min.jpg"
-                alt="Image"
-                class="img-fluid"
-              />
-
-              <div class="person-contents">
-                <h2 class="mb-0"><a href="#">Alicia Huston</a></h2>
-                <span class="meta d-block mb-3">Real Estate Agent</span>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Facere officiis inventore cumque tenetur laboriosam, minus
-                  culpa doloremque odio, neque molestias?
-                </p>
-
-                <ul class="social list-unstyled list-inline dark-hover">
-                  <li class="list-inline-item">
-                    <a href="#"><span class="icon-twitter"></span></a>
-                  </li>
-                  <li class="list-inline-item">
-                    <a href="#"><span class="icon-facebook"></span></a>
-                  </li>
-                  <li class="list-inline-item">
-                    <a href="#"><span class="icon-linkedin"></span></a>
-                  </li>
-                  <li class="list-inline-item">
-                    <a href="#"><span class="icon-instagram"></span></a>
-                  </li>
-                </ul>
-              </div>
+            <div class="modal-footer">
+              <button name="submit" class="btn btn-primary" data-bs-dismiss="modal">Bilgileri gönder</button>
             </div>
           </div>
         </div>
       </div>
-    </div>
-<%- include("layouts/footer") %>
-    
+      <!-- section-5 MODAL -->
+      <%- include("layouts/footer") %>
