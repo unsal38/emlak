@@ -62,7 +62,7 @@ app.post('/blog_single_create', blog_crud.blog_create);
 
 
 
-app.get("/blog-single/:id",check_user.check_user,async  (req, res) => {
+app.get("/blog-single/:id",check_user.check_user,async function (req, res) {
         var user_data = req.user
     if (user_data === null) {
         var user_aut = null
@@ -150,8 +150,8 @@ app.get("/property-single/:id", check_user.check_user, async (req, res) => {
         }
     }
     res.render("property-single", {
-        user_aut: user_aut,
-        user_autjwt: user_autjwt,
+        user_aut,
+        user_autjwt,
         mulk_data_array
     })
 
@@ -177,9 +177,9 @@ app.get("/properties", check_user.check_user, async (req, res) => {
     })
 
 });
-app.get("/", check_user.check_user, async (req, res) => {
-
-    var user_data = req.user
+app.get("/", check_user.check_user,async function (req, res) {
+    try {
+        var user_data = req.user
     if (user_data === null) {
         var user_aut = null
         var user_autjwt = null
@@ -190,13 +190,12 @@ app.get("/", check_user.check_user, async (req, res) => {
         var user_autjwt = user_data[0].data
     }
     // DATABASE SORGU MULK
-    try {
-        var mulk_data = await Mulk.find()
-        var blog_single = await Blog.find()
+    
+        var mulk_data = await Mulk.find();
+        var blog_single = await Blog.find();
     } catch (err) {
         console.log(err.message)
     }
-    // nodemailer_sent.nodemailer_sent('Müşteri İhtiyacı', 'nasılsın')
 
     res.render("index", {
         user_aut: user_aut,
@@ -204,8 +203,7 @@ app.get("/", check_user.check_user, async (req, res) => {
         mulk_data,
         blog_single
     })
-
-});
+})
 
 
 
