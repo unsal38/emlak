@@ -152,7 +152,8 @@ app.get("/property-single/:id", check_user.check_user, async (req, res) => {
     res.render("property-single", {
         user_aut,
         user_autjwt,
-        mulk_data_array
+        mulk_data_array,
+        mulk_id
     })
 
 

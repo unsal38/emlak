@@ -1,102 +1,109 @@
 <%- include("layouts/header") %>
+
   <body>
-<%- include("layouts/nav1") %>
-<% mulk_data_array.forEach(v_mulk => { %>
-    <div
-      class="hero page-inner overlay"
-      style="background-image: url('/images/hero_bg_3.jpg')"
-    >
-      <div class="container">
-        <div class="row justify-content-center align-items-center">
-          <div class="col-lg-9 text-center mt-5">
-            <h1 style="text-transform: capitalize;" class="heading" data-aos="fade-up">
-              <%= v_mulk.adress %>
-            </h1>
+    <%- include("layouts/nav1") %>
+      <% mulk_data_array.forEach(v_mulk=> { %>
+        <div class="hero page-inner overlay" style="background-image: url('/images/hero_bg_3.jpg')">
+          <div class="container">
+            <div class="row justify-content-center align-items-center">
+              <div class="col-lg-9 text-center mt-5">
+                <h1 style="text-transform: capitalize;" class="heading" data-aos="fade-up">
+                  <%= v_mulk.adress _%>
+                </h1>
 
-            <nav
-              aria-label="breadcrumb"
-              data-aos="fade-up"
-              data-aos-delay="200"
-            >
-              <ol class="breadcrumb text-center justify-content-center">
-                <li class="breadcrumb-item"><a href="/">Ana Sayfa</a></li>
-                <li class="breadcrumb-item">
-                  <a href="properties">Garyrimülkler</a>
-                </li>
+                <nav aria-label="breadcrumb" data-aos="fade-up" data-aos-delay="200">
+                  <ol class="breadcrumb text-center justify-content-center">
+                    <li class="breadcrumb-item"><a href="/">Ana Sayfa</a></li>
+                    <li class="breadcrumb-item">
+                      <a href="properties">Garyrimülkler</a>
+                    </li>
 
-                <li
-                  style="text-transform: capitalize;"
-                  class="uppercase breadcrumb-item active text-white-50"
-                  aria-current="page"
-                >
-                  <%= v_mulk.adress %>
-                </li>
-              </ol>
-            </nav>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-      
-    
-    <div class="section">
-      <div class="container">
-        <div class="row justify-content-between">
-          <div class="col-lg-7">
-            <div class="img-property-slide-wrap">
-              <div class="img-property-slide">
-                <img src="/images/mulk-images/5x5/1.jpg" alt="Image" class="img-fluid" />
-                <img src="/images/mulk-images/5x5/2.jpg" alt="Image" class="img-fluid" />
-                <img src="/images/mulk-images/5x5/3.jpg" alt="Image" class="img-fluid" />
+                    <li style="text-transform: capitalize;" class="uppercase breadcrumb-item active text-white-50"
+                      aria-current="page">
+                      <%= v_mulk.adress _%>
+                    </li>
+                  </ol>
+                </nav>
               </div>
             </div>
           </div>
-          <div class="col-lg-4">
-            <h2 style="text-transform: capitalize;" class="heading text-primary"><%= v_mulk.adress %></h2>
-            <p style="text-transform: capitalize;" class="meta"><%= v_mulk.adress %></p>
-            <p class="text-black-50">
-              <%= v_mulk.metin1 %>
-            </p>
-            <p class="text-black-50">
-              <%= v_mulk.metin2 %>
-            </p>
-            <% }); %>
-            <div class="d-block agent-box p-5">
-              <div class="img mb-4">
-                <img
-                  src="/images/person_2-min.jpg"
-                  alt="Image"
-                  class="img-fluid"
-                />
+        </div>
+        <div class="section">
+          <div class="container">
+            <div class="row justify-content-between">
+              <div class="col-lg-7">
+                <div class="img-property-slide-wrap">
+
+                  <div class="img-property-slide">
+
+                    <% for (let index=0; index < v_mulk.image.length; index++) { %>
+                      <img src="/images/mulk-images/5x5/<%= v_mulk.image[index] _%>" class="img-fluid" alt="ilan resim">
+                      <% } %>
+                  </div>
+
+                  <ul style="
+                  list-style-type: none;
+                  display: flex;
+                  justify-content: space-between;
+                  padding: 0;
+                  font-size: 3vh;" 
+                  class="controls" id="customize-controls" aria-label="Carousel Navigation" tabindex="0">
+                    <li class="prev" data-controls="prev" aria-controls="customize" tabindex="-1">
+                      <i class="fa-solid fa-angles-left"></i>
+                    </li>
+                    <li class="next" data-controls="next" aria-controls="customize" tabindex="-1">
+                      <i class="fa-solid fa-angles-right"></i>
+                    </li>
+                  </ul>
+
+
+                </div>
               </div>
-              
-              <div class="text">
-                <h3 class="mb-0">Alicia Huston</h3>
-                <div class="meta mb-3">Real Estate</div>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Ratione laborum quo quos omnis sed magnam id ducimus saepe
+              <div class="col-lg-4">
+                <h2 style="text-transform: capitalize;" class="heading text-primary">
+                  <%= v_mulk.adress _%>
+                </h2>
+                <p style="text-transform: capitalize;" class="meta">
+                  <%= v_mulk.adress _%>
                 </p>
-                <ul class="list-unstyled social dark-hover d-flex">
-                  <li class="me-1">
-                    <a href="#"><span class="icon-instagram"></span></a>
-                  </li>
-                  <li class="me-1">
-                    <a href="#"><span class="icon-twitter"></span></a>
-                  </li>
-                  <li class="me-1">
-                    <a href="#"><span class="icon-facebook"></span></a>
-                  </li>
-                  <li class="me-1">
-                    <a href="#"><span class="icon-linkedin"></span></a>
-                  </li>
-                </ul>
+                <p class="text-black-50">
+                  <%= v_mulk.metin1 _%>
+                </p>
+                <p class="text-black-50">
+                  <%= v_mulk.metin2 _%>
+                </p>
+                <% }); %>
+                  <div class="d-block agent-box p-5">
+                    <div class="img mb-4">
+                      <img src="/images/person_2-min.jpg" alt="Image" class="img-fluid" />
+                    </div>
+
+                    <div class="text">
+                      <h3 class="mb-0">Alicia Huston</h3>
+                      <div class="meta mb-3">Real Estate</div>
+                      <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Ratione laborum quo quos omnis sed magnam id ducimus saepe
+                      </p>
+                      <ul class="list-unstyled social dark-hover d-flex">
+                        <li class="me-1">
+                          <a href="#"><span class="icon-instagram"></span></a>
+                        </li>
+                        <li class="me-1">
+                          <a href="#"><span class="icon-twitter"></span></a>
+                        </li>
+                        <li class="me-1">
+                          <a href="#"><span class="icon-facebook"></span></a>
+                        </li>
+                        <li class="me-1">
+                          <a href="#"><span class="icon-linkedin"></span></a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
 
-<%- include("layouts/footer") %>
+        <%- include("layouts/footer") %>

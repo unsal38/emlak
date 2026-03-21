@@ -19,15 +19,20 @@ const mulkSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
-    cinsi: {
+    ilan_cinsi: {
         type: String,
         enum: ['arsa', 'tarla', 'konut'],
         default: 'konut'
     },
-    cesid: {
+    ilan_cesid: {
         type: String,
-        enum: ['ticari', 'kiralık', 'proje', 'satılık'],
+        enum: ['ticari', 'kiralık', 'satılık'],
         default: 'satılık'
+    },
+     hizmet_cesid: {
+        type: String,
+        enum: ['sigorta', 'kiralama', 'temizlik','tadilatvekomplebakim'],
+        default: 'temizlik'
     },
     hiz_ilan: {
         type: String,

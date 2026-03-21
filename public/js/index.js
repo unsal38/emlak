@@ -211,11 +211,12 @@ $(() => {
     });
 })// EKİBE KATILMAK İÇİN BAŞVURU
 $(() => {
-
-    const hedef = $('div.section-properties .property-item')
     const eklenecek_div = 6
-    function src() {
-        const hedef_gorunur = $(hedef).not('.d-none')
+    const hedef1 = $(`div.section-properties div.satilik div:not("d-none") .property-item`)
+    const hedef2 = $(`div.section-properties div.kiralik div:not("d-none") .property-item`)
+    const hedef3 = $(`div.section-properties div.ticari div:not("d-none") .property-item`)
+    function src(data) {
+        const hedef_gorunur = $(data).not('.d-none')
         $(hedef_gorunur).each(function (i, v) {
             const check = $(v)[0]
             const data_src = $(check).children().children().children().children('.carousel-item')
@@ -227,19 +228,42 @@ $(() => {
             }
         });
     }
-
-    for (let index = 6; index < hedef.length; index++) { $(hedef[index]).addClass('d-none') }
-    $('#yukle').on('click', function () {
-        const d_none_div = $('div.section-properties .d-none').length
-        const toplam_div = $('div.section-properties .property-item').length
+    function checkProje() {
+        const checkProje_prop = $('#checkProje').prop('checked');
+        if (checkProje_prop === true){
+            $(`div.section-properties  .property-item`).addClass('d-none')
+            $(`div.section-properties  .property-item[data-proje='true']`).removeClass('d-none')
+        }
+        
+                
+        console.log(checkProje)
+    }
+    for (let index = 6; index < hedef1.length; index++) { $(hedef1[index]).addClass('d-none') }
+    for (let index = 6; index < hedef2.length; index++) { $(hedef2[index]).addClass('d-none') }
+    for (let index = 6; index < hedef3.length; index++) { $(hedef3[index]).addClass('d-none') }
+    $('.yukle').on('click', function () {
+        const select_button = $(this).attr('name')
+        const d_none_div = $(`div.section-properties div.${select_button} div:not("d-none") .d-none`).length
+        const toplam_div = $(`div.section-properties div.${select_button} div:not("d-none") .property-item`).length
         const gosterilen_div = toplam_div - d_none_div
         const new_gosterilen_div = gosterilen_div + eklenecek_div
+        const hedef = $(`div.section-properties div.${select_button} div:not("d-none") .property-item`)
         for (let index = 0; index < new_gosterilen_div; index++) {
             $(hedef[index]).removeClass('d-none')
         }
-        src()
+
+        src(hedef)
     });
-    src()
+    src(hedef1)
+    src(hedef2)
+    src(hedef3)
+    $('#checkProje').on('click', function () {
+        const checkProje_prop = $('#checkProje').prop('checked');
+       if(checkProje_prop === false){window.location.reload()}
+       checkProje()
+    });
+     
+
 })// ilan ekleme ve data-src src çevirme
 $(() => {
     $('input[name="submit_contact"]').on('click', async function () {
@@ -294,6 +318,22 @@ $(() => {
         $('#yorumModal').removeClass('show').removeClass('d-block')
     });
 }) /// YORUM MODAL KAPANIP AÇILMA
+$(() => {
+    $('div.section-properties a').on('click', function () {
+        const target_id = $(this).attr('id')
+        $('div.section-properties a').removeClass('active')
+        $(`#${target_id}`).addClass('active')
+        $(`#properties_body`).children('div').addClass('d-none')
+        $(`#properties_body .${target_id}`).removeClass('d-none')
+    });
+}) // satılık kiralık seçimi ilanlarımız sayfası
+
+
+
+
+
+
+
 
 
 
@@ -303,38 +343,38 @@ $(() => {
 $(() => {
     const random_number = (Date.now() + Math.floor(Math.random() * 10)).toString()
     const data = [
-        "1,2002",  //  price: data[0], //: String,
-        "büyükçekmeceek istanbul",  // adress: data[1],  //: String,
+        "5999",  //  price: data[0], //: String,
+        "atatürk",  // adress: data[1],  //: String,
         3,  // room: data[2],    //: Number,
         2, // bedroom: data[3], //: Number,
         1,   // bath: data[4],  //: Number,
         123,    // area_net: data[5], //:Number,
         54,    // area_brut: data[6], //:Number,
-        "satış",    // province: data[7], //:String,
-        "girne",    // country: data[8], //: String,
+        "labda",    // province: data[7], //:String,
+        "kıbrıs",    // country: data[8], //: String,
         //["1.jpg", "2.jpg", "3.jpg"],   
         //["4.jpg", "5.jpg", "6.jpg"], 
-        ["7.jpg", "8.jpg", "6.jpg"],
+        ["1.jpg", "8.jpg", "6.jpg"],
         //    metin1: , metin2 // String,
         "lorem ipsun Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora minima perferendis laudantium porro numquam quaerat autem modi doloremque, vitae ad et soluta animi officiis. Necessitatibus aspernatur earum expedita adipisci perferendis?",
         "lorem ipsun Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora minima perferendis laudantium porro numquam quaerat autem modi doloremque, vitae ad et soluta animi officiis. Necessitatibus aspernatur earum expedita adipisci perferendis?",
         false,//proje: "", // type: Boolean,
-        'tarla',//cinsi: {
+        'tarla',//ilan_cinsi: {
         //    type: String,
         //    enum: ['arsa', 'tarla', 'konut'],
         //    default: 'konut'
         //},
-        'satılık',//cesid: {
+        'kiralık',//ilan_cesid: {
         //    type: String,
-        //    enum: ['ticari', 'kiralık', 'proje', 'satılık'],
+        //    enum: ['ticari', 'kiralık', 'satılık'],
         //    default: 'satılık'
         //},
-        'hizmet', //hiz_ilan: {
+        'ilan', //hiz_ilan: {
         //    type: String,
         //    enum:['ilan', 'hizmet'],
         //    default: 'ilan'
         //},
-        false,//         vitrin: {
+        true,// vitrin: {
         //     type: Boolean,
         //     default: false
         // },
