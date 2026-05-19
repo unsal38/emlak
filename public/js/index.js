@@ -327,6 +327,31 @@ $(() => {
         $(`#properties_body .${target_id}`).removeClass('d-none')
     });
 }) // satılık kiralık seçimi ilanlarımız sayfası
+$(()=>{
+    const url_data = window.location.pathname
+    const sprit_url_data = url_data.split('/')[1]
+    const sprit_url_data_length = url_data.split('/')[1].length
+    const navbar_data_li = $('ul.site-menu li')
+    const navbar_data_a = $('ul.site-menu li a')
+    if(sprit_url_data_length === 0){
+        return
+    }else {
+        $(navbar_data_li).removeClass('active')
+        const navbar_data_a = $(`ul.site-menu li a[href="${sprit_url_data}"]`)
+        const a_parent = $(navbar_data_a).parent().addClass('active')
+        console.log(a_parent)
+    }
+
+})// ana menü active class verilmesi / silinmesi
+$(()=>{
+    $('div.hero button.select-alt-menu').on('click', function () {
+      $('div.hero button.active').removeClass('active')  
+        $(this).addClass('active')
+        const button_parent = $(this).parent('.dropend')
+        if(button_parent.length > 0) {$('div.hero div.dropend').addClass('active')}else{$('div.hero div.dropend').removeClass('active')}
+        console.log(button_parent.length)
+    });
+})
 
 
 

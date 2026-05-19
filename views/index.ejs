@@ -15,19 +15,40 @@
               <h1 class="heading" data-aos="fade-up">
                 Easiest way to find your dream home
               </h1>
-              <form action="#" class="narrow-w form-search d-flex align-items-stretch mb-3" data-aos="fade-up"
+              <div class="narrow-w form-search d-flex flex-column align-items-stretch mb-3" data-aos="fade-up"
                 data-aos-delay="200">
-                <select class="form-control px-4">
-                  <option selected>il seçiniz</option>
-                  <option value="1">Girne</option>
-                  <option value="2">lefkoşe</option>
-                  <option value="3">Gazimoğusa</option>
-                  <option value="4">Güzelyurt</option>
-                  <option value="5">İskele</option>
-                  <option value="6">Lefke</option>
-                </select>
-                <button style="margin-left: 5px;" type="submit" class="btn btn-primary">Arama</button>
-              </form>
+                <div class="input-group mb-3">
+                  <select class="form-control px-4">
+                    <option selected>il seçiniz</option>
+                    <option value="1">Girne</option>
+                    <option value="2">lefkoşe</option>
+                    <option value="3">Gazimoğusa</option>
+                    <option value="4">Güzelyurt</option>
+                    <option value="5">İskele</option>
+                    <option value="6">Lefke</option>
+                  </select>
+                  <button style="margin-left: 5px;" type="submit" class="btn btn-primary">Arama</button>
+                </div>
+                <div class="input-group mb-3">
+
+                  <!-- Default dropend button -->
+                  <div class="btn btn-primary dropend z-1">
+                    <button type="button" class="select-alt-menu p-0 btn btn-primary dropdown-toggle"
+                      data-bs-toggle="dropdown" aria-expanded="false" text-capitalize>
+                      satılık
+                    </button>
+                    <ul class="dropdown-menu z-1">
+                      <!-- Dropdown menu links -->
+                      <button class="btn btn-primary text-capitalize">konut</button>
+                      <button class="btn btn-primary text-capitalize">tarla</button>
+                    </ul>
+                  </div>
+                  <!-- Default dropend button -->
+
+                  <button class="select-alt-menu btn btn-primary text-capitalize z-n1">kiralık</button>
+                  <button class="select-alt-menu btn btn-primary text-capitalize z-n1">proje</button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -37,8 +58,8 @@
         <div class="container">
           <div class="row mb-5 align-items-center">
             <div class="col-lg-6">
-              <h2 class="font-weight-bold text-primary heading">
-                Popüler Evler
+              <h2 class="font-weight-bold text-primary heading text-capitalize">
+                öne çıkan gayrimenkuller
               </h2>
             </div>
             <div class="col-lg-6 text-lg-end">
@@ -56,22 +77,24 @@
       <section class="features-1">
         <div class="container">
           <div class="row">
-            <% blog_single.forEach(v_blog => { %>
+            <% blog_single.forEach(v_blog=> { %>
               <div class="col-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
                 <div class="box-feature">
                   <span class="<%= v_blog.image _%>"></span>
-                  <h3 class="mb-3"><%= v_blog.title _%></h3>
+                  <h3 class="mb-3">
+                    <%= v_blog.title _%>
+                  </h3>
                   <p class="metin_kisalt">
-                    <% for (let index = 0; index < v_blog.text.length; index++) {%>
+                    <% for (let index=0; index < v_blog.text.length; index++) {%>
                       <%= v_blog.text[index] _%>
-                      
-                    <% } %>
-                     
+
+                        <% } %>
+
                   </p>
                   <p><a href="blog-single/<%= v_blog._id _%>" class="learn-more">Daha Fazlası</a></p>
                 </div>
               </div>
-            <% }); %>
+              <% }); %>
           </div>
         </div>
       </section>
@@ -101,14 +124,14 @@
             <div class="testimonial-slider">
               <div class="item">
                 <div class="testimonial">
-                  <img src="images/person_1-min.jpg" alt="Image" class="img-fluid rounded-circle w-25 mb-4" />
+                  <!-- <img src="images/person_1-min.jpg" alt="Image" class="img-fluid rounded-circle w-25 mb-4" />
                   <div class="rate">
                     <span class="icon-star text-warning"></span>
                     <span class="icon-star text-warning"></span>
                     <span class="icon-star text-warning"></span>
                     <span class="icon-star text-warning"></span>
                     <span class="icon-star text-warning"></span>
-                  </div>
+                  </div> -->
                   <h3 class="h5 text-primary mb-4">James Smith</h3>
                   <blockquote>
                     <p>
@@ -124,14 +147,14 @@
 
               <div class="item">
                 <div class="testimonial">
-                  <img src="images/person_2-min.jpg" alt="Image" class="img-fluid rounded-circle w-25 mb-4" />
+                  <!-- <img src="images/person_2-min.jpg" alt="Image" class="img-fluid rounded-circle w-25 mb-4" />
                   <div class="rate">
                     <span class="icon-star text-warning"></span>
                     <span class="icon-star text-warning"></span>
                     <span class="icon-star text-warning"></span>
                     <span class="icon-star text-warning"></span>
                     <span class="icon-star text-warning"></span>
-                  </div>
+                  </div> -->
                   <h3 class="h5 text-primary mb-4">Mike Houston</h3>
                   <blockquote>
                     <p>
@@ -147,14 +170,14 @@
 
               <div class="item">
                 <div class="testimonial">
-                  <img src="images/person_3-min.jpg" alt="Image" class="img-fluid rounded-circle w-25 mb-4" />
+                  <!-- <img src="images/person_3-min.jpg" alt="Image" class="img-fluid rounded-circle w-25 mb-4" />
                   <div class="rate">
                     <span class="icon-star text-warning"></span>
                     <span class="icon-star text-warning"></span>
                     <span class="icon-star text-warning"></span>
                     <span class="icon-star text-warning"></span>
                     <span class="icon-star text-warning"></span>
-                  </div>
+                  </div> -->
                   <h3 class="h5 text-primary mb-4">Cameron Webster</h3>
                   <blockquote>
                     <p>
@@ -170,14 +193,14 @@
 
               <div class="item">
                 <div class="testimonial">
-                  <img src="images/person_4-min.jpg" alt="Image" class="img-fluid rounded-circle w-25 mb-4" />
+                  <!-- <img src="images/person_4-min.jpg" alt="Image" class="img-fluid rounded-circle w-25 mb-4" />
                   <div class="rate">
                     <span class="icon-star text-warning"></span>
                     <span class="icon-star text-warning"></span>
                     <span class="icon-star text-warning"></span>
                     <span class="icon-star text-warning"></span>
                     <span class="icon-star text-warning"></span>
-                  </div>
+                  </div> -->
                   <h3 class="h5 text-primary mb-4">Dave Smith</h3>
                   <blockquote>
                     <p>
@@ -290,7 +313,7 @@
           <div class="col-lg-7 mx-auto text-center">
             <h2 class="mb-4">Büyüyen emlak acenteleri ekibimizin bir parçası olun.</h2>
             <p>
-              
+
               <a class="btn btn-primary" data-bs-toggle="modal" href="#section5ModalToggle" role="button">Emlak
                 Danışmanı Pozisyonuna
                 Başvurun</a>
@@ -306,8 +329,24 @@
           <div class="row justify-content-center text-center mb-5">
             <div class="col-lg-6 mb-5">
               <h2 class="font-weight-bold heading text-primary mb-4">
-                İş Alanları Danışmanlarımız
+                Danışmanlarımız
               </h2>
+
+
+              <!-- <div class="testimonial">
+                <img src="images/person_1-min.jpg" alt="Image" class="img-fluid rounded-circle w-25 mb-4" />
+                  <div class="rate">
+                    <span class="icon-star text-warning"></span>
+                    <span class="icon-star text-warning"></span>
+                    <span class="icon-star text-warning"></span>
+                    <span class="icon-star text-warning"></span>
+                    <span class="icon-star text-warning"></span>
+                  </div>
+              </div> -->
+
+
+
+
               <!-- <p class="text-black-50">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam
                 enim pariatur similique debitis vel nisi qui reprehenderit totam?
@@ -316,8 +355,7 @@
             </div>
           </div>
           <div class="row">
-            <h4>Bizimle çalışmak istermisin ...</h4>
-            <!-- <div class="col-sm-6 col-md-6 col-lg-4 mb-5 mb-lg-0">
+            <div class="col-sm-6 col-md-6 col-lg-4 mb-5 mb-lg-0">
               <div class="h-100 person">
                 <img src="images/person_1-min.jpg" alt="Image" class="img-fluid" />
 
@@ -406,7 +444,7 @@
                   </ul>
                 </div>
               </div>
-            </div> -->
+            </div>
           </div>
         </div>
       </div>
@@ -490,7 +528,7 @@
                   </select>
                 </div>
                 <div class="col-12">
-                  <textarea name="diger" placeholder="diğer istekler" class="form-control"
+                  <textarea name="diger" placeholder="diğer istekler (örn: Girne bölgesinde 2+1 odalı, 2 banyolu, 100000 dolar vb... )" class="form-control"
                     aria-label="With textarea"></textarea>
                 </div>
               </div>

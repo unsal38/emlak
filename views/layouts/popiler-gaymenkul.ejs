@@ -8,8 +8,6 @@
           <% mulk_data.forEach(v_m=> { %>
             <% if(v_m.vitrin === true ){ %>
             <div class="property-item">
-              <h5>Seri nu: <%= v_m.seri_number _%>
-              </h5>
               <a href="property-single/<%= v_m._id _%>" class="img">
                       <div id="carouselIndicators<%= v_m._id _%>" class="carousel slide">
 
@@ -36,7 +34,9 @@
                         </button>
                       </div>
               </a>
-              <div class="property-content">
+              
+              <div class="property-content ps-0">
+                <p>Seri nu: <%= v_m.seri_number _%></p>
                 <div class="price mb-2"><span>$ <%= v_m.price %></span></div>
                 <div>
                   <span class="d-block mb-2 text-black-50">

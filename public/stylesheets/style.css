@@ -3201,7 +3201,7 @@ textarea.form-control-lg {
 
 .input-group .btn {
   position: relative;
-  z-index: 2;
+  /* z-index: 2; */
 }
 
 .input-group .btn:focus {
@@ -4365,7 +4365,17 @@ fieldset:disabled .btn {
 .dropdown-toggle:empty::after {
   margin-left: 0;
 }
-
+.hero .dropdown-menu{
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+}
+.hero button.active, 
+.hero div.active{
+  color: #c8ab21 !important;
+  background: white !important;
+  background-color: white !important;
+}
 .dropdown-menu {
   position: absolute;
   z-index: 1000;
@@ -13500,11 +13510,15 @@ body {
 }
 
 .site-nav .site-navigation .site-menu>li>a {
-  font-size: 14px;
+  font-size: 17px;
   padding: 10px 15px;
-  display: inline-block;
+  /* display: inline-block; */
   text-decoration: none !important;
   color: rgb(201 139 39);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .site-nav .site-navigation .site-menu>li>a:hover {
@@ -15153,7 +15167,9 @@ i.bi-whatsapp {
 
 .metin_kisalt {
   display: -webkit-box;
-  -webkit-line-clamp: 3; /* Kaç satır görünecek */
+  -webkit-line-clamp: 3;
+  /* Kaç satır görünecek */
   -webkit-box-orient: vertical;
-  overflow: hidden;  /* Tasan metni gizle */
+  overflow: hidden;
+  /* Tasan metni gizle */
 }
