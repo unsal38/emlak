@@ -1,0 +1,21 @@
+body {
+    margin-top: 100px;
+}
+
+.card {
+    flex-direction: row !important;
+}
+
+.no-pdf {
+    display: none;
+}
+.yes-pdf-part1{
+    position: relative;
+}
+.yes-pdf-part1 .card-header
+{
+   
+}
+.yes-pdf-part1 .card-body{
+
+}

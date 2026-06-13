@@ -7,8 +7,11 @@ const axios = require("axios")
 const bodyParser = require("body-parser")
 const cookieParser = require("cookie-parser")
 const nodemailer = require("nodemailer")
-
-
+//puppeteer-core
+const puppeteer = require('puppeteer-core')
+const fs = require('fs').promises
+const path = require('path')
+// puppeteer-core
 const {
     add_mulk, delete_mulk, update_mulk,
     add_user, delete_user, update_user
@@ -61,9 +64,88 @@ app.post('/contact_mail', nodemailer_ihtiyac_send.contact_send);
 app.post('/blog_single_create', blog_crud.blog_create);
 
 
+app.get("/admin", check_user.check_user, async function (req, res) {
+    var page = 'admin'
+    var user_data = req.user
+    if (user_data === null) {
+        var user_aut = null
+        var user_autjwt = null
+    }
+    if (user_data !== null) {
+        var user_aut = user_data[1]
+        var user_autjwt = user_data[0].data
+    }
+    res.render("admin-panel", {
+        user_aut: user_aut,
+        user_autjwt: user_autjwt,
+        page
+    })
+})
+app.get("/admin/gayrimenkul", check_user.check_user, async function (req, res) {
+    var user_data = req.user
+    var page = 'gayrimenkul'
+    if (user_data === null) {
+        var user_aut = null
+        var user_autjwt = null
+    }
+    if (user_data !== null) {
+        var user_aut = user_data[1]
+        var user_autjwt = user_data[0].data
+    }
+    res.render("admin-panel", {
+        user_aut: user_aut,
+        user_autjwt: user_autjwt,
+        page
+    })
+})
+app.get("/pdf", async function (req, res) {
+    try {
 
-app.get("/blog-single/:id",check_user.check_user,async function (req, res) {
-        var user_data = req.user
+        // Launch the browser and open a new blank page.
+        const browser = await puppeteer.launch({
+
+            headless: true,
+            executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome', // this would launch the binary at the path
+            channel: 'stable', //  this will launch the binary installed on the system (might not detect the installation everywhere).
+            args: [
+                // `--proxy-server=http://${message.proxy}`,
+                '--disable-features=IsolateOrigins,site-per-process,SitePerProcess',
+                '--flag-switches-begin --disable-site-isolation-trials --flag-switches-end',
+                `--window-size=1920,1080`,
+                "--window-position=000,000",
+                "--disable-dev-shm-usage",
+                "--no-sandbox",
+            ]
+        });
+
+        const page = await browser.newPage();
+
+        const html_page = await fs.readFile(`${__dirname}/views/panel-page/istatistik.ejs`, 'utf8');
+        await page.setContent(html_page, { waitUntil: 'domcontentloaded' });
+        await page.addStyleTag({ path: `${__dirname}/public/admin-panel/css/sb-admin-2.css` })
+        await page.addStyleTag({ path: `${__dirname}/public/admin-panel/css/pdf_page.css` })
+        // await page.addStyleTag({ content: 'body { margin-top: 100px;} card {flex-direction: row;!important}' });
+
+        const pdfBuffer = await page.pdf();
+
+        await browser.close();
+
+        res.set(
+            {
+                'Content-Type': 'application/pdf',
+                'Content-Disposition': 'inline'
+            }
+        )
+        res.send(pdfBuffer)
+    } catch (error) {
+        if (error) {
+            console.log(error.message)
+            res.status(500).send('pdf oluşturulamadı')
+        }
+    }
+});
+app.get("/blog-single/:id", check_user.check_user, async function (req, res) {
+    var user_data = req.user
     if (user_data === null) {
         var user_aut = null
         var user_autjwt = null
@@ -74,14 +156,14 @@ app.get("/blog-single/:id",check_user.check_user,async function (req, res) {
     }
     const blog_single_id = req.params.id
     const blog_single = await Blog.findById(blog_single_id)
-    res.render("blog-single",  {
+    res.render("blog-single", {
         user_aut: user_aut,
         user_autjwt: user_autjwt,
         blog_single
     })
 
 });
-app.get("/blog", check_user.check_user,async (req, res) => {
+app.get("/blog", check_user.check_user, async (req, res) => {
     var user_data = req.user
     if (user_data === null) {
         var user_aut = null
@@ -178,20 +260,20 @@ app.get("/properties", check_user.check_user, async (req, res) => {
     })
 
 });
-app.get("/", check_user.check_user,async function (req, res) {
+app.get("/", check_user.check_user, async function (req, res) {
     try {
         var user_data = req.user
-    if (user_data === null) {
-        var user_aut = null
-        var user_autjwt = null
-    }
-    if (user_data !== null) {
+        if (user_data === null) {
+            var user_aut = null
+            var user_autjwt = null
+        }
+        if (user_data !== null) {
 
-        var user_aut = user_data[1]
-        var user_autjwt = user_data[0].data
-    }
-    // DATABASE SORGU MULK
-    
+            var user_aut = user_data[1]
+            var user_autjwt = user_data[0].data
+        }
+        // DATABASE SORGU MULK
+
         var mulk_data = await Mulk.find();
         var blog_single = await Blog.find();
     } catch (err) {
@@ -205,15 +287,6 @@ app.get("/", check_user.check_user,async function (req, res) {
         blog_single
     })
 })
-
-
-
-
-
-
-
-
-
 
 
 

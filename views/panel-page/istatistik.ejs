@@ -1,0 +1,135 @@
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="no-pdf d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800 text-capitalize">istatistik</h1>
+        <a target="_blank" href="/pdf"
+            class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm  text-capitalize"><i
+                class="fas fa-download fa-sm text-white-50"></i> istatistik rapor oluştur</a>
+    </div>
+
+    <!-- Content Row -->
+    <div class="row">
+
+        <div class="col-xl-4 col-lg-5">
+            <div class="no-pdf card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Oranlar</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                    <div class="chart-pie pt-4 pb-2">
+                        <div class="chartjs-size-monitor">
+                            <div class="chartjs-size-monitor-expand">
+                                <div class=""></div>
+                            </div>
+                            <div class="chartjs-size-monitor-shrink">
+                                <div class=""></div>
+                            </div>
+                        </div>
+                        <canvas id="myPieChart" width="486" height="245"
+                            style="display: block; width: 486px; height: 245px;"
+                            class="chartjs-render-monitor"></canvas>
+                    </div>
+                    <div class="mt-4 text-center small">
+                        <span class="mr-2 text-capitalize">
+                            <i class="fas fa-circle text-primary"></i> satılık
+                        </span>
+                        <span class="mr-2 text-capitalize">
+                            <i class="fas fa-circle text-success"></i> kiralık
+                        </span>
+                        <span class="mr-2 text-capitalize">
+                            <i class="fas fa-circle text-info"></i> proje
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 mb-4">
+            <div class="no-pdf card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary text-capitalize">satılık</h6>
+                </div>
+                <div class="card-body">
+                    <h4 class="small font-weight-bold">konut <span class="float-right">20%</span></h4>
+                    <div class="progress mb-4">
+                        <div class="progress-bar bg-danger" role="progressbar" style="width: 20%" aria-valuenow="20"
+                            aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <h4 class="small font-weight-bold">tarla <span class="float-right">80%</span></h4>
+                    <div class="progress mb-4">
+                        <div class="progress-bar bg-danger" role="progressbar" style="width: 80%" aria-valuenow="80"
+                            aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="yes-pdf-part1 card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary text-capitalize">oranlar</h6>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table class="table table-bordered dataTable" id="dataTable" width="100%"
+                                    cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting sorting_asc text-capitalize" tabindex="0"
+                                                aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending"
+                                                aria-label="Name: activate to sort column descending"
+                                                style="width: 265.172px;">satılık</th>
+                                            <th class="sorting text-capitalize" tabindex="0" aria-controls="dataTable"
+                                                rowspan="1" colspan="1"
+                                                aria-label="Position: activate to sort column ascending"
+                                                style="width: 421.922px;">kiralık</th>
+                                            <th class="sorting text-capitalize" tabindex="0" aria-controls="dataTable"
+                                                rowspan="1" colspan="1"
+                                                aria-label="Position: activate to sort column ascending"
+                                                style="width: 421.922px;">proje</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th class="text-capitalize" rowspan="1" colspan="1">satılık</th>
+                                            <th class="text-capitalize" rowspan="1" colspan="1">kiralık</th>
+                                            <th class="text-capitalize" rowspan="1" colspan="1">proje</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+
+                                        <tr class="odd">
+                                            <td class="sorting_1">%65</td>
+                                            <td>%20</td>
+                                            <td>%15</td>
+
+                                        </tr>
+                                        <!-- <tr class="even">
+                                            <td class="sorting_1">Angelica Ramos</td>
+                                            <td>Chief Executive Officer (CEO)</td>
+                                            <td>London</td>
+
+                                        </tr> -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+             
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+</div>

@@ -339,7 +339,6 @@ $(()=>{
         $(navbar_data_li).removeClass('active')
         const navbar_data_a = $(`ul.site-menu li a[href="${sprit_url_data}"]`)
         const a_parent = $(navbar_data_a).parent().addClass('active')
-        console.log(a_parent)
     }
 
 })// ana menü active class verilmesi / silinmesi
@@ -349,10 +348,19 @@ $(()=>{
         $(this).addClass('active')
         const button_parent = $(this).parent('.dropend')
         if(button_parent.length > 0) {$('div.hero div.dropend').addClass('active')}else{$('div.hero div.dropend').removeClass('active')}
-        console.log(button_parent.length)
     });
-})
+}) // alt menu aktif pasip yapma
+$(()=>{
+const url_check = window.location
+// console.log(url_check, 'deneme')
 
+}) // PANEL ACTİV PASİF YAPMA
+
+
+
+$(()=>{
+
+}) // ADMİN PANEL SEARCH
 
 
 

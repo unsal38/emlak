@@ -1,0 +1,137 @@
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800 text-capitalize">garimenkul</h1>
+        <a target="_blank" href="/pdf"
+            class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm  text-capitalize"><i
+                class="fas fa-download fa-sm text-white-50"></i> istatistik rapor oluştur</a>
+    </div>
+
+    <!-- Content Row -->
+    <div class="row">
+
+        <div class="col-lg-6">
+
+            <!-- Basic Card Example -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary text-capitalize">ilan seri nu.:</h6>
+                </div>
+                <div class="card-body">
+
+
+
+
+                    <form class="form-floating">
+                        <div class="input-group mb-3" id="seri-number">
+                            <button class="input-group-text text-capitalize" id="seri-number-button">değiştir</button>
+                            <input type="text" class="form-control is-valid" placeholder="seri numarası giriniz"
+                                aria-label="seri numarası giriniz" aria-describedby="seri-number-button">
+                            <label class="mx-3 my-auto text-danger text-capitalize" for="floatingInputInvalid">boş
+                                bırakmayınız</label>
+                        </div>
+
+                        <label for="vitrin" class="form-label text-capitalize">vitrine ekle</label>
+                        <div class="input-group mb-3 " id="vitrin">
+                            <button class="input-group-text text-capitalize" disabled>değiştir</button>
+                            <select class="form-control" aria-label="Default select" disabled>
+                                <option value="true">evet</option>
+                                <option selected value="false">hayır</option>
+                            </select>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="hiz-ilan" class="form-label text-capitalize">hizmet / ilan</label>
+                                <div class="input-group mb-3 " id="hiz-ilan">
+                                    <button class="input-group-text text-capitalize" disabled>değiştir</button>
+                                    <select class="form-control" aria-label="Default select" disabled>
+                                        <option value="hizmet">hizmet</option>
+                                        <option selected value="ilan">ilan</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <label for="hiz-cesid" class="form-label text-capitalize">hizmet çeşidi</label>
+                                <div class="input-group mb-3 " id="hiz-cesid">
+                                    <button class="input-group-text text-capitalize" disabled>değiştir</button>
+                                    <select class="form-control" aria-label="Default select" disabled>
+                                        <option value="sigorta">sigorta</option>
+                                        <option value="kiralama">kiralama</option>
+                                        <option value="tadilatvekomplebakim">tadilat ve komple bakım</option>
+                                        <option selected value="temizlik">temizlik</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <label for="ilan-cesid" class="form-label text-capitalize">ilan çeşidi</label>
+                        <div class="input-group mb-3 " id="ilan-cesid">
+                            <button class="input-group-text text-capitalize" disabled>değiştir</button>
+                            <select class="form-control" aria-label="Default select" disabled>
+                                <option value="kiralik">kiralık</option>
+                                <option value="proje">proje</option>
+                                <option selected value="satilik">satılık</option>
+                            </select>
+                        </div>
+
+                        <label for="ilan-cinsi" class="form-label text-capitalize">ilan cinsi</label>
+                        <div class="input-group mb-3 " id="ilan-cinsi">
+                            <button class="input-group-text text-capitalize" disabled>değiştir</button>
+                            <select class="form-control" aria-label="Default select" disabled>
+                                <option value="tarla">tarla</option>
+                                <option selected value="konut">konut</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <button class="input-group-text text-capitalize" id="metin-1">değiştir</button>
+                            <input type="text" class="form-control is-valid" placeholder="metin giriniz"
+                                aria-label="metin giriniz" aria-describedby="metin-1">
+                            <label class="mx-3 my-auto text-danger text-capitalize" for="floatingInputInvalid">boş
+                                bırakmayınız</label>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <button class="input-group-text text-capitalize" id="metin-2">değiştir</button>
+                            <input type="text" class="form-control is-valid" placeholder="metin giriniz"
+                                aria-label="metin giriniz" aria-describedby="metin-2">
+                            <label class="mx-3 my-auto text-danger text-capitalize" for="floatingInputInvalid">boş
+                                bırakmayınız</label>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <button class="input-group-text text-capitalize" id="price">değiştir</button>
+                            <input type="text" class="form-control is-valid" placeholder="fiyat giriniz"
+                                aria-label="fiyat giriniz" aria-describedby="price">
+                            <label class="mx-3 my-auto text-danger text-capitalize" for="floatingInputInvalid">boş
+                                bırakmayınız</label>
+                        </div>
+                        
+                        adress: String,
+                        room: Number,
+                        bedroom: Number,
+                        bath: Number,
+                        area_net: Number,
+                        area_brut: Number,
+                        province: String,
+                        country: String,
+                    </form>
+
+
+
+
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+
+    </div>
+
+
+</div>

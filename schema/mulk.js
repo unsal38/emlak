@@ -15,18 +15,14 @@ const mulkSchema = new mongoose.Schema({
     },
     metin1: String,
     metin2: String,
-    proje: {
-        type: Boolean,
-        default: false
-    },
     ilan_cinsi: {
         type: String,
-        enum: ['arsa', 'tarla', 'konut'],
+        enum: ['tarla', 'konut'],
         default: 'konut'
     },
     ilan_cesid: {
         type: String,
-        enum: ['ticari', 'kiralık', 'satılık'],
+        enum: ['proje', 'kiralik', 'satilik'],
         default: 'satılık'
     },
      hizmet_cesid: {
