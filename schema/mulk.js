@@ -10,8 +10,11 @@ const mulkSchema = new mongoose.Schema({
     area_brut: Number,
     province: String,
     country: String,
-    image: {
-        type: Array
+    image_large: {
+        type: Array /// image 5x5
+    },
+    image_small: {
+        type: Array /// image 1x1
     },
     metin1: String,
     metin2: String,
@@ -25,9 +28,9 @@ const mulkSchema = new mongoose.Schema({
         enum: ['proje', 'kiralik', 'satilik'],
         default: 'satılık'
     },
-     hizmet_cesid: {
+    hizmet_cesid: {
         type: String,
-        enum: ['sigorta', 'kiralama', 'temizlik','tadilatvekomplebakim'],
+        enum: ['sigorta', 'kiralama', 'temizlik', 'tadilatvekomplebakim'],
         default: 'temizlik'
     },
     hiz_ilan: {

@@ -2,7 +2,7 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800 text-capitalize">garimenkul</h1>
+        <h1 class="h3 mb-0 text-gray-800 text-capitalize">kullanıcı</h1>
         <a target="_blank" href="/pdf"
             class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm  text-capitalize"><i
                 class="fas fa-download fa-sm text-white-50"></i> istatistik rapor oluştur</a>
@@ -19,13 +19,15 @@
                     <h6 class="m-0 font-weight-bold text-primary text-capitalize">ilan seri nu.:</h6>
                 </div>
                 <div class="card-body">
-               <%- include("../panel-layouts/mulk_search") %> 
+
+
+
+
                     <form id="gayrimenkul" class="form-floating" onsubmit="event.preventDefault()">
                         <div class="input-group mb-3" id="seri-number">
                             <button class="input-group-text text-capitalize bg-success"
                                 id="seri-number-ekle">ekle</button>
-                            <button data-bs-toggle="modal" data-bs-target="#mulk-search"
-                             class="input-group-text text-capitalize" id="seri-number-duzenle"
+                            <button class="input-group-text text-capitalize" id="seri-number-duzenle"
                                 disabled>düzenle</button>
                             <button class="input-group-text text-capitalize bg-danger" id="seri-number-sil"
                                 disabled>sil</button>
@@ -38,7 +40,6 @@
                                     bırakmayınız</label>
                             </div>
                         </div>
-
 
                         <label for="vitrin" class="form-label text-capitalize">vitrine ekle</label>
                         <div class="input-group mb-3 " id="vitrin">
@@ -96,9 +97,6 @@
                                 <option selected value="konut">konut</option>
                             </select>
                         </div>
-
-
-
 
                         <div class="input-group mb-3">
                             <button class="input-group-text text-capitalize" id="metin-1" disabled>değiştir</button>
@@ -180,36 +178,12 @@
                                 bırakmayınız</label>
                         </div>
                     </form>
-                    <form id="gayrimenkul_photo" enctype="multipart/form-data">
-                        <label for="small_photo" class="form-label text-capitalize">100x100 fotoğraf yükleyiniz</label>
-                        <input id="small_photo" type="file" name="files[]" multiple />
-                    </form>
                 </div>
             </div>
 
         </div>
-        <div class="col-md-12 col-lg-8 col-xl-6 col-12">
-            <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary text-capitalize">büyük fotoğraf eksik olan ilanlar</h6>
-                </div>
 
-                <% mulk_data.forEach(m_v=> { %>
 
-                    <div class="card-body">
-                        <label class="form-label text-capitalize">500x500 fotoğraf yükleyiniz. //</label>
-                        <label class="form-label text-capitalize"><span class="pe-1 text-danger"><%= m_v.image_large.length _%> </span> fotoğraf yüklü</label>
-                        <form id="image_large" enctype="multipart/form-data">
-                            <label class="form-label text-capitalize">seri nu.: <%= m_v.seri_number _%></label>
-                            <input data-seri-nu="<%= m_v.seri_number _%>" type="file" name="files[]" multiple />
-                        </form>
-                        <button data-seri-nu="<%= m_v.seri_number _%>" class="mt-1 btn btn-danger" type="button">fotoğrafları sil</button>
-                    </div>
-
-                    <% }); %>
-            </div>
-
-        </div>
 
 
 

@@ -44,9 +44,9 @@
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header text-capitalize">ekle / çıkar :</h6>
-                            <a class="collapse-item text-capitalize" href="/admin/gayrimenkul">gayrimenkul</a>
-                            <a class="collapse-item text-capitalize" href="javascript:void(0)">müşteri</a>
-                            <a class="collapse-item text-capitalize" href="javascript:void(0)">kullanıcı</a>
+                            <a id="gayrimenkul" class="collapse-item text-capitalize" href="/admin/gayrimenkul">gayrimenkul</a>
+                            <a id="musteri" class="collapse-item text-capitalize" href="/admin/musteri">müşteri</a>
+                            <a class="collapse-item text-capitalize" href="/admin/kullanici">kullanıcı</a>
                         </div>
                     </div>
                 </li>
@@ -94,7 +94,7 @@
                 <div id="content">
 
                     <!-- Topbar -->
-                    <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                    <nav class="not-search navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
                         <!-- Sidebar Toggle (Topbar) -->
                         <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -105,7 +105,7 @@
                         <form id="admin-search"
                             class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                             <div class="input-group">
-                                <input type="text" class="form-control bg-light border-0 small"
+                                <input name="admin-search-text" type="text" class="form-control bg-light border-0 small"
                                     placeholder="Arama..." aria-label="Search" aria-describedby="basic-addon2">
                                 <div class="input-group-append">
                                     <button class="btn btn-primary" type="button">
@@ -236,8 +236,8 @@
                     <% if(page === 'admin'){ %>
                     <%- include("panel-page/istatistik") %>
                     <% } %>
-                    <% if(page === 'gayrimenkul'){ %>
-                    <%- include("panel-page/gayrimenkul") %>
+                    <% if(page !== 'admin'){ %>
+                    <%- include(`panel-page/${page}`) %>
                     <% } %>
                         <!-- /.container-fluid -->
 
@@ -245,7 +245,7 @@
                 <!-- End of Main Content -->
 
                 <!-- Footer -->
-                <footer class="sticky-footer bg-white">
+                <footer class="not-search sticky-footer bg-white">
                     <div class="container my-auto">
                         <div class="copyright text-center my-auto">
                             <span>Copyright &copy; Ünsal Özkara Website 2021</span>

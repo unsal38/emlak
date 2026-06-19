@@ -36,7 +36,6 @@ const delete_mulk = function delete_mulk(_id) {
 
 const update_mulk = function update_mulk(_id, data) {
 
-
   const update_mulk = async (_id, data) => {
     try {
       await Mulk.findByIdAndUpdate({ _id, data });
@@ -49,7 +48,32 @@ const update_mulk = function update_mulk(_id, data) {
   update_mulk(_id, data);
 
 }
+const findone_update_mulk = function findone_update_mulk(filter, update) {
+  const findone_update_mulk = async (filter, update) => {
+    try {
+      await Mulk.findOneAndUpdate(filter, update);
+      console.log(`mülk ${filter} updated`);
+    } catch (err) {
+      console.error('Error deleting mulk:', err.message);
+    }
+  };
 
+  findone_update_mulk(filter, update);
+
+}
+const find_one =async function find_one(filter) {
+  const find_one = async (filter) => {
+    try {
+      const data = await Mulk.find(filter);
+      console.log(`mülk ${filter.seri_number} find one`);
+      return data 
+    } catch (err) {
+      console.error('Error find mulk:', err.message);
+    }
+  };
+  const find_data = await find_one(filter)
+  return find_data
+}
 
 
 /////////////////////////////////////////
@@ -150,7 +174,7 @@ const add_advisor = async function add_user(data) {
 /////////////////////////////////////////
 
 const add_blog_single = function add_blog_single(data) {
-  
+
   const createBlog = async (blogData) => {
     try {
       const blog = new Blog(blogData);
@@ -185,6 +209,8 @@ module.exports = {
   add_mulk,
   delete_mulk,
   update_mulk,
+  findone_update_mulk,
+  find_one,
   add_user,
   delete_user,
   update_user,

@@ -1,7 +1,6 @@
 
 // AXİOS POST FUNCTİON
 
-
 function axios_data(url, data) {
     const base_url = window.location.origin
     let myPromise = new Promise(function (resolve, reject) {
@@ -11,12 +10,44 @@ function axios_data(url, data) {
             },
         }
         ).then((response) => {
+            console.log(response)
             resolve(response)
         }).catch(err => console.log(err, "index js axios"))
     });
     return myPromise
 }
+
+function uploadFile(id, large) {
+    let promise_upload = new Promise(function (resolve, reject) {
+        if (large === 'large') { var url = 'upload_image_large' } else { var url = 'upload_image' }
+        // const url = 'upload_image' 
+        const base_url = window.location.origin
+        const input = $(`#${id} input`)
+        const file = $(input)[0].files
+        //// TEKLİ DOSYA GÖNDERİMİ
+        // const file = event.target.files[0]
+        // const formData = new FormData
+        // formData.append('files', file); 
+        //// TEKLİ DOSYA GÖNDERİMİ
+
+        //// ÇOKLLU DOSYA GÖNDERİMİ
+        const formData = new FormData
+        for (let index = 0; index < file.length; index++) {
+            formData.append('files', file[index])
+        }
+        // console.log(`${base_url}/${url}`,file)
+        //// ÇOKLLU DOSYA GÖNDERİMİ
+        axios.post(`${base_url}/${url}`, formData, {
+            headers: { 'Content-Type': 'multipart/form-data' },
+        })
+            .then((res) => resolve(res))
+            .catch(err => console.log(err, "index js axios"))
+    })
+
+    return promise_upload
+}
 // AXİOS POST FUNCTİON
+
 // LOCAL STORAGE
 function local_storage(set, key, value) {
     const localPromise = new Promise((resolve, reject) => {
@@ -33,47 +64,13 @@ function local_storage(set, key, value) {
     return localPromise
 }
 // LOCAL STORAGE
-$(() => {
-    $("button[name='register-button']").on("click", function () {
-        const data = $("#register form input")
-        for (let index = 0; index < data.length; index++) {
-            const element = data[index];
-            const check_element = $(element).val()
-            if (check_element.length <= 0) {
-                $(element).removeClass("check")
-                return alert("tüm bilgileri doldurunuz.")
-            } else { $(element).addClass("check") }
-        }
-        const data1 = $("#register form input#password1")
-        const data2 = $("#register form input#password2")
-        const data1val = $("#register form input#password1").val()
-        const data2val = $("#register form input#password2").val()
-        if (data1val !== data2val) {
-            $(data1).removeClass("check")
-            $(data2).removeClass("check")
-            return alert("şifreler uyuşmuyor.")
-        } else {
-            $(data1).addClass("check")
-            $(data2).addClass("check")
-        }
-        const data_check = $("#register form input.check")
-        if (data_check.length === 6) {
-            var data_array = new Array()
-            for (let index = 0; index < 6; index++) {
-                const element = data_check[index];
-                const element_id = $(element).attr("id")
-                const data_element = $(element).val()
-                data_array.push({ element_id, data_element })
-            }
-            const url = "register"
-            const myPromise = axios_data(url, data_array)
 
-            myPromise.then((v) => { if (v.data === true) { alert("kayıt başarılı") } })
 
-        } else { return alert("kayıt başarısız") }
 
-    })
-}); // REGİSTER
+
+
+
+
 
 $(() => {
     $("button[name='login-button']").on("click", function () {
@@ -230,12 +227,12 @@ $(() => {
     }
     function checkProje() {
         const checkProje_prop = $('#checkProje').prop('checked');
-        if (checkProje_prop === true){
+        if (checkProje_prop === true) {
             $(`div.section-properties  .property-item`).addClass('d-none')
             $(`div.section-properties  .property-item[data-proje='true']`).removeClass('d-none')
         }
-        
-                
+
+
         console.log(checkProje)
     }
     for (let index = 6; index < hedef1.length; index++) { $(hedef1[index]).addClass('d-none') }
@@ -259,10 +256,10 @@ $(() => {
     src(hedef3)
     $('#checkProje').on('click', function () {
         const checkProje_prop = $('#checkProje').prop('checked');
-       if(checkProje_prop === false){window.location.reload()}
-       checkProje()
+        if (checkProje_prop === false) { window.location.reload() }
+        checkProje()
     });
-     
+
 
 })// ilan ekleme ve data-src src çevirme
 $(() => {
@@ -327,41 +324,96 @@ $(() => {
         $(`#properties_body .${target_id}`).removeClass('d-none')
     });
 }) // satılık kiralık seçimi ilanlarımız sayfası
-$(()=>{
+$(() => {
     const url_data = window.location.pathname
     const sprit_url_data = url_data.split('/')[1]
     const sprit_url_data_length = url_data.split('/')[1].length
     const navbar_data_li = $('ul.site-menu li')
     const navbar_data_a = $('ul.site-menu li a')
-    if(sprit_url_data_length === 0){
+    if (sprit_url_data_length === 0) {
         return
-    }else {
+    } else {
         $(navbar_data_li).removeClass('active')
         const navbar_data_a = $(`ul.site-menu li a[href="${sprit_url_data}"]`)
         const a_parent = $(navbar_data_a).parent().addClass('active')
     }
 
 })// ana menü active class verilmesi / silinmesi
-$(()=>{
+$(() => {
     $('div.hero button.select-alt-menu').on('click', function () {
-      $('div.hero button.active').removeClass('active')  
+        $('div.hero button.active').removeClass('active')
         $(this).addClass('active')
         const button_parent = $(this).parent('.dropend')
-        if(button_parent.length > 0) {$('div.hero div.dropend').addClass('active')}else{$('div.hero div.dropend').removeClass('active')}
+        if (button_parent.length > 0) { $('div.hero div.dropend').addClass('active') } else { $('div.hero div.dropend').removeClass('active') }
     });
 }) // alt menu aktif pasip yapma
-$(()=>{
-const url_check = window.location
-// console.log(url_check, 'deneme')
-
+$(() => {
+    const url_check = window.location
+    const data = url_check.pathname
+    const data_split = data.split('/')[2]
+    $('#wrapper .active').removeClass('active')
+    if (data_split) {
+        $(`#${data_split}`).addClass('active')
+    } else {
+        $('#admin').addClass('active')
+    }
 }) // PANEL ACTİV PASİF YAPMA
-
-
-
-$(()=>{
-
+$(() => {
+    $('#admin-search button').on('click', function () {
+        const admin_search_text = $('input[name="admin-search-text"]').val().toLowerCase().replace(/^\s+|\s+$/gm, '');
+        const check_area = $("#content").children('div').children(':not(".no-search")')
+        const check_area_children = $(check_area).children()
+        $(check_area_children).removeAttr('style')
+        const filter_function = $(check_area_children).filter(function () {
+            const find_text = $(this).text().indexOf(admin_search_text)
+            if (find_text !== -1 && admin_search_text.length > 0) {
+                $(this).css('background-color', 'red')
+            }
+            if (admin_search_text.length <= 0) { $(check_area_children).removeAttr('style') }
+        })
+    })
 }) // ADMİN PANEL SEARCH
+$(() => {
+    function düzenle_active_pasive() {
+        const selected_id_array = ['vitrin', 'hiz-ilan', 'hiz-cesid', 'ilan-cesid', 'ilan-cinsi']
+        const check_input = $('input[name="seri-number-duzenle"]').val().length
+        if (check_input <= 0) {
+            $('#gayrimenkul button').not('#seri-number-ekle').attr('disabled', true)
+            $.each(selected_id_array, function (i, v) {
+                $(`button[name='${v}']`).attr('disabled', true)
+            });
+        }
+        if (check_input > 0) {
+            $.each(selected_id_array, function (i, v) {
+                $(`button[name='${v}']`).removeAttr('disabled')
+            });
+        }
+    }
+    $('#gayrimenkul input').on('change', function () {
+        const form_imput = $('#gayrimenkul input')
 
+        $(form_imput).each(function (i, v) {
+            const form_imput_val = $(v).val()
+            const form_imput_val_length = $(v).val().length
+            if (form_imput_val_length <= '0') {
+                $(this).removeClass('is-valid')
+                $(this).addClass('is-invalid')
+                const name_input = $(this).attr('name')
+                $(`button#${name_input}`).attr('disabled', true)
+                $(`label[for='${name_input}']`).removeClass('d-none')
+            }
+            if (form_imput_val_length > '0') {
+                $(this).removeClass('is-invalid')
+                $(this).addClass('is-valid')
+                const name_input = $(this).attr('name')
+                $(`button#${name_input}`).removeAttr('disabled')
+                $(`label[for='${name_input}']`).addClass('d-none')
+            }
+            düzenle_active_pasive()
+        });
+
+    });
+}) // GAYRİMENKUL FORM 
 
 
 
@@ -374,52 +426,144 @@ $(()=>{
 
 
 $(() => {
-    const random_number = (Date.now() + Math.floor(Math.random() * 10)).toString()
-    const data = [
-        "5999",  //  price: data[0], //: String,
-        "atatürk",  // adress: data[1],  //: String,
-        3,  // room: data[2],    //: Number,
-        2, // bedroom: data[3], //: Number,
-        1,   // bath: data[4],  //: Number,
-        123,    // area_net: data[5], //:Number,
-        54,    // area_brut: data[6], //:Number,
-        "labda",    // province: data[7], //:String,
-        "kıbrıs",    // country: data[8], //: String,
-        //["1.jpg", "2.jpg", "3.jpg"],   
-        //["4.jpg", "5.jpg", "6.jpg"], 
-        ["1.jpg", "8.jpg", "6.jpg"],
-        //    metin1: , metin2 // String,
-        "lorem ipsun Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora minima perferendis laudantium porro numquam quaerat autem modi doloremque, vitae ad et soluta animi officiis. Necessitatibus aspernatur earum expedita adipisci perferendis?",
-        "lorem ipsun Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora minima perferendis laudantium porro numquam quaerat autem modi doloremque, vitae ad et soluta animi officiis. Necessitatibus aspernatur earum expedita adipisci perferendis?",
-        false,//proje: "", // type: Boolean,
-        'tarla',//ilan_cinsi: {
-        //    type: String,
-        //    enum: ['arsa', 'tarla', 'konut'],
-        //    default: 'konut'
-        //},
-        'kiralık',//ilan_cesid: {
-        //    type: String,
-        //    enum: ['ticari', 'kiralık', 'satılık'],
-        //    default: 'satılık'
-        //},
-        'ilan', //hiz_ilan: {
-        //    type: String,
-        //    enum:['ilan', 'hizmet'],
-        //    default: 'ilan'
-        //},
-        true,// vitrin: {
-        //     type: Boolean,
-        //     default: false
-        // },
-        random_number//seri_number: {
-        //    type:String,
-        //    default: Date.now().toString()
-        //}
-    ]
+    function upload_image() {
+        const upload_file = uploadFile('gayrimenkul_photo')
+        upload_file.then((res) => {
+            const random_number = (Date.now() + Math.floor(Math.random() * 10)).toString()
+            const upload_image_name = res.data.upload_image
 
-    // const myPromise = axios_data("mulk_create", data)
-    // myPromise.then((res) => console.log(res.data, "index js 144"))
-}) //// create new mulk
+            // SELECT BÖLÜMÜ 
+            const selected_data = $('#gayrimenkul select option')
+            const select_data_array = new Array()
+            for (let index = 0; index < selected_data.length; index++) {
+                const element = selected_data[index]
+                const element_selected = $(element)[0].selected
+                if (element_selected === true) {
+                    const data = $(element).val()
+                    select_data_array.push(data)
+                }
+            }
+            // SELECT BÖLÜMÜ 
+
+            // İNPUT BÖLÜMÜ 
+            const input_data = $('#gayrimenkul input:not([name="seri-number-duzenle"])')
+            const input_data_array = new Array()
+            for (let index = 0; index < input_data.length; index++) {
+                const element = input_data[index];
+                const data = $(element).val()
+                input_data_array.push(data)
+            }
+            // İNPUT BÖLÜMÜ 
+
+            const data = [
+                input_data_array[2],  //  price: data[0], //: String,
+                input_data_array[3],  // adress: data[1],  //: String,
+                input_data_array[6],  // room: data[2],    //: Number,
+                input_data_array[7], // bedroom: data[3], //: Number,
+                input_data_array[8],   // bath: data[4],  //: Number,
+                input_data_array[9],    // area_net: data[5], //:Number,
+                input_data_array[10],    // area_brut: data[6], //:Number,
+                input_data_array[5],    // province: data[7], //:String,
+                input_data_array[4],    // country: data[8], //: String,
+                upload_image_name,// ["1.jpg", "8.jpg", "6.jpg"],
+                input_data_array[0],
+                input_data_array[1],//    metin1: , metin2 // String,
+                select_data_array[4],
+                //ilan_cinsi: {
+                //    type: String,
+                //    enum: ['arsa', 'tarla', 'konut'],
+                //    default: 'konut'
+                //},
+                select_data_array[3],
+                //ilan_cesid: {
+                //    type: String,
+                //    enum: ['ticari', 'kiralık', 'satılık'],
+                //    default: 'satılık'
+                //},
+                select_data_array[1],
+                //hiz_ilan: {
+                //    type: String,
+                //    enum:['ilan', 'hizmet'],
+                //    default: 'ilan'
+                //},
+                select_data_array[0],
+                // vitrin: {
+                //     type: Boolean,
+                //     default: false
+                // },
+                select_data_array[2],
+                //   hizmet_cesid: {
+                //     type: String,
+                //     enum: ['sigorta', 'kiralama', 'temizlik', 'tadilatvekomplebakim'],
+                //     default: 'temizlik'
+                // },
+                random_number
+                //seri_number: {
+                //    type:String,
+                //    default: Date.now().toString()
+                //}
+            ]
+            const myPromise = axios_data("mulk_create", data)
+            myPromise.then((res) => {
+                // console.log(res.data, "index js 144")
+                if (res === true) window.location.reload
+
+            })
+        })
+    }
+    $('#seri-number-ekle').on('click', function () {
+        const check_input = $('.is-invalid').not('[ name="seri-number-duzenle"]')
+        const upload_input_check = $('#gayrimenkul_photo input')[0].files
+        if (check_input.length > 0) {
+            alert('Alanları Boş Bırakmayınız.')
+        } else if (upload_input_check.length <= 0) { alert('Resim Alanını Boş Bırakmayınız.') }
+        if (upload_input_check.length > 0 && check_input.length <= 0) {
+            upload_image()
+        }
+    });
+}) //// create new mulk ADD photo
+$(() => {
+    $('button[data-seri-nu]').on('click', function () {
+        const seri_number = $(this).attr('data-seri-nu')
+        const seri_number_filter = { seri_number: seri_number }
+        const update = { image_large: [] }
+        const data = {
+            seri_number_filter,
+            update
+        }
+        axios_data('mulk_update', data)
+    });
+}) // büyük fotoğraf silme
+$(() => {
+    $('input[data-seri-nu]').on('change', function () {
+        const seri_number = $(this).attr('data-seri-nu')
+        let seri_number_filter = { seri_number: seri_number }
+        const upload_file = uploadFile('image_large', 'large')
+        upload_file.then((res) => {
+            const image_name = new Array()
+            const res_data = res.data.upload_image
+
+            const update = { image_large: res_data }
+            const data = {
+                seri_number_filter,
+                update
+            }
+            axios_data('mulk_update', data)
+        })
+
+
+    });
+}) // büyük fotoğraf ekleme
+$(() => {
+    $('#seri-number-duzenle').on('click',async function () {
+        const seri_number = $('input[name="seri-number-duzenle"]').val()
+        let seri_number_filter = { seri_number: seri_number }
+        const axios_data = await axios_data('mulk_search', seri_number_filter)
+        // axios_data.then(res=>console.log(res))
+    });
+}) // mülk düzenleme
+
+
 
 $(() => {
     const data = { _id: "69ae7a307a9be043ae834e76" }
@@ -484,3 +628,44 @@ $(() => {
     // const myPromise = axios_data("blog_single_create", data3)
     // myPromise.then((res) => console.log(res.data, "index js 380"))
 }) /// BLOG OLUŞTURMA
+$(() => {
+    $("button[name='register-button']").on("click", function () {
+        const data = $("#register form input")
+        for (let index = 0; index < data.length; index++) {
+            const element = data[index];
+            const check_element = $(element).val()
+            if (check_element.length <= 0) {
+                $(element).removeClass("check")
+                return alert("tüm bilgileri doldurunuz.")
+            } else { $(element).addClass("check") }
+        }
+        const data1 = $("#register form input#password1")
+        const data2 = $("#register form input#password2")
+        const data1val = $("#register form input#password1").val()
+        const data2val = $("#register form input#password2").val()
+        if (data1val !== data2val) {
+            $(data1).removeClass("check")
+            $(data2).removeClass("check")
+            return alert("şifreler uyuşmuyor.")
+        } else {
+            $(data1).addClass("check")
+            $(data2).addClass("check")
+        }
+        const data_check = $("#register form input.check")
+        if (data_check.length === 6) {
+            var data_array = new Array()
+            for (let index = 0; index < 6; index++) {
+                const element = data_check[index];
+                const element_id = $(element).attr("id")
+                const data_element = $(element).val()
+                data_array.push({ element_id, data_element })
+            }
+            const url = "register"
+            const myPromise = axios_data(url, data_array)
+
+            myPromise.then((v) => { if (v.data === true) { alert("kayıt başarılı") } })
+
+        } else { return alert("kayıt başarısız") }
+
+    })
+}); // REGİSTER

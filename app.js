@@ -12,6 +12,11 @@ const puppeteer = require('puppeteer-core')
 const fs = require('fs').promises
 const path = require('path')
 // puppeteer-core
+// MULTER
+const multer = require('multer')
+const upload_image_large = require('./controller/upload_image_large.js')
+const upload_image_small = require('./controller/upload_image_small.js')
+///MİDDLEWARE //
 const {
     add_mulk, delete_mulk, update_mulk,
     add_user, delete_user, update_user
@@ -29,10 +34,14 @@ const User_Schema = require("./schema/user.js");
 const Mulk = require("./schema/mulk.js");
 const Blog = require('./schema/blog-single.js');
 
+////////////////////////********AYARLAR
 
 
-
-//AYARLAR
+// MULTER İÇİN DEĞİŞİKLİK YAPILDI 
+// Increase JSON and URL-encoded payload limits (e.g., to 50MB)
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ limit: '50mb', extended: true }));
+// MULTER İÇİN DEĞİŞİKLİK YAPILDI 
 app.set("view engine", "ejs")
 app.use(express.static("./public"))
 // const __dirname = path.dirname(new URL(import.meta.url).pathname)
@@ -45,6 +54,9 @@ app.use(bodyParser.urlencoded())
 // parse application/json
 app.use(bodyParser.json())
 app.use(cookieParser());
+
+
+
 // MONGOOSE 
 
 mongoose.connect(`mongodb+srv://${process.env.mongodb_user}:${process.env.mongodb_password}@cluster0.uefzn.mongodb.net/emlak`)
@@ -56,12 +68,45 @@ app.post("/login", login_register.login);
 app.post("/refleshToken", reflesh_token_generate.ref_token);
 app.post("/mulk_create", mulk_crud.mulk_create);
 app.post("/mulk_delete", mulk_crud.mulk_delete);
+app.post("/mulk_update", mulk_crud.mulk_update);
+app.post("/mulk_search", mulk_crud.mulk_search);
 app.post("/advisor_create", advisor_crud.advisor_create);
 app.post("/advisor_delete", advisor_crud.advisor_delete);
 app.post("/ihtiyac_mail", nodemailer_ihtiyac_send.ihtiyac_send);
 app.post("/basvuru_mail", nodemailer_ihtiyac_send.basvuru_send);
 app.post('/contact_mail', nodemailer_ihtiyac_send.contact_send);
 app.post('/blog_single_create', blog_crud.blog_create);
+
+
+
+
+// MULTER UPLOAD
+
+app.post("/upload_image", upload_image_small.upload_small, function (req, res) { //upload.array('files', 3), upload.single('files'),
+    const file_name = req.files
+    let file_name_array = new Array()
+
+    for (let index = 0; index < file_name.length; index++) {
+        const element = file_name[index].filename;
+        file_name_array.push(element)
+    }
+    res.json({ upload_image: file_name_array })
+    // console.log(req.body, req.files, req.files.filename)
+});
+app.post("/upload_image_large", upload_image_large.upload_large , function (req, res) { 
+    const file_name = req.files
+    let file_name_array = new Array()
+
+    for (let index = 0; index < file_name.length; index++) {
+        const element = file_name[index].filename;
+        file_name_array.push(element)
+    }
+    res.json({ upload_image: file_name_array })
+    // console.log(req.body, req.files, req.files.filename)
+});
+
+// MULTER UPLOAD
+
 
 
 app.get("/admin", check_user.check_user, async function (req, res) {
@@ -81,9 +126,11 @@ app.get("/admin", check_user.check_user, async function (req, res) {
         page
     })
 })
-app.get("/admin/gayrimenkul", check_user.check_user, async function (req, res) {
+app.get("/admin/:page", check_user.check_user, async function (req, res) {
+    const page_name = req.params.page
     var user_data = req.user
-    var page = 'gayrimenkul'
+    var page = `${page_name}`
+    var mulk_data = await Mulk.find();
     if (user_data === null) {
         var user_aut = null
         var user_autjwt = null
@@ -95,7 +142,8 @@ app.get("/admin/gayrimenkul", check_user.check_user, async function (req, res) {
     res.render("admin-panel", {
         user_aut: user_aut,
         user_autjwt: user_autjwt,
-        page
+        page,
+        mulk_data
     })
 })
 app.get("/pdf", async function (req, res) {
