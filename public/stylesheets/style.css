@@ -4365,17 +4365,20 @@ fieldset:disabled .btn {
 .dropdown-toggle:empty::after {
   margin-left: 0;
 }
-.hero .dropdown-menu{
+
+.hero .dropdown-menu {
   padding: 0;
   border: 0;
   background-color: transparent;
 }
-.hero button.active, 
-.hero div.active{
+
+.hero button.active,
+.hero div.active {
   color: #c8ab21 !important;
   background: white !important;
   background-color: white !important;
 }
+
 .dropdown-menu {
   position: absolute;
   z-index: 1000;
@@ -15173,3 +15176,4 @@ i.bi-whatsapp {
   overflow: hidden;
   /* Tasan metni gizle */
 }
+

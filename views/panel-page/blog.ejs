@@ -24,54 +24,32 @@
 
 
                     <form id="gayrimenkul" class="form-floating" onsubmit="event.preventDefault()">
-                        <div class="input-group mb-3" id="seri-number">
-                            <button class="input-group-text text-capitalize bg-success"
-                                id="seri-number-ekle">ekle</button>
-                            <button class="input-group-text text-capitalize" id="seri-number-duzenle"
-                                disabled>düzenle</button>
-                            <button class="input-group-text text-capitalize bg-danger" id="seri-number-sil"
-                                disabled>sil</button>
-                            <input name="seri-number-duzenle" type="text" class="form-control is-invalid"
-                                placeholder="seri numarası giriniz" aria-label="seri numarası giriniz"
-                                aria-describedby="seri-number-button">
-                            <div class="col-12">
-                                <label class="mx-3 my-auto text-danger text-capitalize"
-                                    for="seri-number-duzenle">düzenleme yapacaksanız boş
-                                    bırakmayınız</label>
-                            </div>
-                        </div>
+       
 
-                        <label for="vitrin" class="form-label text-capitalize">vitrine ekle</label>
-                        <div class="input-group mb-3 " id="vitrin">
-                            <button name="vitrin" class="input-group-text text-capitalize" disabled>değiştir</button>
-                            <select name="vitrin" class="form-control" aria-label="Default select">
-                                <option value="true">evet</option>
-                                <option selected value="false">hayır</option>
-                            </select>
-                        </div>
+
 
                         <div class="row">
+          
                             <div class="col-6">
-                                <label for="hiz-ilan" class="form-label text-capitalize">hizmet / ilan</label>
-                                <div class="input-group mb-3 " id="hiz-ilan">
-                                    <button name="hiz-ilan" class="input-group-text text-capitalize"
-                                        disabled>değiştir</button>
+                                <label for="blog-img" class="form-label text-capitalize">resim seç</label>
+                                <div class="input-group mb-3 " id="blog-img">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <p class="card-text">resim 1</p>
+                                            <img class="w-50" src="/images/home.png" alt="image">
+                                        </div>
+                                                                            <div class="card-body">
+                                            <p class="card-text">resim 2</p>
+                                            <img class="w-50" src="/images/house.png" alt="image">
+                                        </div>                                    <div class="card-body">
+                                            <p class="card-text">resim 3</p>
+                                            <img class="w-50" src="/images/new.png" alt="image">
+                                        </div>
+                                    </div>
                                     <select class="form-control" aria-label="Default select">
-                                        <option value="hizmet">hizmet</option>
-                                        <option selected value="ilan">ilan</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <label for="hiz-cesid" class="form-label text-capitalize">hizmet çeşidi</label>
-                                <div class="input-group mb-3 " id="hiz-cesid">
-                                    <button name="hiz-cesid" class="input-group-text text-capitalize"
-                                        disabled>değiştir</button>
-                                    <select class="form-control" aria-label="Default select">
-                                        <option value="sigorta">sigorta</option>
-                                        <option value="kiralama">kiralama</option>
-                                        <option value="tadilatvekomplebakim">tadilat ve komple bakım</option>
-                                        <option selected value="temizlik">temizlik</option>
+                                        <option value="flaticon-house">resim 1</option>
+                                        <option value="flaticon-building">kiralama</option>
+                                        <option value="flaticon-house-1">tadilat ve komple bakım</option>
                                     </select>
                                 </div>
                             </div>

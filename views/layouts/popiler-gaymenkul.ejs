@@ -5,76 +5,87 @@
 
         <% if(mulk_data){ %>
 
-          <% mulk_data.forEach((v_m) => { %>
-            <% if(v_m.vitrin === true ){ %>
-             <% console.log(v_m) %>
-            <div class="property-item">
-              <a href="property-single/<%= v_m._id _%>" class="img">
-                      <div id="carouselIndicators<%= v_m._id _%>" class="carousel slide">
+          <% mulk_data.forEach((v_m)=> { %>
+            <% if(v_m.vitrin===true ){ %>
+              <div class="property-item">
+                <a href="property-single/<%= v_m._id _%>" class="img">
 
+
+                  <div id="carousel<%= v_m._id _%>" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators" style="top: 0; z-index: 999;">
+                      <button style="z-index: 999;" type="button" data-bs-target="#carousel<%= v_m._id _%>"
+                        data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                      <button style="z-index: 999;" type="button" data-bs-target="#carousel<%= v_m._id _%>"
+                        data-bs-slide-to="1" aria-label="Slide 2"></button>
+                      <button style="z-index: 999;" type="button" data-bs-target="#carousel<%= v_m._id _%>"
+                        data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    </div>
+                    <% if(v_m.image_small.length !==0){ %>
+                      <div class="carousel-inner">
+                        <div class="carousel-item active">
+                          <img src="images/mulk-images/1x1/<%= v_m.image_small[0] %>" class="d-block w-100"
+                            alt="ilan resmi">
+                        </div>
+                        <% for (let index=1; index < v_m.image_small.length; index++) { %>
+                          <div class="carousel-item">
+                            <img src="images/mulk-images/1x1/<%= v_m.image_small[index] _%>" class="d-block w-100"
+                              alt="ilan resim">
+                          </div>
+                          <% } %>
+                      </div>
+                      <% }else{ %>
                         <div class="carousel-inner">
                           <div class="carousel-item active">
-                            <img src="images/mulk-images/1x1/<%= v_m.image_small[0] %>" class="d-block w-100"
-                              alt="ilan resmi">
+                            <img src="images/upload-image.svg" class="d-block w-100" alt="ilan resmi">
                           </div>
-                            <% for (let index=1; index < v_m.image_small.length; index++) { %>
-                              <div class="carousel-item">
-                                <img src="images/mulk-images/1x1/<%= v_m.image_small[index] _%>" class="d-block w-100" alt="ilan resim">
-                              </div>
-                             <%  } %>
                         </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselIndicators<%= v_m._id _%>"
-                          data-bs-slide="prev">
-                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                          <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselIndicators<%= v_m._id _%>"
-                          data-bs-slide="next">
-                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                          <span class="visually-hidden">Next</span>
-                        </button>
-                      </div>
-              </a>
-              
-              <div class="property-content ps-0">
-                <p>Seri nu: <%= v_m.seri_number _%></p>
-                <div class="price mb-2"><span>$ <%= v_m.price %></span></div>
-                <div>
-                  <span class="d-block mb-2 text-black-50">
-                    <%= v_m.adress %>
-                  </span>
-                  <span class="city d-block mb-3">Kıbrıs, <span style="text-transform: capitalize;">
-                      <%= v_m.country %>
-                    </span></span>
+                        <% } %>
 
-                  <div class="specs d-flex mb-4">
-                    <span class="d-block d-flex align-items-center me-3">
-                      <span class="icon-bed me-2"></span>
-                      <span class="caption">
-                        <%= v_m.bedroom %> yatak
-                      </span>
-                    </span>
-                    <span class="d-block d-flex align-items-center">
-                      <span class="icon-bath me-2"></span>
-                      <span class="caption">
-                        <%= v_m.bath %> banyo
-                      </span>
-                    </span>
-                  </div>
-                  <div class="d-flex">
-                    <a data-mulk-id="<%= v_m._id %>" href="property-single/<%= v_m._id _%>"
-                      class="btn btn-primary py-2 px-3 text-uppercase">incele</a>
-                    <a target="_blank"
-                      href="https://wa.me/905517026813?text=Merhaba,<%= v_m._id _%>,seri numaralı ilan ile ilgili bilgi almak istiyorum."><i
-                        class="bi bi-whatsapp"></i></a>
                   </div>
 
+                </a>
+
+
+                <div class="property-content ps-0">
+                  <p>Seri nu: <%= v_m.seri_number _%>
+                  </p>
+                  <div class="price mb-2"><span>$ <%= v_m.price %></span></div>
+                  <div>
+                    <span class="d-block mb-2 text-black-50">
+                      <%= v_m.adress %>
+                    </span>
+                    <span class="city d-block mb-3">Kıbrıs, <span style="text-transform: capitalize;">
+                        <%= v_m.country %>
+                      </span></span>
+
+                    <div class="specs d-flex mb-4">
+                      <span class="d-block d-flex align-items-center me-3">
+                        <span class="icon-bed me-2"></span>
+                        <span class="caption">
+                          <%= v_m.bedroom %> yatak
+                        </span>
+                      </span>
+                      <span class="d-block d-flex align-items-center">
+                        <span class="icon-bath me-2"></span>
+                        <span class="caption">
+                          <%= v_m.bath %> banyo
+                        </span>
+                      </span>
+                    </div>
+                    <div class="d-flex">
+                      <a data-mulk-id="<%= v_m._id %>" href="property-single/<%= v_m._id _%>"
+                        class="btn btn-primary py-2 px-3 text-uppercase">incele</a>
+                      <a target="_blank"
+                        href="https://wa.me/905517026813?text=Merhaba,<%= v_m._id _%>,seri numaralı ilan ile ilgili bilgi almak istiyorum."><i
+                          class="bi bi-whatsapp"></i></a>
+                    </div>
+
+                  </div>
                 </div>
               </div>
-            </div>
-            <% } %>
-          <% }); %>
-        <% } %>
+              <% } %>
+                <% }); %>
+                  <% } %>
 
 
       </div>

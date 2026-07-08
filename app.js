@@ -32,8 +32,8 @@ const blog_crud = require('./controller/blog_crud.js')
 //////////////////////////////// SCHEMA
 const User_Schema = require("./schema/user.js");
 const Mulk = require("./schema/mulk.js");
+const User = require("./schema/user.js");
 const Blog = require('./schema/blog-single.js');
-
 ////////////////////////********AYARLAR
 
 
@@ -69,8 +69,10 @@ app.post("/refleshToken", reflesh_token_generate.ref_token);
 app.post("/mulk_create", mulk_crud.mulk_create);
 app.post("/mulk_delete", mulk_crud.mulk_delete);
 app.post("/mulk_update", mulk_crud.mulk_update);
+app.post("/mulk_update1", mulk_crud.mulk_update1);
 app.post("/mulk_search", mulk_crud.mulk_search);
-app.post("/advisor_create", advisor_crud.advisor_create);
+app.post("/advisor_create", advisor_crud.advisor_create);  
+app.post("/advisor_update", advisor_crud.advisor_update);
 app.post("/advisor_delete", advisor_crud.advisor_delete);
 app.post("/ihtiyac_mail", nodemailer_ihtiyac_send.ihtiyac_send);
 app.post("/basvuru_mail", nodemailer_ihtiyac_send.basvuru_send);
@@ -127,6 +129,7 @@ app.get("/admin", check_user.check_user, async function (req, res) {
     })
 })
 app.get("/admin/:page", check_user.check_user, async function (req, res) {
+    var user_db =await User.find()
     const page_name = req.params.page
     var user_data = req.user
     var page = `${page_name}`
@@ -143,7 +146,8 @@ app.get("/admin/:page", check_user.check_user, async function (req, res) {
         user_aut: user_aut,
         user_autjwt: user_autjwt,
         page,
-        mulk_data
+        mulk_data,
+        user_db
     })
 })
 app.get("/pdf", async function (req, res) {

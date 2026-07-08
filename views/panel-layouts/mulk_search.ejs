@@ -1,20 +1,36 @@
-<!-- Button trigger modal -->
-
-
 <!-- Modal -->
-<div class="modal fade" id="mulk-search" tabindex="-1" aria-labelledby="mulk-searchModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+<div class="modal  fade " id="mulk-search" tabindex="-1" aria-labelledby="mulk-search-ModalLabel" 
+  > <!-- show d-block -->
+  <div class="modal-dialog modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h1  class="modal-title fs-5" id="mulk-searchModalLabel">Seri Nu.: <span data-id="seri_number"></span></h1>
       </div>
       <div class="modal-body">
-        ...
+        <ul class="list-group">
+
+          <li class="list-group-item text-capitalize">fiyat: <span data-id="price" ></span></li>
+          <li  class="list-group-item text-capitalize">adres: <span data-id="adress"></span></li>
+          <li  class="list-group-item text-capitalize">yatak odası: <span data-id="bedroom"></span></li>
+          <li  class="list-group-item text-capitalize">banyo: <span data-id="bath"></span></li>
+          <li  class="list-group-item text-capitalize">net alan: <span data-id="area_net"></span></li>
+          <li  class="list-group-item text-capitalize">bürüt alan: <span data-id="area_brut"></span></li>
+          <li  class="list-group-item text-capitalize">ülke: <span data-id="province"></span></li>
+          <li  class="list-group-item text-capitalize">şehir: <span data-id="country"></span></li>
+          <!-- <li data-id="image_large" class="list-group-item text-capitalize">büyük resim : </li> -->
+          <!-- <li data-id="image_small" class="list-group-item text-capitalize">And a fifth one</li> -->
+          <li  class="list-group-item text-capitalize">metin: <span data-id="metin1"> </span></li>
+          <li  class="list-group-item text-capitalize">metin: <span data-id="metin2"> </span></li>
+          <li  class="list-group-item text-capitalize">ilan cinsi: <span data-id="ilan_cinsi"></span></li>
+          <li  class="list-group-item text-capitalize">ilan çeşidi: <span data-id="ilan_cesid"></span></li>
+          <li  class="list-group-item text-capitalize">hizmet çeşidi: <span data-id="hizmet_cesid"></span></li>
+          <li  class="list-group-item text-capitalize">hizmet/ilan: <span data-id="hiz_ilan"></span></li>
+          <li  class="list-group-item text-capitalize">vitrinde göster: <span data-id="vitrin"></span></li>
+
+        </ul>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button name="mulk-search" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
   </div>

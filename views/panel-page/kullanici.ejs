@@ -1,12 +1,5 @@
 <div class="container-fluid">
 
-    <!-- Page Heading -->
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800 text-capitalize">kullanıcı</h1>
-        <a target="_blank" href="/pdf"
-            class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm  text-capitalize"><i
-                class="fas fa-download fa-sm text-white-50"></i> istatistik rapor oluştur</a>
-    </div>
 
     <!-- Content Row -->
     <div class="row">
@@ -16,168 +9,178 @@
             <!-- Basic Card Example -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary text-capitalize">ilan seri nu.:</h6>
+                    <h6 class="m-0 font-weight-bold text-primary text-capitalize">kullanıcılar</h6>
+                    <input name="kullanici-search-text" type="text" class="form-control bg-light border-0 small"
+                        placeholder="Arama..." aria-label="Search" aria-describedby="basic-addon2">
                 </div>
-                <div class="card-body">
+                <div class="card-body kullanici">
+                    <p>
+                        <button class="btn btn-danger text-uppercase m-2 " type="button" data-toggle="collapse"
+                            data-target="#ekle" aria-expanded="false" aria-controls="collapseExample">
+                            ekle
+                        </button>
+                        <% user_db.forEach(user_v=> { %>
+                            <button class="btn btn-primary text-capitalize m-2" type="button" data-toggle="collapse"
+                                data-target="#k<%= user_v._id _%>" aria-expanded="false"
+                                aria-controls="collapseExample">
+                                <%= user_v.name _%>&nbsp;<%= user_v.surname _%>
+                            </button>
+                            <% }); %>
+                    </p>
+                    <div class="collapse" id="ekle">
+                        <div class="card card-body">
 
 
-
-
-                    <form id="gayrimenkul" class="form-floating" onsubmit="event.preventDefault()">
-                        <div class="input-group mb-3" id="seri-number">
-                            <button class="input-group-text text-capitalize bg-success"
-                                id="seri-number-ekle">ekle</button>
-                            <button class="input-group-text text-capitalize" id="seri-number-duzenle"
-                                disabled>düzenle</button>
-                            <button class="input-group-text text-capitalize bg-danger" id="seri-number-sil"
-                                disabled>sil</button>
-                            <input name="seri-number-duzenle" type="text" class="form-control is-invalid"
-                                placeholder="seri numarası giriniz" aria-label="seri numarası giriniz"
-                                aria-describedby="seri-number-button">
-                            <div class="col-12">
-                                <label class="mx-3 my-auto text-danger text-capitalize"
-                                    for="seri-number-duzenle">düzenleme yapacaksanız boş
-                                    bırakmayınız</label>
+                            <div class="form-group">
+                                <label class="text-capitalize" for="Input-name">isim</label>
+                                <input type="text" class="form-control" id="Input-name" aria-describedby="nameHelp"
+                                    placeholder="isim giriniz">
+                                <small id="nameHelp" class="form-text text-muted text-capitalize">küçük harfle giriş
+                                    yapınız</small>
                             </div>
+                            <div class="form-group">
+                                <label class="text-capitalize" for="Input-surname">soyad</label>
+                                <input type="text" class="form-control" id="Input-surname"
+                                    aria-describedby="surnameHelp" placeholder="soyad giriniz">
+                                <small id="surnameHelp" class="form-text text-muted text-capitalize">küçük harfle giriş
+                                    yapınız</small>
+                            </div>
+                            <div class="form-group">
+                                <label class="text-capitalize" for="Input-email">e-posta</label>
+                                <input type="text" class="form-control" id="Input-email" aria-describedby="emailHelp"
+                                    placeholder="e-posta giriniz">
+                                <small id="emailHelp" class="form-text text-muted text-capitalize">küçük harfle giriş
+                                    yapınız</small>
+                            </div>
+                            <div class="form-group">
+                                <label class="text-capitalize" for="Input-password">şifre</label>
+                                <input type="text" class="form-control" id="Input-password"
+                                    aria-describedby="passwordHelp" placeholder="şifre giriniz">
+                                <small id="passwordHelp" class="form-text text-muted text-capitalize">küçük harfle giriş
+                                    yapınız</small>
+                            </div>
+                            <div class="form-group">
+                                <label class="text-capitalize" for="Input-tel_number">telefon numarası</label>
+                                <input type="text" class="form-control" id="Input-tel_number"
+                                    aria-describedby="tel_numberHelp" placeholder="telefon numarası giriniz">
+                                <small id="tel_numberHelp" class="form-text text-muted text-capitalize"> giriş yapınız
+                                </small>
+                            </div>
+                            <div class="form-group">
+                                <label class="text-capitalize" for="Input-small_image">resim</label>
+                                <form id="kullanici_photo" enctype="multipart/form-data">
+                                    <label for="small_photo_kullanici" class="form-label text-capitalize">100x100
+                                        fotoğraf yükleyiniz</label>
+                                    <input id="small_photo_kullanici" type="file" name="files[]" multiple />
+                                </form>
+                            </div>
+                            <button name="ekle" class="btn btn-success text-capitalize" type="button">ekle</button>
                         </div>
+                    </div>
 
-                        <label for="vitrin" class="form-label text-capitalize">vitrine ekle</label>
-                        <div class="input-group mb-3 " id="vitrin">
-                            <button name="vitrin" class="input-group-text text-capitalize" disabled>değiştir</button>
-                            <select name="vitrin" class="form-control" aria-label="Default select">
-                                <option value="true">evet</option>
-                                <option selected value="false">hayır</option>
-                            </select>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-6">
-                                <label for="hiz-ilan" class="form-label text-capitalize">hizmet / ilan</label>
-                                <div class="input-group mb-3 " id="hiz-ilan">
-                                    <button name="hiz-ilan" class="input-group-text text-capitalize"
-                                        disabled>değiştir</button>
-                                    <select class="form-control" aria-label="Default select">
-                                        <option value="hizmet">hizmet</option>
-                                        <option selected value="ilan">ilan</option>
-                                    </select>
+                    <% user_db.forEach(user_v=> { %>
+                        <div class="collapse" id="k<%= user_v._id _%>">
+                            <div class="card card-body">
+                                <div class="form-group">
+                                    <label class="text-capitalize" for="Input-name<%= user_v._id _%>">isim</label>
+                                    <input type="text" class="form-control" id="Input-name<%= user_v._id _%>"
+                                        aria-describedby="nameHelp" placeholder=" <%= user_v.name _%>">
+                                    <small id="nameHelp<%= user_v._id _%>"
+                                        class="form-text text-muted text-capitalize">küçük harfle giriş
+                                        yapınız</small>
                                 </div>
-                            </div>
-                            <div class="col-6">
-                                <label for="hiz-cesid" class="form-label text-capitalize">hizmet çeşidi</label>
-                                <div class="input-group mb-3 " id="hiz-cesid">
-                                    <button name="hiz-cesid" class="input-group-text text-capitalize"
-                                        disabled>değiştir</button>
-                                    <select class="form-control" aria-label="Default select">
-                                        <option value="sigorta">sigorta</option>
-                                        <option value="kiralama">kiralama</option>
-                                        <option value="tadilatvekomplebakim">tadilat ve komple bakım</option>
-                                        <option selected value="temizlik">temizlik</option>
-                                    </select>
+                                <div class="form-group">
+                                    <label class="text-capitalize" for="Input-surname<%= user_v._id _%>">soyad</label>
+                                    <input type="text" class="form-control" id="Input-surname<%= user_v._id _%>"
+                                        aria-describedby="surnameHelp<%= user_v._id _%>"
+                                        placeholder=" <%= user_v.surname _%>">
+                                    <small id="surnameHelp<%= user_v._id _%>"
+                                        class="form-text text-muted text-capitalize">küçük harfle giriş
+                                        yapınız</small>
                                 </div>
+                                <div class="form-group">
+                                    <label class="text-capitalize" for="Input-instagram<%= user_v._id _%>">
+                                        instagram</label>
+                                    <input type="text" class="form-control" id="Input-instagram<%= user_v._id _%>"
+                                        aria-describedby="instagramHelp<%= user_v._id _%>"
+                                        placeholder=" <%= user_v.instagram _%>">
+                                    <small id="instagramHelp<%= user_v._id _%>"
+                                        class="form-text text-muted text-capitalize">küçük harfle giriş
+                                        yapınız</small>
+                                </div>
+                                <div class="form-group">
+                                    <label class="text-capitalize" for="Input-twitter<%= user_v._id _%>">
+                                        twitter</label>
+                                    <input type="text" class="form-control" id="Input-twitter<%= user_v._id _%>"
+                                        aria-describedby="twitterHelp<%= user_v._id _%>"
+                                        placeholder=" <%= user_v.twitter _%>">
+                                    <small id="twitterHelp<%= user_v._id _%>"
+                                        class="form-text text-muted text-capitalize">küçük harfle giriş
+                                        yapınız</small>
+                                </div>
+                                <div class="form-group">
+                                    <label class="text-capitalize" for="Input-facebook<%= user_v._id _%>">
+                                        facebook</label>
+                                    <input type="text" class="form-control" id="Input-facebook<%= user_v._id _%>"
+                                        aria-describedby="facebookHelp<%= user_v._id _%>"
+                                        placeholder=" <%= user_v.facebook%>">
+                                    <small id="facebookHelp<%= user_v._id _%>"
+                                        class="form-text text-muted text-capitalize">küçük harfle giriş
+                                        yapınız</small>
+                                </div>
+                                <div class="form-group">
+                                    <label class="text-capitalize" for="Input-linkedln<%= user_v._id _%>">
+                                        linkedln</label>
+                                    <input type="text" class="form-control" id="Input-linkedln<%= user_v._id _%>"
+                                        aria-describedby="linkedlnHelp<%= user_v._id _%>"
+                                        placeholder=" <%= user_v.linkedln%>">
+                                    <small id="linkedlnHelp<%= user_v._id _%>"
+                                        class="form-text text-muted text-capitalize">küçük harfle giriş
+                                        yapınız</small>
+                                </div>
+                                <div class="form-group">
+                                    <label class="text-capitalize" for="Input-email<%= user_v._id _%>">e-posta</label>
+                                    <input type="email" class="form-control" id="Input-email<%= user_v._id _%>"
+                                        aria-describedby="emailHelp<%= user_v._id _%>"
+                                        placeholder="<%= user_v.email _%>">
+                                    <small id="emailHelp<%= user_v._id _%>"
+                                        class="form-text text-muted text-capitalize">küçük harfle giriş
+                                        yapınız</small>
+                                </div>
+                                <div class="form-group">
+                                    <label class="text-capitalize" for="Input-password<%= user_v._id _%>">şifre</label>
+                                    <input type="text" class="form-control" id="Input-password<%= user_v._id _%>"
+                                        aria-describedby="passwordHelp<%= user_v._id _%>"
+                                        placeholder="<%= user_v.password _%>">
+                                    <small id="passwordHelp<%= user_v._id _%>"
+                                        class="form-text text-muted text-capitalize"> giriş
+                                        yapınız</small>
+                                </div>
+                                <div class="form-group">
+                                    <label class="text-capitalize" for="Input-tel_number<%= user_v._id _%>">telefon
+                                        numarası</label>
+                                    <input type="text" class="form-control" id="Input-tel_number<%= user_v._id _%>"
+                                        aria-describedby="tel_numberHelp<%= user_v._id _%>"
+                                        placeholder="<%= user_v.tel_number _%>">
+                                    <small id="tel_numberHelp<%= user_v._id _%>"
+                                        class="form-text text-muted text-capitalize"> giriş yapınız </small>
+                                </div>
+                                <div class="form-group">
+                                    <label class="text-capitalize" for="Input-danisman-metin<%= user_v._id _%>">danışman metin</label>
+                                    <input type="text" class="form-control" id="Input-danisman-metin<%= user_v._id _%>"
+                                        aria-describedby="danisman-metinHelp<%= user_v._id _%>"
+                                        placeholder="<%= user_v.metin _%>">
+                                    <small id="danisman-metinHelp<%= user_v._id _%>"
+                                        class="form-text text-muted text-capitalize">metin girişini  yapınız </small>
+                                </div>
+                                <button name="kullanici-update" data-id="k<%= user_v._id _%>"
+                                    class="btn btn-success text-capitalize" type="button">düzenle</button>
+                                <button name="kullanici-sil" data-id="k<%= user_v._id _%>"
+                                    class="btn btn-danger text-capitalize" type="button">sil</button>
                             </div>
                         </div>
+                        <% }); %>
 
-                        <label for="ilan-cesid" class="form-label text-capitalize">ilan çeşidi</label>
-                        <div class="input-group mb-3 " id="ilan-cesid">
-                            <button name="ilan-cesid" class="input-group-text text-capitalize"
-                                disabled>değiştir</button>
-                            <select class="form-control" aria-label="Default select">
-                                <option value="kiralik">kiralık</option>
-                                <option value="proje">proje</option>
-                                <option selected value="satilik">satılık</option>
-                            </select>
-                        </div>
-
-                        <label for="ilan-cinsi" class="form-label text-capitalize">ilan cinsi</label>
-                        <div class="input-group mb-3 " id="ilan-cinsi">
-                            <button name="ilan-cinsi" class="input-group-text text-capitalize"
-                                disabled>değiştir</button>
-                            <select class="form-control" aria-label="Default select">
-                                <option value="tarla">tarla</option>
-                                <option selected value="konut">konut</option>
-                            </select>
-                        </div>
-
-                        <div class="input-group mb-3">
-                            <button class="input-group-text text-capitalize" id="metin-1" disabled>değiştir</button>
-                            <input name="metin-1" type="text" class="form-control is-invalid"
-                                placeholder="metin giriniz" aria-label="metin giriniz" aria-describedby="metin-1">
-                            <label class="mx-3 my-auto text-danger text-capitalize" for="metin-1">boş
-                                bırakmayınız</label>
-                        </div>
-
-                        <div class="input-group mb-3">
-                            <button class="input-group-text text-capitalize " disabled id="metin-2">değiştir</button>
-                            <input name="metin-2" type="text" class="form-control is-invalid"
-                                placeholder="metin giriniz" aria-label="metin giriniz" aria-describedby="metin-2">
-                            <label class="mx-3 my-auto text-danger text-capitalize" for="metin-2">boş
-                                bırakmayınız</label>
-                        </div>
-
-                        <div class="input-group mb-3">
-                            <button class="input-group-text text-capitalize " disabled id="price">değiştir</button>
-                            <input name="price" type="text" class="form-control is-invalid" placeholder="fiyat giriniz"
-                                aria-label="fiyat giriniz" aria-describedby="price">
-                            <label class="mx-3 my-auto text-danger text-capitalize" for="price">boş
-                                bırakmayınız</label>
-                        </div>
-                        <div class="input-group mb-3">
-                            <button class="input-group-text text-capitalize " disabled id="adress">değiştir</button>
-                            <input name="adress" type="text" class="form-control is-invalid" placeholder="adres giriniz"
-                                aria-label="metin giriniz" aria-describedby="metin-1">
-                            <label class="mx-3 my-auto text-danger text-capitalize" for="adress">boş
-                                bırakmayınız</label>
-                        </div>
-                        <div class="input-group mb-3">
-                            <button class="input-group-text text-capitalize " disabled id="province">değiştir</button>
-                            <input name="province" type="text" class="form-control is-invalid" placeholder="il giriniz"
-                                aria-label="metin giriniz" aria-describedby="metin-1">
-                            <label class="mx-3 my-auto text-danger text-capitalize" for="province">boş
-                                bırakmayınız</label>
-                        </div>
-                        <div class="input-group mb-3">
-                            <button class="input-group-text text-capitalize " disabled id="country">değiştir</button>
-                            <input name="country" type="text" class="form-control is-invalid" placeholder="ilçe giriniz"
-                                aria-label="metin giriniz" aria-describedby="metin-1">
-                            <label class="mx-3 my-auto text-danger text-capitalize" for="country">boş
-                                bırakmayınız</label>
-                        </div>
-                        <div class="input-group mb-3">
-                            <button class="input-group-text text-capitalize " disabled id="room">değiştir</button>
-                            <input name="room" type="number" class="form-control is-invalid" placeholder="oda sayısı"
-                                aria-label="metin giriniz" aria-describedby="metin-1">
-                            <label class="mx-3 my-auto text-danger text-capitalize" for="room">boş
-                                bırakmayınız</label>
-                        </div>
-                        <div class="input-group mb-3">
-                            <button class="input-group-text text-capitalize " disabled id="bedroom">değiştir</button>
-                            <input name="bedroom" type="number" class="form-control is-invalid"
-                                placeholder="yatakodası sayısı" aria-label="metin giriniz" aria-describedby="metin-1">
-                            <label class="mx-3 my-auto text-danger text-capitalize" for="bedroom">boş
-                                bırakmayınız</label>
-                        </div>
-                        <div class="input-group mb-3">
-                            <button class="input-group-text text-capitalize disabled" id="bath">değiştir</button>
-                            <input name="bath" type="number" class="form-control is-invalid" placeholder="banyo sayısı"
-                                aria-label="metin giriniz" aria-describedby="metin-1">
-                            <label class="mx-3 my-auto text-danger text-capitalize" for="bath">boş
-                                bırakmayınız</label>
-                        </div>
-                        <div class="input-group mb-3">
-                            <button class="input-group-text text-capitalize " disabled id="area_net">değiştir</button>
-                            <input name="area_net" type="number" class="form-control is-invalid"
-                                placeholder="net alan (m2)" aria-label="metin giriniz" aria-describedby="metin-1">
-                            <label class="mx-3 my-auto text-danger text-capitalize" for="area_net">boş
-                                bırakmayınız</label>
-                        </div>
-                        <div class="input-group mb-3">
-                            <button class="input-group-text text-capitalize " id="area_brut">değiştir</button>
-                            <input name="area_brut" type="number" class="form-control is-invalid"
-                                placeholder="bürüt alan (m2)" aria-label="metin giriniz" aria-describedby="metin-1">
-                            <label class="mx-3 my-auto text-danger text-capitalize" for="area_brut">boş
-                                bırakmayınız</label>
-                        </div>
-                    </form>
                 </div>
             </div>
 

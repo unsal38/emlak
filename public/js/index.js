@@ -3,14 +3,13 @@
 
 function axios_data(url, data) {
     const base_url = window.location.origin
-    let myPromise = new Promise(function (resolve, reject) {
-        axios.post(`${base_url}/${url}`, data, {
+    let myPromise = new Promise(async function (resolve, reject) {
+        await axios.post(`${base_url}/${url}`, data, {
             headers: {
                 'Content-Type': 'application/json',
             },
         }
         ).then((response) => {
-            console.log(response)
             resolve(response)
         }).catch(err => console.log(err, "index js axios"))
     });
@@ -64,12 +63,6 @@ function local_storage(set, key, value) {
     return localPromise
 }
 // LOCAL STORAGE
-
-
-
-
-
-
 
 
 $(() => {
@@ -418,13 +411,6 @@ $(() => {
 
 
 
-
-
-
-
-
-
-
 $(() => {
     function upload_image() {
         const upload_file = uploadFile('gayrimenkul_photo')
@@ -525,13 +511,14 @@ $(() => {
 $(() => {
     $('button[data-seri-nu]').on('click', function () {
         const seri_number = $(this).attr('data-seri-nu')
-        const seri_number_filter = { seri_number: seri_number }
+        const seri_number_filter = { seri_number }
         const update = { image_large: [] }
         const data = {
             seri_number_filter,
             update
         }
         axios_data('mulk_update', data)
+        window.location.reload()
     });
 }) // büyük fotoğraf silme
 $(() => {
@@ -549,73 +536,252 @@ $(() => {
                 update
             }
             axios_data('mulk_update', data)
+            window.location.reload()
         })
 
 
     });
 }) // büyük fotoğraf ekleme
 $(() => {
-    $('#seri-number-duzenle').on('click',async function () {
+    $('#seri-number-duzenle').on('click', async function () {
         const seri_number = $('input[name="seri-number-duzenle"]').val()
         let seri_number_filter = { seri_number: seri_number }
-        const axios_data = await axios_data('mulk_search', seri_number_filter)
-        // axios_data.then(res=>console.log(res))
+        const axios_data_answer = await axios_data('mulk_search', seri_number_filter)
+        const _id = axios_data_answer.data[0]._id
+        const price = axios_data_answer.data[0].price
+        $(`#mulk-search li span[data-id="price"]`).text(`${price}`)
+        const adress = axios_data_answer.data[0].adress
+        $(`#mulk-search li span[data-id="adress"]`).text(`${adress}`)
+        const room = axios_data_answer.data[0].room
+        $(`#mulk-search li span[data-id="room"]`).text(`${room}`)
+        const bedroom = axios_data_answer.data[0].bedroom
+        $(`#mulk-search li span[data-id="bedroom"]`).text(`${bedroom}`)
+        const bath = axios_data_answer.data[0].bath
+        $(`#mulk-search li span[data-id="bath"]`).text(`${bath}`)
+        const area_net = axios_data_answer.data[0].area_net
+        $(`#mulk-search li span[data-id="area_net"]`).text(`${area_net}`)
+        const area_brut = axios_data_answer.data[0].area_brut
+        $(`#mulk-search li span[data-id="area_brut"]`).text(`${area_brut}`)
+        const province = axios_data_answer.data[0].province
+        $(`#mulk-search li span[data-id="province"]`).text(`${province}`)
+        const country = axios_data_answer.data[0].country
+        $(`#mulk-search li span[data-id="country"]`).text(`${country}`)
+        const image_large = axios_data_answer.data[0].image_large
+        $(`#mulk-search li span[data-id="image_large"]`).text(`${image_large}`)
+        const image_small = axios_data_answer.data[0].image_small
+        $(`#mulk-search li span[data-id="image_small"]`).text(`${image_small}`)
+        const metin1 = axios_data_answer.data[0].metin1
+        $(`#mulk-search li span[data-id="metin1"]`).text(`${metin1}`)
+        const metin2 = axios_data_answer.data[0].metin2
+        $(`#mulk-search li span[data-id="metin2"]`).text(`${metin2}`)
+        const ilan_cinsi = axios_data_answer.data[0].ilan_cinsi
+        $(`#mulk-search li span[data-id="ilan_cinsi"]`).text(`${ilan_cinsi}`)
+        const ilan_cesid = axios_data_answer.data[0].ilan_cinsi
+        $(`#mulk-search li span[data-id="ilan_cesid"]`).text(`${ilan_cesid}`)
+        const hizmet_cesid = axios_data_answer.data[0].hizmet_cesid
+        $(`#mulk-search li span[data-id="hizmet_cesid"]`).text(`${hizmet_cesid}`)
+        const hiz_ilan = axios_data_answer.data[0].hiz_ilan
+        $(`#mulk-search li span[data-id="hiz_ilan"]`).text(`${hiz_ilan}`)
+        const vitrin = axios_data_answer.data[0].vitrin
+        if (vitrin === true) { $(`#mulk-search li span[data-id="vitrin"]`).text(`evet`) }
+        if (vitrin === false) { $(`#mulk-search li span[data-id="vitrin"]`).text(`hayır`) }
+        const seri_number_db = axios_data_answer.data[0].seri_number
+        $(`#mulk-search li span[data-id="seri_number"]`).text(`${seri_number_db}`)
+
     });
+    $('button[data-bs-dismiss="modal"]').on('click', function () {
+        const target_id = $(this).attr('name')
+        $(`#${target_id}`).removeClass('show').removeClass('d-block')
+    })
+    $('button[data-bs-target="#mulk-search"]').on('click', function () {
+        const target_id = $(this).attr('name')
+        $(`#${target_id}`).addClass('show').addClass('d-block')
+    })
+    function update_data(seri_number_, data) {
+        const seri_number_data = $(this).attr('data-seri-nu')
+        const seri_number_filter = { seri_number: seri_number_ }
+        const update = data
+        const data_axios = {
+            seri_number_filter,
+            update
+        }
+        axios_data('mulk_update1', data_axios)
+    }
+    $('form#gayrimenkul button:not(#seri-number-duzenle):not(#seri-number-ekle):not(#seri-number-sil)').on('click', function () {
+        let seri_number_input_data = $('input[name="seri-number-duzenle"]').val()
+        const target_id_name = $(this).attr('id')
+        const input_data = $(`input[name="${target_id_name}"]`).val()
+        if (input_data === undefined || input_data === 'undefined') {
+            const target_name = $(this).attr('name')
+            const input_data_select = $(`select[name="${target_name}"] option:selected`).val()
+            const d = [`${target_name}`, input_data_select]
+            update_data(seri_number_input_data, d)
+            window.location.reload()
+        } else {
+            const d = [`${target_id_name}`, input_data]
+            update_data(seri_number_input_data, d)
+            window.location.reload()
+        }
+    });
+
 }) // mülk düzenleme
-
-
-
 $(() => {
-    const data = { _id: "69ae7a307a9be043ae834e76" }
-    // const myPromise = axios_data("mulk_delete", data)
-    // myPromise.then((res) => console.log(res.data, "index js 150"))
+    $('input[data-seri-nu]').on('change', function () {
+        const seri_number = $(this).attr('data-seri-nu')
+        let seri_number_filter = { seri_number: seri_number }
+        const upload_file = uploadFile('image_large', 'small')
+        upload_file.then((res) => {
+            const image_name = new Array()
+            const res_data = res.data.upload_image
+
+            const update = { image_small: res_data }
+            const data = {
+                seri_number_filter,
+                update
+            }
+            axios_data('mulk_update', data)
+            window.location.reload()
+        })
+
+
+    });
+}) // küçük fotoğraf ekleme
+$(() => {
+    $('#gayrimenkul button#seri-number-sil').on('click', function () {
+        const data_input = $('input[name="seri-number-duzenle"]').val()
+        if (data_input.length === 0) {
+            return alert('seri numarası seçiniz')
+        } else {
+            const data = { seri_number: data_input }
+            const myPromise = axios_data("mulk_delete", data)
+            myPromise.then((res) => console.log(res.data, "index js 150"))
+        }
+    });
 }) //// delete  mulk
-
 $(() => {
-    const data = [
-        "ahmet",    //name: String,
-        "delidolu",    //surname: String,
-        "ahmet@gmail.com",  //email: String,
-        "123",  //password: String,
-        123123,    //tel_number: Number,
-    ]
-    // const myPromise = axios_data("advisor_create", data)
-    // myPromise.then((res) => console.log(res.data, "index js 172"))
-}) //// create new advisor
+    $('.kullanici p button').on('click', function () {
+        $('.kullanici .collapse').removeClass('show')
+    })// buttonların TIKLANDIĞINDA DİĞERİNİ GİZLEMEK İÇİN KULLANICI BÖLÜMÜ
+    $('input[name="kullanici-search-text"]').on('change', function () {
+        const target_button = $('.kullanici button')
 
+        $(target_button).each(function (i, v) {
+            const button_data = $(v).text()
+            const data_target = button_data.toUpperCase().trim()
+            const search_data = $('input[name="kullanici-search-text"]').val()
+            const data_search = search_data.toUpperCase().trim()
+            const search__ = data_target.indexOf(data_search)
+            if (search__ < 0) { $(v).hide() }
+            if (search__ >= 0) { $(v).show('slow') }
+        });
+
+    }) // SEARCH BUTTON KULLANICI BÖLÜMÜ
+    $('button[name="ekle"]').on('click', function () {
+        ///İLK EKLEME//
+
+        // let name = 'ahmet'
+        // let surname = 'özkara'
+        // let email = 'adfds'
+        // let password = '123'
+        // let tel_number = '3453'
+
+        ///İLK EKLEME//
+
+
+        let name = $('#Input-name').val()
+        let surname = $('#Input-surname').val()
+        let email = $('#Input-email').val()
+        let password = $('#Input-password').val()
+        let tel_number = $('#Input-tel_number').val()
+
+        const target_data = $('#ekle .card input').not('#small_photo_kullanici')
+
+        for (let index = 0; index < target_data.length; index++) {
+            const element = target_data[index];
+            const val_check = $(element).val()
+            if (val_check.length > 0) {
+                $(element).addClass('valid')
+                $(element).removeClass('invalid')
+            }
+            if (val_check.length <= 0) {
+                $(element).addClass('invalid')
+                $(element).removeClass('valid')
+            }
+        }
+        const input = $('#kullanici_photo input')
+        const file = $(input)[0].files
+        if (file.length > 0) {
+            $(input).addClass('valid')
+            $(input).removeClass('invalid')
+        }
+        if (file.length <= 0) {
+            $(input).addClass('invalid')
+            $(input).removeClass('valid')
+        }
+        const valid_check = $('#ekle .card input.invalid')
+        if (valid_check.length > 0) { alert('boş alanları doldurun') }
+        if (valid_check.length <= 0) {
+            const upload_file = uploadFile('kullanici_photo', 'small')
+            upload_file.then((res) => {
+                const image_name = new Array()
+                const res_data = res.data.upload_image
+                const data = [
+                    name,    //name: String,
+                    surname,    //surname: String,
+                    email,  //email: String,
+                    password,  //password: String,
+                    tel_number,    //tel_number: Number,
+                    res_data //small_image
+                ]
+                const myPromise = axios_data("advisor_create", data)
+                myPromise.then((res) => console.log(res.data, "index js 172"))
+                window.location.reload()
+            })
+        }
+    })
+
+}) //// create new advisor  
 $(() => {
-    const data = { _id: "69ae7a307a9be043ae834e76" }
-    // const myPromise = axios_data("advisor_delete", data)
-    // myPromise.then((res) => console.log(res.data, "index js 172"))
+
+    $('button[name="kullanici-sil"]').on('click', function () {
+        const kullanici_button_data = $(this).attr('data-id')
+        const kullanici_id = kullanici_button_data.split('k')[1]
+        const data = { _id: kullanici_id }
+        const myPromise = axios_data("advisor_delete", data)
+        myPromise.then((res) => console.log(res.data, "index js 773"))
+        window.location.reload()
+    })
+
 }) //// delete  advisor
 $(() => {
-    const data = [
-        "mülklerimiz",    //title: String,
-        //text: Array,
-        ["Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates, accusamus.",
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates, accusamus."
-        ],
-        'flaticon-house',  //image:String,
-        "img_1",  //blog_single_image: String
-    ]
-    const data1 = [
-        "Satılık Garyrimülkler",    //title: String,
-        //text: Array,
-        ["Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates, accusamus.",
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates, accusamus."
-        ],
-        'flaticon-building',  //image:String,
-        "img_1",  //blog_single_image: String
-    ]
-    const data2 = [
-        "Gayrimenkul Temsilcisi",    //title: String,
-        //text: Array,
-        ["Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates, accusamus.",
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates, accusamus."
-        ],
-        'flaticon-building',  //image:String,
-        "img_1",  //blog_single_image: String
-    ]
+    $('button[name="kullanici-update"]').on('click', function () {
+        const kullanici_id = $(this).attr('data-id')
+        const data_input = $(`div#${kullanici_id} input`)
+        const input_data_array = new Array()
+        for (let index = 0; index < data_input.length; index++) {
+            const element = data_input[index];
+            const element_value = $(element).val()
+            if (element_value.length > 0) {
+                input_data_array.push(element_value)
+            } else if (element_value.length <= 0) {
+                const element_place_holder = $(element).attr('placeholder')
+                input_data_array.push(element_place_holder)
+            }
+        }
+        const _id = kullanici_id.split('k')[1]
+        input_data_array.push(_id)
+        const data = { data: input_data_array}
+        const myPromise = axios_data("advisor_update", data)
+        myPromise.then((res) => console.log(res.data, "index js 773"))
+        window.location.reload()
+    });
+})// update advisor
+
+
+
+
+$(() => {
+
     const data3 = [
         "Satılık Ev",    //title: String,
         //text: Array,

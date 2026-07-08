@@ -61,12 +61,12 @@ const findone_update_mulk = function findone_update_mulk(filter, update) {
   findone_update_mulk(filter, update);
 
 }
-const find_one =async function find_one(filter) {
+const find_one = async function find_one(filter) {
   const find_one = async (filter) => {
     try {
       const data = await Mulk.find(filter);
-      console.log(`mülk ${filter.seri_number} find one`);
-      return data 
+      console.log(`mülk ${filter.seri_number} find one ok db_crud`);
+      return data
     } catch (err) {
       console.error('Error find mulk:', err.message);
     }
@@ -136,7 +136,7 @@ const delete_user = function delete_user(_id) {
 const update_user = function update_user(_id, data) {
   const update_user = async (_id, data) => {
     try {
-      await User.findByIdAndUpdate({ _id, data });
+      await User.findByIdAndUpdate(_id, data );
       console.log(`user ${_id} updated`);
     } catch (err) {
       console.error('Error deleting user:', err.message);
@@ -153,6 +153,7 @@ const add_advisor = async function add_user(data) {
   const createAdvisor = async (userData) => {
     try {
       const user = new User(userData);
+      console.log(data)
       await user.save();
       const _id = user._id
       const authentication = await jwt.new_reflesh_token(data)
